@@ -9,8 +9,7 @@
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-
-    <name>Graph Grid :: SDK :: Java :: Parent</name>
+    <name>GraphGrid :: SDK :: Java :: Parent</name>
     <description></description>
     <url></url>
 
@@ -20,12 +19,11 @@
         <url>https://github.com/aws/graphgrid-sdk-java</url>
     </scm>
 
-
     <developers>
         <developer>
             <id>graphgrid</id>
-            <organization>Graph</organization>
-            <organizationUrl>https://aws.amazon.com</organizationUrl>
+            <organization>GraphGrid, Inc.</organization>
+            <organizationUrl>https://www.graphgrid.com</organizationUrl>
             <roles>
                 <role>developer</role>
             </roles>
