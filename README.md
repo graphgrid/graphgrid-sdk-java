@@ -1,4 +1,4 @@
-# Graph Grid Java SDK
+# GraphGrid Java SDK
 
 # Release Notes
 
