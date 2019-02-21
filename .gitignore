@@ -17,3 +17,4 @@ target/
 *.tar.gz
 *.rar
 
+.DS_Store
