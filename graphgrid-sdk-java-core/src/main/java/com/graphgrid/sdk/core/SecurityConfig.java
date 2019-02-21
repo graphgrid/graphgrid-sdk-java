@@ -1,4 +1,4 @@
-package com.graphgrid.core;
+package com.graphgrid.sdk.core;
 
 public class SecurityConfig
 {

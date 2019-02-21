@@ -1,4 +1,4 @@
-package com.graphgrid.core.utils;
+package com.graphgrid.sdk.core.utils;
 
 public enum HttpMethod
 {

@@ -1,4 +1,4 @@
-package com.graphgrid.files.model;
+package com.graphgrid.sdk.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,7 +18,7 @@ public class UploadFileMetadata implements Serializable
 
     private CreateProperties createProperties;
     private List<CreateRelationship> createRelationships;
-    private com.graphgrid.model.FileNode fileNode;
+    private FileNode fileNode;
 
     public UploadFileMetadata withCreateProperties( final CreateProperties createProperties )
     {
@@ -32,7 +32,7 @@ public class UploadFileMetadata implements Serializable
         return this;
     }
 
-    public UploadFileMetadata withFileNode( final com.graphgrid.model.FileNode fileNode )
+    public UploadFileMetadata withFileNode( final FileNode fileNode )
     {
         this.fileNode = fileNode;
         return this;
@@ -58,12 +58,12 @@ public class UploadFileMetadata implements Serializable
         this.createRelationships = createRelationships;
     }
 
-    public com.graphgrid.model.FileNode getFileNode()
+    public FileNode getFileNode()
     {
         return fileNode;
     }
 
-    public void setFileNode( com.graphgrid.model.FileNode fileNode )
+    public void setFileNode( FileNode fileNode )
     {
         this.fileNode = fileNode;
     }

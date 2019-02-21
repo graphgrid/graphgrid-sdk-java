@@ -1,10 +1,10 @@
-package com.graphgrid.core;
+package com.graphgrid.sdk.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.graphgrid.core.handler.ResponseHandler;
-import com.graphgrid.core.model.GraphGridServiceRequest;
-import com.graphgrid.core.model.GraphGridServiceResponse;
-import com.graphgrid.core.utils.HttpMethod;
+import com.graphgrid.sdk.core.handler.ResponseHandler;
+import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
+import com.graphgrid.sdk.core.model.GraphGridServiceResponse;
+import com.graphgrid.sdk.core.utils.HttpMethod;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -29,9 +29,12 @@ public class GraphGridHttpClient
 
 
         final Map<String,String> headers = ggRequest.getHeaders();
-        for ( Map.Entry<String,String> e : headers.entrySet() )
+        if ( headers != null )
         {
-            request.addHeader( e.getKey(), e.getValue() );
+            for ( Map.Entry<String,String> e : headers.entrySet() )
+            {
+                request.addHeader( e.getKey(), e.getValue() );
+            }
         }
         // add request header
         request.addHeader( "User-Agent", USER_AGENT );

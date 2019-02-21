@@ -1,4 +1,4 @@
-package com.graphgrid.files;
+package com.graphgrid.sdk;
 
 public interface GraphGridFileService
 {

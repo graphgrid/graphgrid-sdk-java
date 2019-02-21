@@ -1,8 +1,9 @@
-package com.graphgrid.core.model;
+package com.graphgrid.sdk.core.model;
 
 
-import com.graphgrid.core.handler.RequestHandler;
+import com.graphgrid.sdk.core.handler.RequestHandler;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ abstract public class GraphGridServiceRequest
         return t;
     }
 
-    public URL getEndpoint()
+    public URL getEndpoint() throws MalformedURLException
     {
         return endpoint;
     }

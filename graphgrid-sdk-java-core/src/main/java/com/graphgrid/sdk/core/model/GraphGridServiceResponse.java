@@ -1,7 +1,7 @@
-package com.graphgrid.core.model;
+package com.graphgrid.sdk.core.model;
 
 
-import com.graphgrid.core.exception.GraphGridException;
+import com.graphgrid.sdk.core.exception.GraphGridException;
 
 public class GraphGridServiceResponse
 {

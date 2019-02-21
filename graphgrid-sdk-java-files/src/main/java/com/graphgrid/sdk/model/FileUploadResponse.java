@@ -1,4 +1,4 @@
-package com.graphgrid.files.model;
+package com.graphgrid.sdk.model;
 
 public class FileUploadResponse
 {
