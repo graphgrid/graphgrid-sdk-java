@@ -1,10 +1,10 @@
 package com.graphgrid.sdk;
 
-import com.graphgrid.files.model.DeleteFileRequest;
-import com.graphgrid.files.model.FileServiceStatusRequest;
-import com.graphgrid.files.model.FileServiceStatusResponse;
-import com.graphgrid.files.model.PersistFileNodeOnlyRequest;
-import com.graphgrid.files.model.PersistFileNodeOnlyResponse;
+import com.graphgrid.sdk.model.DeleteFileRequest;
+import com.graphgrid.sdk.model.FileServiceStatusRequest;
+import com.graphgrid.sdk.model.FileServiceStatusResponse;
+import com.graphgrid.sdk.model.PersistFileNodeOnlyRequest;
+import com.graphgrid.sdk.model.PersistFileNodeOnlyResponse;
 
 public interface GraphGridFileService
 {

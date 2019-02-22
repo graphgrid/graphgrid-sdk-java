@@ -1,6 +1,7 @@
-package com.graphgrid.files.model;
+package com.graphgrid.sdk.model;
 
-import com.graphgrid.core.model.GraphGridServiceRequest;
+
+import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
 
 public class PersistFileNodeOnlyRequest extends GraphGridServiceRequest
 {

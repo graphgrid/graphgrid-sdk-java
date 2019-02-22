@@ -1,4 +1,4 @@
-package com.graphgrid.core.handler;
+package com.graphgrid.sdk.core.handler;
 
 import org.apache.http.HttpResponse;
 

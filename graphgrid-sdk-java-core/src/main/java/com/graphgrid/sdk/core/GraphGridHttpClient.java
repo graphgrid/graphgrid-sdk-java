@@ -1,11 +1,7 @@
 package com.graphgrid.sdk.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.graphgrid.core.handler.DefaultResponseHandler;
-import com.graphgrid.core.handler.ResponseHandler;
-import com.graphgrid.core.model.GraphGridServiceRequest;
-import com.graphgrid.core.model.GraphGridServiceResponse;
-import com.graphgrid.core.utils.HttpMethod;
+import com.graphgrid.sdk.core.handler.DefaultResponseHandler;
 import com.graphgrid.sdk.core.handler.ResponseHandler;
 import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
 import com.graphgrid.sdk.core.model.GraphGridServiceResponse;

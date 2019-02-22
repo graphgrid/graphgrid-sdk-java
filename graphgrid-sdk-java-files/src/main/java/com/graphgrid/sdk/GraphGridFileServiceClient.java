@@ -1,12 +1,12 @@
-package com.graphgrid.files;
+package com.graphgrid.sdk;
 
-import com.graphgrid.core.GraphGridHttpClient;
-import com.graphgrid.core.utils.HttpMethod;
-import com.graphgrid.files.model.DeleteFileRequest;
-import com.graphgrid.files.model.FileServiceStatusRequest;
-import com.graphgrid.files.model.FileServiceStatusResponse;
-import com.graphgrid.files.model.PersistFileNodeOnlyRequest;
-import com.graphgrid.files.model.PersistFileNodeOnlyResponse;
+import com.graphgrid.sdk.core.GraphGridHttpClient;
+import com.graphgrid.sdk.core.utils.HttpMethod;
+import com.graphgrid.sdk.model.DeleteFileRequest;
+import com.graphgrid.sdk.model.FileServiceStatusRequest;
+import com.graphgrid.sdk.model.FileServiceStatusResponse;
+import com.graphgrid.sdk.model.PersistFileNodeOnlyRequest;
+import com.graphgrid.sdk.model.PersistFileNodeOnlyResponse;
 
 import java.io.IOException;
 import java.net.URL;
