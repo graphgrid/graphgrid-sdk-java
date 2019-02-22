@@ -1,14 +1,14 @@
 package com.graphgrid.sdk;
 
 import com.graphgrid.sdk.core.GraphGridHttpClient;
-import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
-import com.graphgrid.sdk.core.utils.HttpMethod;
-import org.junit.Ignore;
+import com.graphgrid.sdk.core.model.GetTokenResponse;
+import com.graphgrid.sdk.core.security.GraphGridSecurityService;
+import com.graphgrid.sdk.core.security.SecurityService;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+
+import static org.junit.Assert.assertNotNull;
 
 public class SecurityTest extends TestBase
 {
@@ -22,25 +22,23 @@ public class SecurityTest extends TestBase
     }
 
     @Test
-    @Ignore
-    public void testToken() throws IOException
+    public void getToken() throws Exception
     {
-        GraphGridHttpClient client = new GraphGridHttpClient();
-        client.invoke( new GraphGridServiceRequest()
-        {
-            @Override
-            public URL getEndpoint() throws MalformedURLException
-            {
-                return new URL( "http://local-api.graphgrid.com/1.0/security/token" );
-            }
-        }, null, HttpMethod.POST );
+        final SecurityService securityService = new GraphGridSecurityService( securityConfig );
+        final GetTokenResponse tokenResponse = securityService.getToken( username, password );
+
+        assertNotNull( tokenResponse );
+        assertNotNull( tokenResponse.getAccessToken() );
     }
 
     @Test
-    @Ignore
-    public void testToken2() throws IOException
+    public void getTokenByCredentials() throws Exception
     {
-        // TODO
+        final SecurityService securityService = new GraphGridSecurityService( securityConfig );
+        final GetTokenResponse tokenResponse = securityService.getTokenForSecurityCredentials();
+
+        assertNotNull( tokenResponse );
+        assertNotNull( tokenResponse.getAccessToken() );
     }
 
 }
