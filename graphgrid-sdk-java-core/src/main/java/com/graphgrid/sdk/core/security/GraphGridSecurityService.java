@@ -33,13 +33,13 @@ public class GraphGridSecurityService extends GraphGridServiceBase implements Se
 
     public GraphGridSecurityService( SecurityConfig securityConfig )
     {
-        super( securityConfig.getBaseSecurityEndpoint() );
+        super( securityConfig.getBaseSecurityUrl() );
         this.securityConfig = securityConfig;
     }
 
     public GraphGridSecurityService( GraphGridHttpClient client, SecurityConfig securityConfig )
     {
-        super( client, securityConfig.getBaseSecurityEndpoint(), securityConfig );
+        super( client, securityConfig.getBaseSecurityUrl(), securityConfig );
     }
 
     public GetTokenResponse getToken( String username, String password )
@@ -81,7 +81,7 @@ public class GraphGridSecurityService extends GraphGridServiceBase implements Se
 
     public GetTokenResponse getTokenForSecurityCredentials()
     {
-        return getTokenForSecurityCredentials( securityConfig.getOauthClientId(), securityConfig.getOauthClientSecret() );
+        return getTokenForSecurityCredentials( securityConfig.getOauthTokenClientId(), securityConfig.getOauthTokenClientSecret() );
     }
 
     private String baseEncodedHeader( String clientId, String clientKey )

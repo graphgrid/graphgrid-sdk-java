@@ -11,6 +11,21 @@
         <relativePath/>
     </parent>
 
+
+    <properties>
+        <!-- configure security context -->
+        <config.useAsOverwrite>true</config.useAsOverwrite>
+        <client.id></client.id>
+        <client.secret></client.secret>
+        <baseSecurityUrl></baseSecurityUrl>
+        <oauth.token.url></oauth.token.url>
+        <oauth.token.client.id></oauth.token.client.id>
+        <oauth.token.client.secret></oauth.token.client.secret>
+        <!--only for testing purpose-->
+        <oauth.username></oauth.username>
+        <oauth.password></oauth.password>
+    </properties>
+
     <groupId>com.graphgrid</groupId>
     <artifactId>graphgrid-sdk-java-tests</artifactId>
     <version>1.3.0-SNAPSHOT</version>
@@ -72,6 +87,24 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>write-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>${project.build.outputDirectory}/test-properties</outputFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
