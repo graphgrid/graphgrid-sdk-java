@@ -10,13 +10,13 @@ public class SecurityConfig
 
     private String clientSecret;
 
-    private String baseSecurityEndpoint;
+    private String baseSecurityUrl;
 
-    private String oauthClientId;
+    private String oauthTokenClientId;
 
-    private String oauthClientSecret;
+    private String oauthTokenClientSecret;
 
-    private String oauthSecurityEndpoint;
+    private String oauthTokenUrl;
 
     public String getClientId()
     {
@@ -38,43 +38,43 @@ public class SecurityConfig
         this.clientSecret = clientSecret;
     }
 
-    public String getBaseSecurityEndpoint()
+    public String getBaseSecurityUrl()
     {
-        return baseSecurityEndpoint;
+        return baseSecurityUrl;
     }
 
-    public void setBaseSecurityEndpoint( String baseSecurityEndpoint )
+    public void setBaseSecurityUrl( String baseSecurityUrl )
     {
-        this.baseSecurityEndpoint = baseSecurityEndpoint;
+        this.baseSecurityUrl = baseSecurityUrl;
     }
 
-    public String getOauthClientId()
+    public String getOauthTokenClientId()
     {
-        return oauthClientId;
+        return oauthTokenClientId;
     }
 
-    public void setOauthClientId( String oauthClientId )
+    public void setOauthTokenClientId( String oauthTokenClientId )
     {
-        this.oauthClientId = oauthClientId;
+        this.oauthTokenClientId = oauthTokenClientId;
     }
 
-    public String getOauthClientSecret()
+    public String getOauthTokenClientSecret()
     {
-        return oauthClientSecret;
+        return oauthTokenClientSecret;
     }
 
-    public void setOauthClientSecret( String oauthClientSecret )
+    public void setOauthTokenClientSecret( String oauthTokenClientSecret )
     {
-        this.oauthClientSecret = oauthClientSecret;
+        this.oauthTokenClientSecret = oauthTokenClientSecret;
     }
 
-    public String getOauthSecurityEndpoint()
+    public String getOauthTokenUrl()
     {
-        return oauthSecurityEndpoint;
+        return oauthTokenUrl;
     }
 
-    public void setOauthSecurityEndpoint( String oauthSecurityEndpoint )
+    public void setOauthTokenUrl( String oauthTokenUrl )
     {
-        this.oauthSecurityEndpoint = oauthSecurityEndpoint;
+        this.oauthTokenUrl = oauthTokenUrl;
     }
 }
