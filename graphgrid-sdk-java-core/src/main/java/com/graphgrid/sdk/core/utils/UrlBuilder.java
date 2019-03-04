@@ -16,9 +16,10 @@ import java.util.Map;
 import java.util.Optional;
 
 import static com.graphgrid.sdk.core.utils.Preconditions.checkNotEmpty;
+import static com.graphgrid.sdk.core.utils.Preconditions.checkNotNull;
 
 /**
- * build raw url
+ * builds raw url
  */
 public class UrlBuilder
 {
@@ -37,37 +38,73 @@ public class UrlBuilder
 
     public UrlBuilder withBaseUrl( String baseUrl )
     {
+        checkNotEmpty( baseUrl, "baseUrl" );
         this.baseUrl = baseUrl;
         return this;
     }
 
     public UrlBuilder withServiceEndpoint( String serviceUrl )
     {
+        checkNotEmpty( serviceUrl, "serviceUrl" );
         this.serviceUrl = serviceUrl;
         return this;
     }
 
     public UrlBuilder withPathVariables( List<String> pathVariables )
     {
+        return withPathVariables( pathVariables, true );
+    }
+
+    /**
+     * @param pathVariables
+     * @param validated throws exception if invalid input is in list
+     * @return
+     */
+    public UrlBuilder withPathVariables( List<String> pathVariables, boolean validated )
+    {
+        if ( validated )
+        {
+            checkNotNull( pathVariables, "pathVariables" );
+            pathVariables.forEach( p -> checkNotEmpty( p, "pathVariable for building url" ) );
+        }
         this.pathVariables = pathVariables;
         return this;
     }
 
-    public UrlBuilder addPathVariable( String pathVariables )
+    public UrlBuilder addPathVariable( String pathVariable )
     {
+        return addPathVariable( pathVariable, true );
+    }
+
+    /**
+     * use when path variable is optional
+     *
+     * @param pathVariable
+     * @param required
+     * @return
+     */
+    public UrlBuilder addPathVariable( String pathVariable, boolean required )
+    {
+        if ( !required && StringUtils.isBlank( pathVariable ) )
+        {
+            return this;
+        }
+        checkNotEmpty( pathVariable, "pathVariable" );
         this.pathVariables = Optional.ofNullable( this.pathVariables ).orElse( new LinkedList<>() );
-        this.pathVariables.add( pathVariables );
+        this.pathVariables.add( pathVariable );
         return this;
     }
 
     public UrlBuilder withQueryParams( Map<String,List<String>> queryParameters )
     {
+        checkNotNull( queryParameters, "queryParameters" );
         this.queryParameters = queryParameters;
         return this;
     }
 
     public UrlBuilder addQueryParam( String key, String value )
     {
+        checkNotEmpty( key, "key" );
         queryParameters = Optional.ofNullable( queryParameters ).orElse( new HashMap<String,List<String>>() );
         queryParameters.put( key, Collections.singletonList( value ) );
         return this;
@@ -75,6 +112,7 @@ public class UrlBuilder
 
     public UrlBuilder addQueryParam( String key, List<String> value )
     {
+        checkNotEmpty( key, "key" );
         queryParameters = Optional.ofNullable( queryParameters ).orElse( new HashMap<String,List<String>>() );
         queryParameters.put( key, value );
         return this;
