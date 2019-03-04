@@ -76,13 +76,36 @@ public class RequestUrlBuilder
 
     public RequestUrlBuilder addQueryParam( String key, String value )
     {
-        urlBuilder.addQueryParam( key, value );
+        return addQueryParam( key, value, true );
+    }
+
+    /**
+     * @param key
+     * @param value
+     * @param required false for optional query params
+     * @return
+     */
+    public RequestUrlBuilder addQueryParam( String key, String value, boolean required )
+    {
+        urlBuilder.addQueryParam( key, value, required );
         return this;
     }
 
     public RequestUrlBuilder addQueryParam( String key, List<String> value )
     {
-        urlBuilder.addQueryParam( key, value );
+        return addQueryParam( key, value, true );
+    }
+
+
+    /**
+     * @param key
+     * @param value
+     * @param required false for optional query params
+     * @return
+     */
+    public RequestUrlBuilder addQueryParam( String key, List<String> value, boolean required )
+    {
+        urlBuilder.addQueryParam( key, value, required );
         return this;
     }
 

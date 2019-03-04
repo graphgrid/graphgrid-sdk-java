@@ -104,15 +104,43 @@ public class UrlBuilder
 
     public UrlBuilder addQueryParam( String key, String value )
     {
-        checkNotEmpty( key, "key" );
+        return addQueryParam( key, value, true );
+    }
+
+    public UrlBuilder addQueryParam( String key, String value, boolean required )
+    {
+
+        if ( !required )
+        {
+            if ( StringUtils.isEmpty( value ) )
+            {
+                return this;
+            }
+        }
+        checkNotEmpty( key, "key for building url" );
+        checkNotNull( value, "value for building url" );
         queryParameters = Optional.ofNullable( queryParameters ).orElse( new HashMap<String,List<String>>() );
         queryParameters.put( key, Collections.singletonList( value ) );
         return this;
     }
 
+
     public UrlBuilder addQueryParam( String key, List<String> value )
     {
+        return addQueryParam( key, value, true );
+    }
+
+    public UrlBuilder addQueryParam( String key, List<String> value, boolean required )
+    {
+        if ( !required )
+        {
+            if ( value == null || value.isEmpty() )
+            {
+                return this;
+            }
+        }
         checkNotEmpty( key, "key" );
+        checkNotNull( value, "value for building url" );
         queryParameters = Optional.ofNullable( queryParameters ).orElse( new HashMap<String,List<String>>() );
         queryParameters.put( key, value );
         return this;

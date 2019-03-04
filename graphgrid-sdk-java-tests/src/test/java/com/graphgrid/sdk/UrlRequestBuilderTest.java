@@ -42,6 +42,16 @@ public class UrlRequestBuilderTest
     }
 
     @Test
+    public void buildUrl3b()
+    {
+        final FindFileRequest request = new FindFileRequest( new NoTokenRequest(), "grn:file:123" );
+        final URL url = new UrlBuilder( "http://localhost/gg.file.com" ).withBaseUrl( "http://localhost/gg.file.com" ).addPathVariable( request.getGrn() )
+                .addPathVariable( "grn:gg:org:213" ).addQueryParam( "k1", "", false ).buildUrl();
+        assertEquals( url.toString(), "http://localhost/gg.file.com/grn:file:123/grn:gg:org:213" );
+    }
+
+
+    @Test
     public void buildUrl4()
     {
         final FindFileRequest request = new FindFileRequest( new NoTokenRequest(), "" );
@@ -98,6 +108,7 @@ public class UrlRequestBuilderTest
         final GraphGridServiceRequest requestWithUrl = urlBuilder.create( request ).withServiceEndpoint( "billing" ).buildRequestWithUrl();
         assertEquals( requestWithUrl.getEndpoint().toString(), "http://localhost/gg.file.com/billing" );
     }
+
 
     @Test
     public void buildWithFactory4() throws Exception
@@ -162,5 +173,29 @@ public class UrlRequestBuilderTest
         final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost:8080" );
         final URL url = urlBuilder.create().withServiceEndpoint( "go" ).withPathVariables( p ).buildUrl();
         assertEquals( url.toString(), "http://localhost:8080/go" );
+    }
+
+    @Test
+    public void buildWithFactory8b()
+    {
+        final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost:8080" );
+        final URL url = urlBuilder.create().withServiceEndpoint( "go" ).addQueryParam( "k1", "", false ).buildUrl();
+        assertEquals( url.toString(), "http://localhost:8080/go" );
+    }
+
+    @Test
+    public void buildWithFactory8c()
+    {
+        final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost:8080" );
+        final URL url = urlBuilder.create().withServiceEndpoint( "go" ).addQueryParam( "k1", "", true ).buildUrl();
+        assertEquals( url.toString(), "http://localhost:8080/go?k1=" );
+    }
+
+    @Test
+    public void buildWithFactory8d()
+    {
+        final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost:8080" );
+        final URL url = urlBuilder.create().withServiceEndpoint( "go" ).addQueryParam( "k1", "v1", false ).buildUrl();
+        assertEquals( url.toString(), "http://localhost:8080/go?k1=v1" );
     }
 }
