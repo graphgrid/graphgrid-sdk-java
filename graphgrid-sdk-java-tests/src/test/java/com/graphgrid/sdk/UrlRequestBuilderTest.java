@@ -8,8 +8,10 @@ import com.graphgrid.sdk.model.FindFileRequest;
 import org.junit.Test;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -107,11 +109,58 @@ public class UrlRequestBuilderTest
         assertEquals( requestWithUrl.getEndpoint().toString(), "http://localhost/gg.file.com/billing/delete" );
     }
 
-    @Test
+    @Test( expected = com.graphgrid.sdk.core.exception.GraphGridSdkInvalidArgumentException.class )
     public void buildWithFactory5()
     {
         final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( null );
         final URL url = urlBuilder.create().withServiceEndpoint( "billing" ).buildUrl();
-        assertEquals( url.toString(), "http://localhost/gg.file.com/billing" );
+    }
+
+    @Test( expected = com.graphgrid.sdk.core.exception.GraphGridSdkInvalidArgumentException.class )
+    public void buildWithFactory6()
+    {
+        final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost:8080" );
+        final URL url = urlBuilder.create().withServiceEndpoint( "go" ).addPathVariable( null ).buildUrl();
+        assertEquals( url.toString(), "http://localhost:8080/go" );
+    }
+
+    @Test
+    public void buildWithFactory6b()
+    {
+        final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost:8080" );
+        final URL url = urlBuilder.create().withServiceEndpoint( "go" ).addPathVariable( null, false ).buildUrl();
+        assertEquals( url.toString(), "http://localhost:8080/go" );
+    }
+
+    @Test( expected = com.graphgrid.sdk.core.exception.GraphGridSdkInvalidArgumentException.class )
+    public void buildWithFactory7()
+    {
+        List<String> p = new ArrayList<>();
+        p.add( null );
+        final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost:8080" );
+        final URL url = urlBuilder.create().withServiceEndpoint( "go" ).withPathVariables( p ).buildUrl();
+        assertEquals( url.toString(), "http://localhost:8080/go/null" );
+    }
+
+    @Test
+    public void buildWithFactory7b()
+    {
+        List<String> p = new ArrayList<>();
+        p.add( null );
+        final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost:8080" );
+        final URL url = urlBuilder.create().withServiceEndpoint( "go" ).withPathVariables( p, false ).buildUrl();
+        assertEquals( url.toString(), "http://localhost:8080/go/null" );
+    }
+
+    @Test( expected = com.graphgrid.sdk.core.exception.GraphGridSdkInvalidArgumentException.class )
+    public void buildWithFactory8()
+    {
+        List<String> p = new ArrayList<>();
+        p.add( "" );
+        p.add( null );
+
+        final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost:8080" );
+        final URL url = urlBuilder.create().withServiceEndpoint( "go" ).withPathVariables( p ).buildUrl();
+        assertEquals( url.toString(), "http://localhost:8080/go" );
     }
 }

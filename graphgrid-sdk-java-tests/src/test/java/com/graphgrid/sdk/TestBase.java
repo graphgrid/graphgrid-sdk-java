@@ -27,18 +27,19 @@ public abstract class TestBase
 //    protected String password;
 
     // needed to configure security context
+    //@Value( "${spring.client.id}" )
+//    private String clientId;
+//    @Value( "${spring.client.secret}" )
+//    private String clientSecret;
 //    @Value( "${spring.baseSecurityUrl}" )
-//    private String securityEndpoint;
+//    private String baseSecurityUrl;
 //    @Value( "${spring.oauth.token.url}" )
 //    private String springOAuthTokenUrl;
 //    @Value( "${spring.oauth.token.client.id}" )
 //    private String oAuthClientId;
 //    @Value( "${spring.oauth.token.client.secret}" )
 //    private String oAuthClientSecret;
-//    @Value( "${spring.oauth.client.id}" )
-//    private String clientId;
-//    @Value( "${spring.oauth.client.secret}" )
-//    private String clientSecret;
+
 
     @Rule
     public final ExpectedException thrown = ExpectedException.none();
