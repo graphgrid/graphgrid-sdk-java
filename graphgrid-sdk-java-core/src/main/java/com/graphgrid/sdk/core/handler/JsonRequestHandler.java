@@ -76,7 +76,6 @@ public class JsonRequestHandler implements RequestHandler
             request = new HttpPatch( url );
         }
 
-
         request = addHeaders( ggRequest.getHeaders(), request );
 
         return client.execute( request );

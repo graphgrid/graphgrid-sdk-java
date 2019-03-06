@@ -2,6 +2,10 @@ package com.graphgrid.sdk.core.security;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+/**
+ * will acquire token based on user name and password
+ * should only be used for testing purpose
+ */
 public class UserTokenRequest implements RequestAuthMethod
 {
     private String userName;

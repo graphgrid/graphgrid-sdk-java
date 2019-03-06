@@ -4,6 +4,7 @@ package com.graphgrid.sdk.core.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.graphgrid.sdk.core.handler.RequestHandler;
 import com.graphgrid.sdk.core.handler.ResponseHandler;
+import com.graphgrid.sdk.core.security.ClientCredentialsTokenRequest;
 import com.graphgrid.sdk.core.security.RequestAuthMethod;
 import com.graphgrid.sdk.core.utils.ExecutionContext;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -39,6 +40,7 @@ abstract public class GraphGridServiceRequest
 
     public GraphGridServiceRequest()
     {
+        this.requestAuthMethod = new ClientCredentialsTokenRequest();
     }
 
     public GraphGridServiceRequest( RequestAuthMethod requestAuthMethod )

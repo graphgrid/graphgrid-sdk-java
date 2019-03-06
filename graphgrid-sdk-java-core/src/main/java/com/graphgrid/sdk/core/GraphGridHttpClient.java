@@ -20,7 +20,7 @@ import java.io.IOException;
 import static com.graphgrid.sdk.core.utils.Preconditions.checkNotNull;
 
 /**
- * handles making request to graph grid rest endpoint
+ * handles making http request to graph grid rest endpoint
  */
 public class GraphGridHttpClient
 {

@@ -5,16 +5,11 @@ package com.graphgrid.sdk.core.security;
  */
 public class SecurityConfig
 {
-
     private String clientId;
 
     private String clientSecret;
 
     private String baseSecurityUrl;
-
-    private String oauthTokenClientId;
-
-    private String oauthTokenClientSecret;
 
     private String oauthTokenUrl;
 
@@ -46,26 +41,6 @@ public class SecurityConfig
     public void setBaseSecurityUrl( String baseSecurityUrl )
     {
         this.baseSecurityUrl = baseSecurityUrl;
-    }
-
-    public String getOauthTokenClientId()
-    {
-        return oauthTokenClientId;
-    }
-
-    public void setOauthTokenClientId( String oauthTokenClientId )
-    {
-        this.oauthTokenClientId = oauthTokenClientId;
-    }
-
-    public String getOauthTokenClientSecret()
-    {
-        return oauthTokenClientSecret;
-    }
-
-    public void setOauthTokenClientSecret( String oauthTokenClientSecret )
-    {
-        this.oauthTokenClientSecret = oauthTokenClientSecret;
     }
 
     public String getOauthTokenUrl()
