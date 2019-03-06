@@ -15,9 +15,8 @@ public class FindFileRequest extends GraphGridServiceRequest
     {
     }
 
-    public FindFileRequest( RequestAuthMethod authenticationMethod, String grn )
+    public FindFileRequest( String grn )
     {
-        super( authenticationMethod );
         this.grn = grn;
     }
 

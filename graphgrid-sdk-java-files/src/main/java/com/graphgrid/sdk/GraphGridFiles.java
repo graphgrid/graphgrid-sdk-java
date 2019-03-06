@@ -15,7 +15,7 @@ import com.graphgrid.sdk.model.PersistFileNodeOnlyResponse;
 import com.graphgrid.sdk.model.UploadFileRequest;
 import com.graphgrid.sdk.model.UploadFileResponse;
 
-public interface GraphGridFileService
+public interface GraphGridFiles
 {
 
     PersistFileNodeOnlyResponse createFileNodeWithoutUploading( PersistFileNodeOnlyRequest request );

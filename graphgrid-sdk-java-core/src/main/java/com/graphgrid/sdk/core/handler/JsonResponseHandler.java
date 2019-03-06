@@ -17,7 +17,7 @@ public class JsonResponseHandler<T extends GraphGridServiceResponse> implements 
 
     private static final Logger LOGGER = LoggerFactory.getLogger( JsonResponseHandler.class );
 
-    private String convertToString( HttpResponse httpResponse )
+    private String convertToString( final HttpResponse httpResponse )
     {
         final StringBuilder result = new StringBuilder();
         try ( final BufferedReader rd = new BufferedReader( new InputStreamReader( httpResponse.getEntity().getContent() ) ) )
@@ -31,7 +31,7 @@ public class JsonResponseHandler<T extends GraphGridServiceResponse> implements 
         }
         catch ( IOException e )
         {
-            e.printStackTrace();
+            LOGGER.error( e.getMessage() );
         }
         if ( StringUtils.isEmpty( result ) )
         {

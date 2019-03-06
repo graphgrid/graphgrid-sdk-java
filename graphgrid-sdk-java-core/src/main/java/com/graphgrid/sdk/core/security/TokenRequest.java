@@ -2,6 +2,9 @@ package com.graphgrid.sdk.core.security;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+/**
+ * use when token is provided by the client
+ */
 public class TokenRequest implements RequestAuthMethod
 {
     private String token;

@@ -2,7 +2,7 @@ package com.graphgrid.sdk;
 
 import com.graphgrid.sdk.core.exception.GraphGridSdkException;
 import com.graphgrid.sdk.core.security.ClientCredentialsTokenRequest;
-import com.graphgrid.sdk.core.security.GraphGridSecurityService;
+import com.graphgrid.sdk.core.security.GraphGridSecurityClient;
 import com.graphgrid.sdk.core.security.NoTokenRequest;
 import com.graphgrid.sdk.core.security.SecurityService;
 import com.graphgrid.sdk.core.security.TokenRequest;
@@ -31,7 +31,7 @@ public class FileServiceTest extends TestBase
     @Test
     public void testStatus() throws Exception
     {
-        final GraphGridFileServiceClient client = new GraphGridFileServiceClient( "https://dev-api.graphgrid.com/1.0/file" );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file" );
         final FileServiceStatusResponse response = client.status( new FileServiceStatusRequest().withAuthMethod( new ClientCredentialsTokenRequest() ) );
 
         assertNotNull( response );
@@ -68,7 +68,7 @@ public class FileServiceTest extends TestBase
         request.withHeaders( map );
 
 
-        final GraphGridFileServiceClient client = new GraphGridFileServiceClient( "https://dev-api.graphgrid.com/1.0/file" );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file" );
         final PersistFileNodeOnlyResponse response = client.createFileNodeWithoutUploading( request );
     }
 
@@ -76,17 +76,17 @@ public class FileServiceTest extends TestBase
     public void urlNotFound() throws IOException
     {
         GraphGridSdkException exception = null;
-        final GraphGridFileServiceClient client = new GraphGridFileServiceClient( "https://dev-api.graphgrid.com/1.0/fileNotThere" );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/fileNotThere" );
         try
         {
-            client.status( new FileServiceStatusRequest() );
+            client.status( new FileServiceStatusRequest().withAuthMethod( new NoTokenRequest() ) );
         }
         catch ( GraphGridSdkException ex )
         {
             exception = ex;
         }
         assertNotNull( exception );
-        assertEquals( exception.getHttpStatusCode(), 404 );
+        assertEquals( 404, exception.getHttpStatusCode() );
     }
 
     @Test
@@ -105,8 +105,7 @@ public class FileServiceTest extends TestBase
         request.withHeaders( map );
 
 
-        final GraphGridFileServiceClient client = new GraphGridFileServiceClient( "https://dev-api.graphgrid.com/1.0/file" );
-
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file" );
 
         GraphGridSdkException exception = null;
         try
@@ -126,9 +125,9 @@ public class FileServiceTest extends TestBase
     {
         String fileGrn = "grn:gg:file:Mm5FzYHWZd92Tx3rqKpGHaDc0pdjMmZclyKgK4fe8sUL";
 
-        final GraphGridFileServiceClient client = new GraphGridFileServiceClient( "https://dev-api.graphgrid.com/1.0/file" );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file" );
 
-        final FindFileRequest request = new FindFileRequest( new TokenRequest( "ddf08ff3-ee0c-4b02-86e7-1fa551a2faa7" ), fileGrn );
+        final FindFileRequest request = new FindFileRequest( fileGrn ).withAuthMethod( new TokenRequest( "ddf08ff3-ee0c-4b02-86e7-1fa551a2faa7" ) );
         request.setGrn( fileGrn );
 
         final FindFileResponse file = client.findFileByGrn( request );
@@ -140,13 +139,15 @@ public class FileServiceTest extends TestBase
     public void getFileNodeWithPreexistingToken()
     {
         String fileGrn = "grn:gg:file:Mm5FzYHWZd92Tx3rqKpGHaDc0pdjMmZclyKgK4fe8sUL";
-        SecurityService securityService = new GraphGridSecurityService( securityConfig );
+
+
+        SecurityService securityService = new GraphGridSecurityClient( securityConfig );
         String token = securityService.getTokenForSecurityCredentials().getAccessToken();
 
-        final GraphGridFileServiceClient client = new GraphGridFileServiceClient( "https://dev-api.graphgrid.com/1.0/file" );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file" );
 
 
-        final FindFileRequest request = new FindFileRequest( new TokenRequest( token ), fileGrn );
+        final FindFileRequest request = new FindFileRequest( fileGrn ).withAuthMethod( new TokenRequest( token ) );
         request.setGrn( fileGrn );
 
         final FindFileResponse file = client.findFileByGrn( request );
@@ -154,15 +155,16 @@ public class FileServiceTest extends TestBase
         assertNotNull( file.getFileNode() );
     }
 
+    @Ignore("")
     @Test
     public void getFileNodeWithUserToken() throws Exception
     {
         String fileGrn = "grn:gg:file:Mm5FzYHWZd92Tx3rqKpGHaDc0pdjMmZclyKgK4fe8sUL";
 
-        final GraphGridFileServiceClient client = new GraphGridFileServiceClient( "https://dev-api.graphgrid.com/1.0/file", securityConfig );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file", securityConfig );
 
 
-        final FindFileRequest request = new FindFileRequest( new UserTokenRequest( username, password ), fileGrn );
+        final FindFileRequest request = new FindFileRequest( fileGrn ).withAuthMethod( new UserTokenRequest( username, password ) );
         request.setGrn( fileGrn );
 
         final FindFileResponse file = client.findFileByGrn( request );
@@ -175,9 +177,10 @@ public class FileServiceTest extends TestBase
     {
         String fileGrn = "grn:gg:file:Mm5FzYHWZd92Tx3rqKpGHaDc0pdjMmZclyKgK4fe8sUL";
 
-        final GraphGridFileServiceClient client = new GraphGridFileServiceClient( "https://dev-api.graphgrid.com/1.0/file", securityConfig );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file", securityConfig );
 
-        final FindFileRequest request = new FindFileRequest( new ClientCredentialsTokenRequest(), fileGrn );
+        // somewhere else
+        final FindFileRequest request = new FindFileRequest( fileGrn );
 
         final FindFileResponse file = client.findFileByGrn( request );
         assertNotNull( file );

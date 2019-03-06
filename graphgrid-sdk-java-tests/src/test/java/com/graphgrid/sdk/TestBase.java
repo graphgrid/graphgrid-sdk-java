@@ -20,7 +20,7 @@ import java.util.Properties;
 public abstract class TestBase
 {
 
-    // only used to test getting a token for a user
+    // only used to test getting a tokenMapper for a user
 //    @Value( "${spring.oauth.username}" )
 //    protected String username;
 //    @Value( "${spring.oauth.password}" )
@@ -33,11 +33,11 @@ public abstract class TestBase
 //    private String clientSecret;
 //    @Value( "${spring.baseSecurityUrl}" )
 //    private String baseSecurityUrl;
-//    @Value( "${spring.oauth.token.url}" )
+//    @Value( "${spring.oauth.tokenMapper.url}" )
 //    private String springOAuthTokenUrl;
-//    @Value( "${spring.oauth.token.client.id}" )
+//    @Value( "${spring.oauth.tokenMapper.client.id}" )
 //    private String oAuthClientId;
-//    @Value( "${spring.oauth.token.client.secret}" )
+//    @Value( "${spring.oauth.tokenMapper.client.secret}" )
 //    private String oAuthClientSecret;
 
 
@@ -73,15 +73,11 @@ public abstract class TestBase
         {
             return;
         }
-        System.out.println( "========================================" );
-        System.out.println( p.getProperty( "baseSecurityUrl" ) );
 
         securityConfig.setClientId( p.getProperty( "client.id" ) );
         securityConfig.setClientSecret( p.getProperty( "client.secret" ) );
         securityConfig.setBaseSecurityUrl( p.getProperty( "baseSecurityUrl" ) );
-        securityConfig.setOauthTokenClientId( p.getProperty( "oauth.token.client.id" ) );
-        securityConfig.setOauthTokenClientSecret( p.getProperty( "oauth.token.client.secret" ) );
-        securityConfig.setOauthTokenUrl( p.getProperty( "oauth.token.url" ) );
+        securityConfig.setOauthTokenUrl( p.getProperty( "oauth.tokenMapper.url" ) );
 
         username = p.getProperty( "oauth.username" );
         password = p.getProperty( "oauth.password" );
