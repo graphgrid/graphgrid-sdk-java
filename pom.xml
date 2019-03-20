@@ -6,7 +6,7 @@
 
     <groupId>com.graphgrid</groupId>
     <artifactId>graphgrid-sdk-java-pom</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>1.3.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>GraphGrid :: SDK :: Java :: Parent</name>
@@ -45,6 +45,68 @@
         <commons.io.version>2.4</commons.io.version>
         <commons.lang.version>3.7</commons.lang.version>
         <httpcomponents.httpclient.version>4.5.5</httpcomponents.httpclient.version>
+        <version.java>1.8</version.java>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>release-public</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>graphgrid-s3-public-snapshots</id>
+                    <name>GraphGrid Snapshot Repository</name>
+                    <url>${maven.repository.s3.public.snapshots}</url>
+                </snapshotRepository>
+                <repository>
+                    <id>graphgrid-s3-public-releases</id>
+                    <name>GraphGrid Release Repository</name>
+                    <url>${maven.repository.s3.public.releases}</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <source>${version.java}</source>
+                            <target>${version.java}</target>
+                            <debug>false</debug>
+                            <optimize>true</optimize>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>release-private</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>graphgrid-s3-snapshots</id>
+                    <name>GraphGrid Snapshot Repository</name>
+                    <url>${maven.repository.s3.snapshots}</url>
+                </snapshotRepository>
+                <repository>
+                    <id>graphgrid-s3-releases</id>
+                    <name>GraphGrid Release Repository</name>
+                    <url>${maven.repository.s3.releases}</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <source>${version.java}</source>
+                            <target>${version.java}</target>
+                            <debug>false</debug>
+                            <optimize>true</optimize>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

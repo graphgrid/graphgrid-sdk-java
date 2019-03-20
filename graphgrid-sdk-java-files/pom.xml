@@ -7,12 +7,12 @@
     <parent>
         <groupId>com.graphgrid</groupId>
         <artifactId>graphgrid-sdk-java-pom</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>1.3.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.graphgrid</groupId>
     <artifactId>graphgrid-sdk-java-files</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.3.0-SNAPSHOT</version>
 
     <name>GraphGrid :: SDK :: Java :: Files</name>
 
