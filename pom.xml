@@ -50,6 +50,17 @@
 
     <profiles>
         <profile>
+            <id>build-project</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>graphgrid-sdk-java-core</module>
+                <module>graphgrid-sdk-java-files</module>
+                <module>graphgrid-sdk-java-tests</module>
+            </modules>
+        </profile>
+        <profile>
             <id>release-public</id>
             <distributionManagement>
                 <snapshotRepository>
