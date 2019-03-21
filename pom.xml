@@ -17,6 +17,7 @@
         <connection>scm:git:https://github.com/graphgrid/graphgrid-sdk-java.git</connection>
         <developerConnection>scm:git:git@github.com/graphgrid/graphgrid-sdk-java.git</developerConnection>
         <url>https://github.com/aws/graphgrid-sdk-java</url>
+
     </scm>
 
     <developers>
@@ -46,6 +47,8 @@
         <commons.lang.version>3.7</commons.lang.version>
         <httpcomponents.httpclient.version>4.5.5</httpcomponents.httpclient.version>
         <version.java>1.8</version.java>
+        <maven.repository.s3.snapshots>s3://graphgrid-repos/snapshots</maven.repository.s3.snapshots>
+        <maven.repository.s3.releases>s3://graphgrid-repos/releases</maven.repository.s3.releases>
     </properties>
 
     <profiles>
