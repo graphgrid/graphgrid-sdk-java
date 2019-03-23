@@ -10,11 +10,11 @@
         <version>1.3.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.graphgrid</groupId>
     <artifactId>graphgrid-sdk-java-core</artifactId>
-    <version>1.3.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>GraphGrid :: SDK :: Java :: Core</name>
+    <description>GraphGrid SDK Core for Auth and Token Management.</description>
 
     <dependencies>
         <dependency>

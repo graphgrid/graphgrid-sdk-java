@@ -10,26 +10,25 @@
         <version>1.3.0-SNAPSHOT</version>
     </parent>
 
+    <artifactId>graphgrid-sdk-java-tests</artifactId>
+    <packaging>jar</packaging>
+
+    <name>GraphGrid :: SDK :: Java :: Tests</name>
+    <description>GraphGrid SDK Tests.</description>
 
     <properties>
         <!-- configure security context -->
         <config.useAsOverwrite>true</config.useAsOverwrite>
-        <client.id></client.id>
-        <client.secret></client.secret>
-        <baseSecurityUrl></baseSecurityUrl>
-        <oauth.token.url></oauth.token.url>
-        <oauth.token.client.id></oauth.token.client.id>
-        <oauth.token.client.secret></oauth.token.client.secret>
+        <client.id/>
+        <client.secret/>
+        <baseSecurityUrl/>
+        <oauth.token.url/>
+        <oauth.token.client.id/>
+        <oauth.token.client.secret/>
         <!--only for testing purpose-->
-        <oauth.username></oauth.username>
-        <oauth.password></oauth.password>
+        <oauth.username/>
+        <oauth.password/>
     </properties>
-
-    <groupId>com.graphgrid</groupId>
-    <artifactId>graphgrid-sdk-java-tests</artifactId>
-    <version>1.3.0-SNAPSHOT</version>
-
-    <name>GraphGrid :: SDK :: Java :: Tests</name>
 
     <dependencies>
         <!-- Compile -->
@@ -46,12 +45,12 @@
         <dependency>
             <groupId>com.graphgrid</groupId>
             <artifactId>graphgrid-sdk-java-core</artifactId>
-            <version>1.3.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.graphgrid</groupId>
             <artifactId>graphgrid-sdk-java-files</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <!-- Test -->
         <dependency>
