@@ -11,8 +11,6 @@ public class SecurityConfig
 
     private String baseSecurityUrl;
 
-    private String oauthTokenUrl;
-
     public String getClientId()
     {
         return clientId;
@@ -43,13 +41,4 @@ public class SecurityConfig
         this.baseSecurityUrl = baseSecurityUrl;
     }
 
-    public String getOauthTokenUrl()
-    {
-        return oauthTokenUrl;
-    }
-
-    public void setOauthTokenUrl( String oauthTokenUrl )
-    {
-        this.oauthTokenUrl = oauthTokenUrl;
-    }
 }

@@ -60,7 +60,7 @@ public class GraphGridSecurityClient extends GraphGridClientBase implements Secu
         ggRequest.addHeader( AUTH_HEADER_KEY, baseEncodedHeader( securityConfig.getClientId(), securityConfig.getClientSecret() ) );
         ggRequest.setRequestHandler( new UrlEncodedRequestHandler() );
         ggRequest.setBody( nvps );
-        ggRequest.setEndpoint( getEndpointBuilder().create().withServiceEndpoint( "token" ).buildUrl() );
+        ggRequest.setEndpoint( getEndpointBuilder().create().withServiceEndpoint( "oauth/token" ).buildUrl() );
 
         return getClient().invoke( ggRequest, GetTokenResponse.class, HttpMethod.POST );
     }
@@ -78,7 +78,7 @@ public class GraphGridSecurityClient extends GraphGridClientBase implements Secu
         ggRequest.addHeader( AUTH_HEADER_KEY, baseEncodedHeader( oauthClientId, oauthClientSecret ) );
         ggRequest.setRequestHandler( new UrlEncodedRequestHandler() );
         ggRequest.setBody( nvps );
-        ggRequest.setEndpoint( getEndpointBuilder().create().withServiceEndpoint( "token" ).buildUrl() );
+        ggRequest.setEndpoint( getEndpointBuilder().create().withServiceEndpoint( "oauth/token" ).buildUrl() );
 
         return getClient().invoke( ggRequest, GetTokenResponse.class, HttpMethod.POST );
     }

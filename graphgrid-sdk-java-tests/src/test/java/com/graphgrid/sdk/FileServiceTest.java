@@ -31,7 +31,7 @@ public class FileServiceTest extends TestBase
     @Test
     public void testStatus() throws Exception
     {
-        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file" );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file", securityConfig );
         final FileServiceStatusResponse response = client.status( new FileServiceStatusRequest().withAuthMethod( new ClientCredentialsTokenRequest() ) );
 
         assertNotNull( response );
