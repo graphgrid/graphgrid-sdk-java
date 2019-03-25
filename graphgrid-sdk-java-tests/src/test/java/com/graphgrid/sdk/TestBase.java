@@ -77,7 +77,6 @@ public abstract class TestBase
         securityConfig.setClientId( p.getProperty( "client.id" ) );
         securityConfig.setClientSecret( p.getProperty( "client.secret" ) );
         securityConfig.setBaseSecurityUrl( p.getProperty( "baseSecurityUrl" ) );
-        securityConfig.setOauthTokenUrl( p.getProperty( "oauth.tokenMapper.url" ) );
 
         username = p.getProperty( "oauth.username" );
         password = p.getProperty( "oauth.password" );
