@@ -5,24 +5,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.graphgrid.sdk.core.model.GraphGridServiceResponse;
 
-import java.util.List;
-
 @JsonAutoDetect
 @JsonIgnoreProperties( ignoreUnknown = true )
-public class FileUploadResponse extends GraphGridServiceResponse
+public class FindFileResponse extends GraphGridServiceResponse
 {
 
     @JsonUnwrapped
-    private List<FileNode> files;
+    private FileNode fileNode;
 
-
-    public List<FileNode> getFiles()
+    public FindFileResponse()
     {
-        return files;
     }
 
-    public void setFiles( List<FileNode> files )
+    public FindFileResponse( FileNode fileNode )
     {
-        this.files = files;
+        this.fileNode = fileNode;
+    }
+
+    public FileNode getFileNode()
+    {
+        return fileNode;
+    }
+
+    public void setFileNode( FileNode fileNode )
+    {
+        this.fileNode = fileNode;
     }
 }

@@ -1,13 +1,11 @@
 package com.graphgrid.sdk.model;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
+import com.graphgrid.sdk.core.model.GraphGridServiceResponse;
 
 @JsonAutoDetect
 @JsonIgnoreProperties( ignoreUnknown = true )
-public class FileServiceStatusRequest extends GraphGridServiceRequest
+public class CreateRelationshipResponse extends GraphGridServiceResponse
 {
-
 }

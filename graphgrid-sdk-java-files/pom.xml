@@ -10,17 +10,17 @@
         <version>1.3.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.graphgrid</groupId>
     <artifactId>graphgrid-sdk-java-files</artifactId>
-    <version>1.3.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>GraphGrid :: SDK :: Java :: Files</name>
+    <description>GraphGrid SDK Files Service Integration.</description>
 
     <dependencies>
         <dependency>
             <groupId>com.graphgrid</groupId>
             <artifactId>graphgrid-sdk-java-core</artifactId>
-            <version>${graphgridsdkjava.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -36,6 +36,11 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>${httpcomponents.httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
 

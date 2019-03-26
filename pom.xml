@@ -10,15 +10,12 @@
     <packaging>pom</packaging>
 
     <name>GraphGrid :: SDK :: Java :: Parent</name>
-    <description></description>
-    <url></url>
+    <description>A GraphGrid project for managing versions and build process</description>
 
-    <scm>
-        <connection>scm:git:https://github.com/graphgrid/graphgrid-sdk-java.git</connection>
-        <developerConnection>scm:git:git@github.com/graphgrid/graphgrid-sdk-java.git</developerConnection>
-        <url>https://github.com/aws/graphgrid-sdk-java</url>
-
-    </scm>
+    <organization>
+        <name>GraphGrid, Inc.</name>
+        <url>https://graphgrid.com/</url>
+    </organization>
 
     <developers>
         <developer>
@@ -31,25 +28,25 @@
         </developer>
     </developers>
 
-    <modules>
-        <module>graphgrid-sdk-java-core</module>
-        <module>graphgrid-sdk-java-files</module>
-        <module>graphgrid-sdk-java-tests</module>
-    </modules>
+    <scm>
+        <connection>scm:git:https://github.com/graphgrid/graphgrid-sdk-java.git</connection>
+        <developerConnection>scm:git:git@github.com/graphgrid/graphgrid-sdk-java.git</developerConnection>
+        <url>https://github.com/graphgrid/graphgrid-sdk-java</url>
+    </scm>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <graphgridsdkjava.version>${project.version}</graphgridsdkjava.version>
         <jackson.version>2.6.7</jackson.version>
         <junit.version>4.12</junit.version>
         <commons.io.version>2.4</commons.io.version>
         <commons.lang.version>3.7</commons.lang.version>
         <httpcomponents.httpclient.version>4.5.5</httpcomponents.httpclient.version>
-        <version.java>1.8</version.java>
+        <slf4j.version>1.7.25</slf4j.version>
         <version.org.kuali.maven.wagons>1.2.1</version.org.kuali.maven.wagons>
         <maven.repository.s3.snapshots>s3://graphgrid-repos/snapshots</maven.repository.s3.snapshots>
         <maven.repository.s3.releases>s3://graphgrid-repos/releases</maven.repository.s3.releases>
+        <version.java>1.8</version.java>
     </properties>
 
     <profiles>
