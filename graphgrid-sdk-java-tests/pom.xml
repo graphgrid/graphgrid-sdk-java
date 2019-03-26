@@ -18,7 +18,7 @@
 
     <properties>
         <!-- configure security context -->
-        <config.useAsOverwrite/>
+        <config.useAsOverwrite>true</config.useAsOverwrite>
         <client.id/>
         <client.secret/>
         <baseSecurityUrl/>
