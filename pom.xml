@@ -12,12 +12,6 @@
     <name>GraphGrid :: SDK :: Java :: Parent</name>
     <description>A GraphGrid project for managing versions and build process</description>
 
-    <scm>
-        <connection>scm:git:https://github.com/graphgrid/graphgrid-sdk-java.git</connection>
-        <developerConnection>scm:git:git@github.com/graphgrid/graphgrid-sdk-java.git</developerConnection>
-        <url>https://github.com/aws/graphgrid-sdk-java</url>
-    </scm>
-
     <organization>
         <name>GraphGrid, Inc.</name>
         <url>https://graphgrid.com/</url>
@@ -53,7 +47,6 @@
         <maven.repository.s3.snapshots>s3://graphgrid-repos/snapshots</maven.repository.s3.snapshots>
         <maven.repository.s3.releases>s3://graphgrid-repos/releases</maven.repository.s3.releases>
         <version.java>1.8</version.java>
-        <org.kuali.maven.wagons.version>1.2.1</org.kuali.maven.wagons.version>
     </properties>
 
     <profiles>

@@ -18,13 +18,10 @@
 
     <properties>
         <!-- configure security context -->
-        <config.useAsOverwrite>true</config.useAsOverwrite>
+        <config.useAsOverwrite/>
         <client.id/>
         <client.secret/>
         <baseSecurityUrl/>
-        <oauth.token.url/>
-        <oauth.token.client.id/>
-        <oauth.token.client.secret/>
         <!--only for testing purpose-->
         <oauth.username/>
         <oauth.password/>
