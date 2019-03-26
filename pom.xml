@@ -35,6 +35,8 @@
     </scm>
 
     <properties>
+        <maven.repository.s3.snapshots/>
+        <maven.repository.s3.releases/>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <jackson.version>2.6.7</jackson.version>
@@ -43,9 +45,7 @@
         <commons.lang.version>3.7</commons.lang.version>
         <httpcomponents.httpclient.version>4.5.5</httpcomponents.httpclient.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <version.org.kuali.maven.wagons>1.2.1</version.org.kuali.maven.wagons>
-        <maven.repository.s3.snapshots>s3://graphgrid-repos/snapshots</maven.repository.s3.snapshots>
-        <maven.repository.s3.releases>s3://graphgrid-repos/releases</maven.repository.s3.releases>
+        <org.kuali.maven.wagons.version>1.2.1</org.kuali.maven.wagons.version>
         <version.java>1.8</version.java>
     </properties>
 
@@ -126,7 +126,7 @@
             <extension>
                 <groupId>org.kuali.maven.wagons</groupId>
                 <artifactId>maven-s3-wagon</artifactId>
-                <version>${version.org.kuali.maven.wagons}</version>
+                <version>${org.kuali.maven.wagons.version}</version>
             </extension>
         </extensions>
     </build>
