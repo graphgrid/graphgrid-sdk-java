@@ -16,7 +16,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * Base class that is used by the SDK to build REST requests that are executed against GraphGrid service.
+ * Service modules of the SDK should extend this class for all service methods and add the service specific behavior.
+ */
 abstract public class GraphGridServiceRequest
 {
     @JsonIgnore
@@ -79,6 +82,11 @@ abstract public class GraphGridServiceRequest
         return endpoint;
     }
 
+    /**
+     * Used internally by the sdk to specify the url
+     *
+     * @param endpoint
+     */
     public void setEndpoint( URL endpoint )
     {
         this.endpoint = endpoint;
@@ -89,6 +97,11 @@ abstract public class GraphGridServiceRequest
         return body;
     }
 
+    /**
+     * Used internally by the sdk to create the request body of the request
+     *
+     * @param body
+     */
     public void setBody( Object body )
     {
         this.body = body;
@@ -99,6 +112,11 @@ abstract public class GraphGridServiceRequest
         return headers;
     }
 
+    /**
+     * Used internally by the sdk to create the request header of the request
+     *
+     * @param headers
+     */
     public void setHeaders( Map<String,String> headers )
     {
         this.headers = headers;
@@ -109,6 +127,9 @@ abstract public class GraphGridServiceRequest
         return customQueryParameters;
     }
 
+    /**
+     * @param customQueryParameters
+     */
     public void setCustomQueryParameters( Map<String,List<String>> customQueryParameters )
     {
         this.customQueryParameters = customQueryParameters;
@@ -119,6 +140,11 @@ abstract public class GraphGridServiceRequest
         return requestHandler;
     }
 
+    /**
+     * Used internally by the sdk to execute the REST request
+     *
+     * @param requestHandler
+     */
     public void setRequestHandler( RequestHandler requestHandler )
     {
         this.requestHandler = requestHandler;
@@ -129,6 +155,11 @@ abstract public class GraphGridServiceRequest
         return responseHandler;
     }
 
+    /**
+     * Used internally by the sdk handle the REST respond
+     *
+     * @param responseHandler
+     */
     public void setResponseHandler( ResponseHandler responseHandler )
     {
         this.responseHandler = responseHandler;
@@ -139,6 +170,11 @@ abstract public class GraphGridServiceRequest
         return serviceUrl;
     }
 
+    /**
+     * Used internally by the sdk. Defines the REST service endpoint of a GraphGrid service
+     *
+     * @param serviceUrl
+     */
     public void setServiceUrl( String serviceUrl )
     {
         this.serviceUrl = serviceUrl;
@@ -149,6 +185,11 @@ abstract public class GraphGridServiceRequest
         return requestAuthMethod;
     }
 
+    /**
+     * Used internally by the sdk
+     *
+     * @param requestAuthMethod
+     */
     public void setRequestAuthMethod( RequestAuthMethod requestAuthMethod )
     {
         this.requestAuthMethod = requestAuthMethod;
