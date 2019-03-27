@@ -5,6 +5,7 @@ import com.graphgrid.sdk.core.GraphGridHttpClient;
 import com.graphgrid.sdk.core.SessionFactory;
 import com.graphgrid.sdk.core.handler.UrlEncodedRequestHandler;
 import com.graphgrid.sdk.core.model.GetTokenResponse;
+import com.graphgrid.sdk.core.model.GetTokenResponseSystem;
 import com.graphgrid.sdk.core.model.GraphGridSecurityRequest;
 import com.graphgrid.sdk.core.utils.HttpMethod;
 import org.apache.commons.codec.binary.Base64;
@@ -29,7 +30,7 @@ public class GraphGridSecurityClient extends GraphGridClientBase implements Secu
     private static final String PASSWORD_KEY = "password";
     private static final String USERNAME_KEY = "username";
 
-    private Optional<GetTokenResponse> reusableToken = Optional.empty();
+    private Optional<GetTokenResponseSystem> reusableToken = Optional.empty();
 
     private static final Logger LOGGER = LoggerFactory.getLogger( SecurityService.class );
 
@@ -65,7 +66,6 @@ public class GraphGridSecurityClient extends GraphGridClientBase implements Secu
         return getClient().invoke( ggRequest, GetTokenResponse.class, HttpMethod.POST );
     }
 
-
     public GetTokenResponse getTokenForSecurityCredentials( String oauthClientId, String oauthClientSecret )
     {
         checkNotEmpty( oauthClientId, "oauthClientId" );
@@ -83,15 +83,19 @@ public class GraphGridSecurityClient extends GraphGridClientBase implements Secu
         return getClient().invoke( ggRequest, GetTokenResponse.class, HttpMethod.POST );
     }
 
-    // todo handle expired token call refresh endpoint
     public GetTokenResponse getTokenForSecurityCredentials()
     {
-        // handle expiration
         if ( !reusableToken.isPresent() )
         {
-            reusableToken = Optional.of( getTokenForSecurityCredentials( securityConfig.getClientId(), securityConfig.getClientSecret()) );
+            reusableToken = Optional.of(
+                    new GetTokenResponseSystem( getTokenForSecurityCredentials( securityConfig.getClientId(), securityConfig.getClientSecret() ) ) );
         }
-        return reusableToken.get();
+        else if ( reusableToken.get().isExpired() )
+        {
+            reusableToken = Optional.of(
+                    new GetTokenResponseSystem( getTokenForSecurityCredentials( securityConfig.getClientId(), securityConfig.getClientSecret() ) ) );
+        }
+        return reusableToken.get().getGetTokenResponse();
     }
 
     private String baseEncodedHeader( String clientId, String clientKey )

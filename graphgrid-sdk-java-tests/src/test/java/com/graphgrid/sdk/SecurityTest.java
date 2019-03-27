@@ -2,12 +2,14 @@ package com.graphgrid.sdk;
 
 import com.graphgrid.sdk.core.GraphGridHttpClient;
 import com.graphgrid.sdk.core.model.GetTokenResponse;
+import com.graphgrid.sdk.core.model.GetTokenResponseSystem;
 import com.graphgrid.sdk.core.security.GraphGridSecurityClient;
 import com.graphgrid.sdk.core.security.SecurityService;
 import org.junit.Test;
 
 import java.io.IOException;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -61,4 +63,53 @@ public class SecurityTest extends TestBase
         assertTrue( exception.getMessage().contains( "Unauthorized" ) );
     }
 
+    @Test
+    public void tokenIsActive() throws Exception
+    {
+        final GetTokenResponse getTokenResponse = new GetTokenResponse();
+        getTokenResponse.setAccessToken( "1234-123-123-123" );
+        getTokenResponse.setCreatedAt( "2019-03-27T19:10:12+00:00" );
+        getTokenResponse.setExpiresIn( "36000" ); // current default is 10h
+        final GetTokenResponseSystem getTokenResponseSystem = new GetTokenResponseSystem( getTokenResponse );
+        assertFalse( getTokenResponseSystem.isExpired() );
+    }
+
+    @Test
+    public void tokenIsActive2()throws Exception
+    {
+        final GetTokenResponse getTokenResponse = new GetTokenResponse();
+        getTokenResponse.setAccessToken( "1234-123-123-123" );
+        getTokenResponse.setCreatedAt( "2019-03-27T19:10:12+00:00" );
+        getTokenResponse.setExpiresIn( "36000" ); // current default is 10h
+        final GetTokenResponseSystem getTokenResponseSystem = new GetTokenResponseSystem( getTokenResponse );
+        // simulate less than 10h difference
+        getTokenResponseSystem.setCreatedAtSystemTime( System.currentTimeMillis() - 59 * 60 * 10 * 1000 );
+        assertFalse( getTokenResponseSystem.isExpired() );
+    }
+
+    @Test
+    public void tokenIsExpired() throws Exception
+    {
+        final GetTokenResponse getTokenResponse = new GetTokenResponse();
+        getTokenResponse.setAccessToken( "1234-123-123-123" );
+        getTokenResponse.setCreatedAt( "2019-03-27T19:10:12+00:00" );
+        getTokenResponse.setExpiresIn( "36000" ); // current default is 10h
+        final GetTokenResponseSystem getTokenResponseSystem = new GetTokenResponseSystem( getTokenResponse );
+        // simulate 10h difference
+        getTokenResponseSystem.setCreatedAtSystemTime( System.currentTimeMillis() - 60 * 60 * 10 * 1000 );
+        assertTrue( getTokenResponseSystem.isExpired() );
+    }
+
+    @Test
+    public void tokenIsExpired2() throws Exception
+    {
+        final GetTokenResponse getTokenResponse = new GetTokenResponse();
+        getTokenResponse.setAccessToken( "1234-123-123-123" );
+        getTokenResponse.setCreatedAt( "2019-03-27T19:10:12+00:00" );
+        getTokenResponse.setExpiresIn( "36000" ); // current default is 10h
+        final GetTokenResponseSystem getTokenResponseSystem = new GetTokenResponseSystem( getTokenResponse );
+        // simulate more than 10h difference
+        getTokenResponseSystem.setCreatedAtSystemTime( System.currentTimeMillis() - 3 * 60 * 60 * 10 * 1000 );
+        assertTrue( getTokenResponseSystem.isExpired() );
+    }
 }
