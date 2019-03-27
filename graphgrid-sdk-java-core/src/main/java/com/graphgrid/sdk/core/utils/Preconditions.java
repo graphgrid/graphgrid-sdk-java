@@ -11,7 +11,6 @@ public class Preconditions
     public final static String NULL_ERROR = "cannot be null";
     public final static String EMPTY_ERROR = NULL_ERROR + " or empty";
     public final static String UNKNOWN_ARG = "na.";
-    public final static String VAR = "input variable";
 
     public static <T> T checkNotNull( T obj, String variableName, String errorMessage )
     {
@@ -54,6 +53,6 @@ public class Preconditions
 
     private static String buildErrorMessage( String variableName, String errorMessage )
     {
-        return VAR + " " + variableName + " "+ errorMessage;
+        return variableName + " " + errorMessage;
     }
 }

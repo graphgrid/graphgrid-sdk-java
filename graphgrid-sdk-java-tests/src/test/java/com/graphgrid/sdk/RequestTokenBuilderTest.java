@@ -14,7 +14,9 @@ public class RequestTokenBuilderTest extends TestBase
     @Test
     public void builderWithToken()
     {
-        FindFileRequest request = new FindFileRequest( "" ).withAuthMethod( new NoTokenRequest() );
+        final FindFileRequest request = new FindFileRequest().withAuthMethod( new NoTokenRequest() );
+        request.setGrn( "" );
+
         final FindFileRequest authenticate =
                 (FindFileRequest) new RequestTokenBuilder( new GraphGridSecurityClient( securityConfig ) ).authenticate( request );
         assertNotNull( authenticate.getGrn() );
@@ -23,7 +25,9 @@ public class RequestTokenBuilderTest extends TestBase
     @Test
     public void builderWithToken2()
     {
-        FindFileRequest request = new FindFileRequest( "" );
+        final FindFileRequest request = new FindFileRequest();
+        request.setGrn( "" );
+
         final GraphGridServiceRequest authenticate =
                 (FindFileRequest) new RequestTokenBuilder( new GraphGridSecurityClient( securityConfig ) ).authenticate( request );
         assertNotNull( authenticate.getHeaders() );
