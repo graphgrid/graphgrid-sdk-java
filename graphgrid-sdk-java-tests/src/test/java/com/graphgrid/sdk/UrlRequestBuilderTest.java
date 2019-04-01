@@ -55,8 +55,9 @@ public class UrlRequestBuilderTest
     @Test
     public void buildUrl4()
     {
-        final FindFileRequest request = new FindFileRequest( "" ).withAuthMethod( new NoTokenRequest() );
-        ;
+        final FindFileRequest request = new FindFileRequest().withAuthMethod( new NoTokenRequest() );
+        request.setGrn( "" );
+
         final URL url = new UrlBuilder( "http://localhost/gg.file.com" ).withBaseUrl( "http://localhost/gg.file.com" ).addQueryParam( "k1", "v1" ).buildUrl();
         assertEquals( url.toString(), "http://localhost/gg.file.com?k1=v1" );
     }
@@ -105,8 +106,9 @@ public class UrlRequestBuilderTest
     @Test
     public void buildWithFactory3() throws Exception
     {
-        final FindFileRequest request = new FindFileRequest( "" ).withAuthMethod( new NoTokenRequest() );
-        ;
+        final FindFileRequest request = new FindFileRequest().withAuthMethod( new NoTokenRequest() );
+        request.setGrn( "" );
+
         final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost/gg.file.com" );
         final GraphGridServiceRequest requestWithUrl = urlBuilder.create( request ).withServiceEndpoint( "billing" ).buildRequestWithUrl();
         assertEquals( requestWithUrl.getEndpoint().toString(), "http://localhost/gg.file.com/billing" );
@@ -116,8 +118,9 @@ public class UrlRequestBuilderTest
     @Test
     public void buildWithFactory4() throws Exception
     {
-        final FindFileRequest request = new FindFileRequest( "" ).withAuthMethod( new NoTokenRequest() );
-        ;
+        final FindFileRequest request = new FindFileRequest().withAuthMethod( new NoTokenRequest() );
+        request.setGrn( "" );
+
         final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost/gg.file.com" );
         final GraphGridServiceRequest requestWithUrl =
                 urlBuilder.create( request ).withServiceEndpoint( "billing" ).addPathVariable( "delete" ).buildRequestWithUrl();
@@ -201,5 +204,14 @@ public class UrlRequestBuilderTest
         final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost:8080" );
         final URL url = urlBuilder.create().withServiceEndpoint( "go" ).addQueryParam( "k1", "v1", false ).buildUrl();
         assertEquals( url.toString(), "http://localhost:8080/go?k1=v1" );
+    }
+
+    @Test( expected = com.graphgrid.sdk.core.exception.GraphGridSdkInvalidArgumentException.class )
+    public void buildWithFactory9_null()
+    {
+        String param = null;
+
+        final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost:8080" );
+        final URL url = urlBuilder.create().withServiceEndpoint( "go" ).addQueryParam( "k1", param, true ).buildUrl();
     }
 }

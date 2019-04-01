@@ -3,7 +3,8 @@ package com.graphgrid.sdk.model;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
-import com.graphgrid.sdk.core.security.RequestAuthMethod;
+
+import static com.graphgrid.sdk.core.utils.Preconditions.checkNotEmpty;
 
 @JsonAutoDetect
 @JsonIgnoreProperties( ignoreUnknown = true )
@@ -15,9 +16,10 @@ public class FindFileRequest extends GraphGridServiceRequest
     {
     }
 
+
     public FindFileRequest( String grn )
     {
-        this.grn = grn;
+        this.grn = checkNotEmpty( grn, "fileGrn" );
     }
 
     public String getGrn()

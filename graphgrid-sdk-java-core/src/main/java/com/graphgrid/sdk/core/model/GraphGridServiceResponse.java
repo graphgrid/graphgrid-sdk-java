@@ -1,6 +1,10 @@
 package com.graphgrid.sdk.core.model;
 
 
+/**
+ * Base class for all service responses
+ * Service modules of the SDK should extend this class for all service methods and add the service specific behavior.
+ */
 import com.graphgrid.sdk.core.exception.GraphGridSdkException;
 
 public class GraphGridServiceResponse

@@ -96,7 +96,6 @@ public class RequestUrlBuilder
         return addQueryParam( key, value, true );
     }
 
-
     /**
      * @param key
      * @param value
@@ -141,7 +140,6 @@ public class RequestUrlBuilder
         }
         throw new GraphGridSdkInvalidArgumentException( "Unable to build url for request" + this.toString() );
     }
-
 
     @Override
     public String toString()

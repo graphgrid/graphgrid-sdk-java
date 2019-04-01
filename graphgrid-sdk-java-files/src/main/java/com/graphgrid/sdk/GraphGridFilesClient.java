@@ -52,7 +52,7 @@ public class GraphGridFilesClient extends GraphGridSecurityClientBase implements
     }
 
     @Override
-    public PersistFileNodeOnlyResponse createFileNodeWithoutUploading( PersistFileNodeOnlyRequest request )
+    public PersistFileNodeOnlyResponse createFileNodeWithoutUploading( final PersistFileNodeOnlyRequest request )
     {
         request.setEndpoint(
                 getEndpointBuilder().create( request ).withServiceEndpoint( CREATE_ONLY ).addQueryParam( "orgGrn", request.getOrgGrn() ).buildUrl() );
@@ -61,21 +61,22 @@ public class GraphGridFilesClient extends GraphGridSecurityClientBase implements
     }
 
     @Override
-    public FileServiceStatusResponse status( FileServiceStatusRequest request )
+    public FileServiceStatusResponse status( final FileServiceStatusRequest request )
     {
         request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( Endpoints.STATUS ).buildUrl() );
         return makeRequest( request, FileServiceStatusResponse.class, HttpMethod.GET );
     }
 
     @Override
-    public void deleteFile( DeleteFileRequest request )
+    public void deleteFile( final DeleteFileRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( Endpoints.DELETE ).buildUrl() );
+        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getOrgGrn() ).addQueryParam( "fileGrn", request.getFileGrn() )
+                .addQueryParam( "region", request.getRegion(), false ).buildUrl() );
         makeRequest( request, DeleteFileResponse.class, HttpMethod.DELETE );
     }
 
     @Override
-    public FindFileResponse findFileByGrn( FindFileRequest request )
+    public FindFileResponse findFileByGrn( final FindFileRequest request )
     {
         request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getGrn() ).buildUrl() );
         return makeRequest( request, FindFileResponse.class, HttpMethod.GET );
@@ -83,14 +84,14 @@ public class GraphGridFilesClient extends GraphGridSecurityClientBase implements
 
     //todo implement
     @Override
-    public UploadFileResponse uploadFile( UploadFileRequest request )
+    public UploadFileResponse uploadFile( final UploadFileRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).buildUrl() );
+        request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( "upload" ).buildUrl() );
         return makeRequest( request, UploadFileResponse.class, HttpMethod.GET );
     }
 
     @Override
-    public DownloadFilesResponse downloadFile( DownloadFilesRequest request )
+    public DownloadFilesResponse downloadFile( final DownloadFilesRequest request )
     {
         request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( DOWNLOAD ).addQueryParam( "grns", request.getGrns() )
                 .addQueryParam( "duration", request.getDuration().toString() ).buildUrl() );
@@ -98,7 +99,7 @@ public class GraphGridFilesClient extends GraphGridSecurityClientBase implements
     }
 
     @Override
-    public CreateRelationshipResponse createRelationship( CreateRelationshipRequest request )
+    public CreateRelationshipResponse createRelationship( final CreateRelationshipRequest request )
     {
         request.setEndpoint( getEndpointBuilder().create( request ) //
                 .withServiceEndpoint( Endpoints.CREATE_RELATIONSHIP ) //
@@ -109,7 +110,7 @@ public class GraphGridFilesClient extends GraphGridSecurityClientBase implements
     }
 
     @Override
-    public FindFileResponse findByResource( FindByResourceRequest request )
+    public FindFileResponse findByResource( final FindByResourceRequest request )
     {
         request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( Endpoints.FIND_BY_RESOURCE )
                 .addQueryParam( "resourceGrn", request.getResourceGrn() ).addQueryParam( "relationshipType", request.getRelationshipType(), false )
