@@ -49,6 +49,11 @@
             <artifactId>graphgrid-sdk-java-files</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.graphgrid</groupId>
+            <artifactId>graphgrid-sdk-java-fuze</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
