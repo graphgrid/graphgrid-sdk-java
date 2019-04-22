@@ -11,6 +11,7 @@ public final class PipelineStageType
     public static final String STRING_INDEXER = "StringIndexer";
     public static final String VECTOR_ASSEMBLER = "VectorAssembler";
     public static final String WORD2VEC = "Word2Vec";
+    public static final String TOKENIZER = "Tokenizer";
 
     // Classification
     public static final String LOGISTIC_REGRESSION = "LogisticRegression";
