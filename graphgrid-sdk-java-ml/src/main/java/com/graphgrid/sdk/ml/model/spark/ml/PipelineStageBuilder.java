@@ -17,6 +17,7 @@ public class PipelineStageBuilder
         case PipelineStageType.LINEAR_REGRESSION:
         case PipelineStageType.LOGISTIC_REGRESSION:
         case PipelineStageType.STRING_INDEXER:
+        case PipelineStageType.WORD2VEC:
             pipelineStage = new Estimator();
             pipelineStage.setName( name );
             pipelineStage.setType( type );

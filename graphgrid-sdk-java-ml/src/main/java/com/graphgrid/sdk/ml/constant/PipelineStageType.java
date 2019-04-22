@@ -10,6 +10,7 @@ public final class PipelineStageType
     public static final String INDEX_TO_STRING = "IndexToString";
     public static final String STRING_INDEXER = "StringIndexer";
     public static final String VECTOR_ASSEMBLER = "VectorAssembler";
+    public static final String WORD2VEC = "Word2Vec";
 
     // Classification
     public static final String LOGISTIC_REGRESSION = "LogisticRegression";
