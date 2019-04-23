@@ -17,6 +17,13 @@ public class Neo4jWriterSavePolicyRequest extends GraphGridServiceRequest
     {
     }
 
+    public Neo4jWriterSavePolicyRequest( Neo4jWriterPolicy policy, String clusterName, String policyName )
+    {
+        this.policy = policy;
+        this.clusterName = clusterName;
+        this.policyName = policyName;
+    }
+
     public Neo4jWriterPolicy getPolicy()
     {
         return policy;

@@ -22,6 +22,13 @@ public class Neo4jWriterRequest extends GraphGridServiceRequest
         this.transactionRequest = request;
     }
 
+    public Neo4jWriterRequest( TransactionRequest request, String clusterName, String policyName )
+    {
+        this.transactionRequest = request;
+        this.clusterName = clusterName;
+        this.policyName = policyName;
+    }
+
     public TransactionRequest getTransactionRequest()
     {
         return transactionRequest;

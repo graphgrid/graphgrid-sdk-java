@@ -16,6 +16,12 @@ public class Neo4jWriterDeactivatePolicyRequest extends GraphGridServiceRequest
     {
     }
 
+    public Neo4jWriterDeactivatePolicyRequest( String clusterName, String policyName )
+    {
+        this.clusterName = clusterName;
+        this.policyName = policyName;
+    }
+
     public String getClusterName()
     {
         return clusterName;
