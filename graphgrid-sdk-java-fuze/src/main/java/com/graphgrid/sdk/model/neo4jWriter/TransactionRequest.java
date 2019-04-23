@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import com.graphgrid.sdk.model.Neo4jCredentials;
 
@@ -14,20 +15,20 @@ public class TransactionRequest
 {
     private List<TransactionStatement> statements;
 
-    private String fuzeId;
+    private String fuzeId = UUID.randomUUID().toString();
     private String batchId;
     private String parentId;
     private Map<String,Object> metadata;
-    private AccessMode accessMode;
+    private AccessMode requestType = AccessMode.WRITE;
     private Map<String,String> sendResultsTo;
 
-    private RequestStatus status;
+    private RequestStatus status = RequestStatus.NOT_RUN;
 
     private List<String> requiredBookmarks;
     private String returnedBookmark;
     private int queryAttemptNumber;
 
-    private long creationTime;
+    private long creationTime = System.currentTimeMillis();
     private long startTime;
     private long endTime;
 
@@ -99,14 +100,14 @@ public class TransactionRequest
         this.metadata = metadata;
     }
 
-    public AccessMode getAccessMode()
+    public AccessMode getRequestType()
     {
-        return accessMode;
+        return requestType;
     }
 
-    public void setAccessMode( AccessMode accessMode )
+    public void setRequestType( AccessMode requestType )
     {
-        this.accessMode = accessMode;
+        this.requestType = requestType;
     }
 
     public Map<String,String> getSendResultsTo()
@@ -258,10 +259,10 @@ public class TransactionRequest
         private Map<String,Object> metadata;
 
         private Actions actions;
-        private Boolean executed;
+        private Boolean executed = false;
         private long startTime;
         private long endTime;
-        private StatementStatus status;
+        private StatementStatus status = StatementStatus.NOT_RUN;
 
         public TransactionStatement()
         {
