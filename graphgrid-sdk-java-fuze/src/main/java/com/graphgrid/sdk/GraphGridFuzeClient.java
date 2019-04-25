@@ -40,6 +40,8 @@ import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterTxRequestResponse;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterTxRequestStatusResponse;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterViewQuarantineRequest;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterViewQuarantineResponse;
+import com.graphgrid.sdk.model.orchestrator.OrchestratorLoadPolicyResponse;
+import com.graphgrid.sdk.model.orchestrator.OrchestratorSavePolicyResponse;
 import com.graphgrid.sdk.support.Endpoints;
 
 public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements GraphGridFuze
@@ -279,7 +281,7 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     public ActivatePolicyResponse activateDistributionPolicy( final ActivatePolicyRequest request )
     {
         request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() )
-                .addPathVariable( Endpoints.START_BROKER_FORWARDING ).addPathVariable( request.getPolicyName() ).buildUrl() );
+                .addPathVariable( Endpoints.ACTIVATE_DISTRIBUTION_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
         return makeRequest( request, ActivatePolicyResponse.class, HttpMethod.POST );
     }
 
@@ -287,7 +289,7 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     public DeactivatePolicyResponse deactivateDistributionPolicy( final DeactivatePolicyRequest request )
     {
         request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() )
-                .addPathVariable( Endpoints.STOP_BROKER_FORWARDING ).addPathVariable( request.getPolicyName() ).buildUrl() );
+                .addPathVariable( Endpoints.DEACTIVATE_DISTRIBUTION_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
         return makeRequest( request, DeactivatePolicyResponse.class, HttpMethod.POST );
     }
 
@@ -305,6 +307,51 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
         request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() )
                 .addPathVariable( Endpoints.ACTIVE_DISTRIBUTION_POLICIES ).buildUrl() );
         return makeRequest( request, DistributorActivePoliciesResponse.class, HttpMethod.GET );
+    }
+
+    //////////////////
+    // Orchestrator //
+    //////////////////
+
+    @Override
+    public OrchestratorSavePolicyResponse saveOrchestrationPolicy( final SavePolicyRequest request )
+    {
+        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                Endpoints.SAVE_ORCHESTRATION_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
+        request.setBody( request.getPolicy() );
+        return makeRequest( request, OrchestratorSavePolicyResponse.class, HttpMethod.POST );
+    }
+
+    @Override
+    public OrchestratorLoadPolicyResponse loadOrchestrationPolicy( final LoadPolicyRequest request )
+    {
+        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                Endpoints.LOAD_ORCHESTRATION_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
+        return makeRequest( request, OrchestratorLoadPolicyResponse.class, HttpMethod.GET );
+    }
+
+    @Override
+    public DeletePolicyResponse deleteOrchestrationPolicy( final DeletePolicyRequest request )
+    {
+        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                Endpoints.DELETE_ORCHESTRATION_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
+        return makeRequest( request, DeletePolicyResponse.class, HttpMethod.DELETE );
+    }
+
+    @Override
+    public ActivatePolicyResponse activateOrchestrationPolicy( final ActivatePolicyRequest request )
+    {
+        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                Endpoints.ACTIVATE_ORCHESTRATION_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
+        return makeRequest( request, ActivatePolicyResponse.class, HttpMethod.POST );
+    }
+
+    @Override
+    public DeactivatePolicyResponse deactivateOrchestrationPolicy( final DeactivatePolicyRequest request )
+    {
+        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                Endpoints.DEACTIVATE_ORCHESTRATION_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
+        return makeRequest( request, DeactivatePolicyResponse.class, HttpMethod.POST );
     }
 
     @Override

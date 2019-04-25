@@ -30,12 +30,17 @@ import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterTxRequestResponse;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterTxRequestStatusResponse;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterViewQuarantineRequest;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterViewQuarantineResponse;
+import com.graphgrid.sdk.model.orchestrator.OrchestratorLoadPolicyResponse;
+import com.graphgrid.sdk.model.orchestrator.OrchestratorSavePolicyResponse;
 
 public interface GraphGridFuze
 {
     FuzeServiceStatusResponse status( FuzeServiceStatusRequest request );
 
-    // Neo4jWriter
+    /////////////////
+    // Neo4jWriter //
+    /////////////////
+
     Neo4jWriterSavePolicyResponse saveNeo4jWriterPolicy( SavePolicyRequest request );
 
     Neo4jWriterLoadPolicyResponse loadNeo4jWriterPolicy( LoadPolicyRequest request );
@@ -68,7 +73,10 @@ public interface GraphGridFuze
 
     Neo4jWriterDeleteQuarantineResponse clearQuarantine( Neo4jWriterDeleteQuarantineRequest request );
 
-    // Distributor
+    /////////////////
+    // Distributor //
+    /////////////////
+
     DistributorSavePolicyResponse saveDistributionPolicy( SavePolicyRequest request );
 
     DistributorLoadPolicyResponse loadDistributionPolicy( LoadPolicyRequest request );
@@ -82,4 +90,18 @@ public interface GraphGridFuze
     DistributorPolicyStatusResponse policyStatus( DistributorPolicyStatusRequest request );
 
     DistributorActivePoliciesResponse activeDistributionPolicies( DistributorActivePoliciesRequest request );
+
+    //////////////////
+    // Orchestrator //
+    //////////////////
+
+    OrchestratorSavePolicyResponse saveOrchestrationPolicy( SavePolicyRequest request );
+
+    OrchestratorLoadPolicyResponse loadOrchestrationPolicy( LoadPolicyRequest request );
+
+    DeletePolicyResponse deleteOrchestrationPolicy( DeletePolicyRequest request );
+
+    ActivatePolicyResponse activateOrchestrationPolicy( ActivatePolicyRequest request );
+
+    DeactivatePolicyResponse deactivateOrchestrationPolicy( DeactivatePolicyRequest request );
 }
