@@ -1,4 +1,4 @@
-package com.graphgrid.sdk.model.distributor;
+package com.graphgrid.sdk.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -7,19 +7,31 @@ import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
 
 @JsonAutoDetect
 @JsonIgnoreProperties( ignoreUnknown = true )
-public class DistributorLoadPolicyRequest extends GraphGridServiceRequest
+public class SavePolicyRequest extends GraphGridServiceRequest
 {
+    private Policy policy;
     private String clusterName;
     private String policyName;
 
-    public DistributorLoadPolicyRequest()
+    public SavePolicyRequest()
     {
     }
 
-    public DistributorLoadPolicyRequest( String clusterName, String policyName )
+    public SavePolicyRequest( Policy policy, String clusterName, String policyName )
     {
+        this.policy = policy;
         this.clusterName = clusterName;
         this.policyName = policyName;
+    }
+
+    public Policy getPolicy()
+    {
+        return policy;
+    }
+
+    public void setPolicy( Policy policy )
+    {
+        this.policy = policy;
     }
 
     public String getClusterName()
