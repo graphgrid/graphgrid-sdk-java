@@ -19,8 +19,8 @@ import com.graphgrid.sdk.model.distributor.DistributorSavePolicyResponse;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterAsyncResponse;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterBatchExecutionRequest;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterBatchExecutionResponse;
-import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterDeleteQuarantineRequest;
-import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterDeleteQuarantineResponse;
+import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterClearQuarantineRequest;
+import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterClearQuarantineResponse;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterLoadPolicyResponse;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterRequest;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterResponse;
@@ -32,6 +32,8 @@ import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterViewQuarantineRequest;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterViewQuarantineResponse;
 import com.graphgrid.sdk.model.orchestrator.OrchestratorLoadPolicyResponse;
 import com.graphgrid.sdk.model.orchestrator.OrchestratorSavePolicyResponse;
+import com.graphgrid.sdk.model.worker.WorkerLoadPolicyResponse;
+import com.graphgrid.sdk.model.worker.WorkerSavePolicyResponse;
 
 public interface GraphGridFuze
 {
@@ -71,7 +73,7 @@ public interface GraphGridFuze
 
     Neo4jWriterViewQuarantineResponse viewQuarantine( Neo4jWriterViewQuarantineRequest request );
 
-    Neo4jWriterDeleteQuarantineResponse clearQuarantine( Neo4jWriterDeleteQuarantineRequest request );
+    Neo4jWriterClearQuarantineResponse clearQuarantine( Neo4jWriterClearQuarantineRequest request );
 
     /////////////////
     // Distributor //
@@ -90,6 +92,20 @@ public interface GraphGridFuze
     DistributorPolicyStatusResponse policyStatus( DistributorPolicyStatusRequest request );
 
     DistributorActivePoliciesResponse activeDistributionPolicies( DistributorActivePoliciesRequest request );
+
+    /////////////////
+    // Fuze Worker //
+    /////////////////
+
+    WorkerSavePolicyResponse saveWorkerPolicy( SavePolicyRequest request );
+
+    WorkerLoadPolicyResponse loadWorkerPolicy( LoadPolicyRequest request );
+
+    DeletePolicyResponse deleteWorkerPolicy( DeletePolicyRequest request );
+
+    ActivatePolicyResponse activateWorkerPolicy( ActivatePolicyRequest request );
+
+    DeactivatePolicyResponse deactivateWorkerPolicy( DeactivatePolicyRequest request );
 
     //////////////////
     // Orchestrator //

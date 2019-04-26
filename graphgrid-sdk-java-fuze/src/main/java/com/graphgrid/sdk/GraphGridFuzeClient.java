@@ -29,8 +29,8 @@ import com.graphgrid.sdk.model.distributor.DistributorSavePolicyResponse;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterAsyncResponse;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterBatchExecutionRequest;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterBatchExecutionResponse;
-import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterDeleteQuarantineRequest;
-import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterDeleteQuarantineResponse;
+import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterClearQuarantineRequest;
+import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterClearQuarantineResponse;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterLoadPolicyResponse;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterRequest;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterResponse;
@@ -42,6 +42,8 @@ import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterViewQuarantineRequest;
 import com.graphgrid.sdk.model.neo4jWriter.Neo4jWriterViewQuarantineResponse;
 import com.graphgrid.sdk.model.orchestrator.OrchestratorLoadPolicyResponse;
 import com.graphgrid.sdk.model.orchestrator.OrchestratorSavePolicyResponse;
+import com.graphgrid.sdk.model.worker.WorkerLoadPolicyResponse;
+import com.graphgrid.sdk.model.worker.WorkerSavePolicyResponse;
 import com.graphgrid.sdk.support.Endpoints;
 
 public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements GraphGridFuze
@@ -242,10 +244,10 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     }
 
     @Override
-    public Neo4jWriterDeleteQuarantineResponse clearQuarantine( final Neo4jWriterDeleteQuarantineRequest request )
+    public Neo4jWriterClearQuarantineResponse clearQuarantine( final Neo4jWriterClearQuarantineRequest request )
     {
         request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( Endpoints.CLEAR_QUARANTINE ).buildUrl() );
-        return makeRequest( request, Neo4jWriterDeleteQuarantineResponse.class, HttpMethod.DELETE );
+        return makeRequest( request, Neo4jWriterClearQuarantineResponse.class, HttpMethod.DELETE );
     }
 
     /////////////////
@@ -307,6 +309,51 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
         request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() )
                 .addPathVariable( Endpoints.ACTIVE_DISTRIBUTION_POLICIES ).buildUrl() );
         return makeRequest( request, DistributorActivePoliciesResponse.class, HttpMethod.GET );
+    }
+
+    /////////////////
+    // Fuze Worker //
+    /////////////////
+
+    @Override
+    public WorkerSavePolicyResponse saveWorkerPolicy( final SavePolicyRequest request )
+    {
+        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                Endpoints.SAVE_WORKER_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
+        request.setBody( request.getPolicy() );
+        return makeRequest( request, WorkerSavePolicyResponse.class, HttpMethod.POST );
+    }
+
+    @Override
+    public WorkerLoadPolicyResponse loadWorkerPolicy( final LoadPolicyRequest request )
+    {
+        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                Endpoints.LOAD_WORKER_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
+        return makeRequest( request, WorkerLoadPolicyResponse.class, HttpMethod.GET );
+    }
+
+    @Override
+    public DeletePolicyResponse deleteWorkerPolicy( final DeletePolicyRequest request )
+    {
+        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                Endpoints.DELETE_WORKER_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
+        return makeRequest( request, DeletePolicyResponse.class, HttpMethod.DELETE );
+    }
+
+    @Override
+    public ActivatePolicyResponse activateWorkerPolicy( final ActivatePolicyRequest request )
+    {
+        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                Endpoints.ACTIVATE_WORKER_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
+        return makeRequest( request, ActivatePolicyResponse.class, HttpMethod.POST );
+    }
+
+    @Override
+    public DeactivatePolicyResponse deactivateWorkerPolicy( final DeactivatePolicyRequest request )
+    {
+        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                Endpoints.DEACTIVATE_WORKER_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
+        return makeRequest( request, DeactivatePolicyResponse.class, HttpMethod.POST );
     }
 
     //////////////////

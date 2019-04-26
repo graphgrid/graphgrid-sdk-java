@@ -3,10 +3,10 @@ package com.graphgrid.sdk.model.neo4jWriter;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import com.graphgrid.sdk.core.model.GraphGridServiceResponse;
+import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
 
 @JsonAutoDetect
 @JsonIgnoreProperties( ignoreUnknown = true )
-public class Neo4jWriterDeleteQuarantineResponse extends GraphGridServiceResponse
+public class Neo4jWriterClearQuarantineRequest extends GraphGridServiceRequest
 {
 }
