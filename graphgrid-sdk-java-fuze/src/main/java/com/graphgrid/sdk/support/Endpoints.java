@@ -32,11 +32,27 @@ public final class Endpoints
     public static final String LOAD_DISTRIBUTION_POLICY = "loadDistributionPolicy";
     public static final String DELETE_DISTRIBUTION_POLICY = "deleteDistributionPolicy";
 
-    public static final String START_BROKER_FORWARDING = "startBrokerForwarding";
-    public static final String STOP_BROKER_FORWARDING = "stopBrokerForwarding";
+    public static final String ACTIVATE_DISTRIBUTION_POLICY = "activateDistributionPolicy";
+    public static final String DEACTIVATE_DISTRIBUTION_POLICY = "deactivateDistributionPolicy";
 
     public static final String POLICY_STATUS = "forwardingStatus";
     public static final String ACTIVE_DISTRIBUTION_POLICIES = "activeBrokerDistributionPolicies";
+
+    // Worker
+    public static final String SAVE_WORKER_POLICY = "saveWorkerPolicy";
+    public static final String LOAD_WORKER_POLICY = "loadWorkerPolicy";
+    public static final String DELETE_WORKER_POLICY = "deleteWorkerPolicy";
+
+    public static final String ACTIVATE_WORKER_POLICY = "activateWorkerPolicy";
+    public static final String DEACTIVATE_WORKER_POLICY = "deactivateWorkerPolicy";
+
+    // Orchestrator
+    public static final String SAVE_ORCHESTRATION_POLICY = "saveOrchestrationPolicy";
+    public static final String LOAD_ORCHESTRATION_POLICY = "loadOrchestrationPolicy";
+    public static final String DELETE_ORCHESTRATION_POLICY = "deleteOrchestrationPolicy";
+
+    public static final String ACTIVATE_ORCHESTRATION_POLICY = "activateOrchestrationPolicy";
+    public static final String DEACTIVATE_ORCHESTRATION_POLICY = "deactivateOrchestrationPolicy";
 
     private Endpoints()
     {

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.graphgrid.sdk.core.model.GraphGridServiceResponse;
 
 @JsonAutoDetect
-@JsonIgnoreProperties
-public class Neo4jWriterActivatePolicyResponse extends GraphGridServiceResponse
+@JsonIgnoreProperties( ignoreUnknown = true )
+public class Neo4jWriterClearQuarantineResponse extends GraphGridServiceResponse
 {
 }

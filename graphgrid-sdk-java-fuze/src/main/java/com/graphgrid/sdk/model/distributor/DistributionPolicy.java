@@ -8,10 +8,11 @@ import java.util.Map;
 
 import com.graphgrid.sdk.model.BrokerEndpoint;
 import com.graphgrid.sdk.model.Neo4jCredentials;
+import com.graphgrid.sdk.model.Policy;
 
 @JsonAutoDetect
 @JsonIgnoreProperties( ignoreUnknown = true )
-public class DistributionPolicy
+public class DistributionPolicy implements Policy
 {
     private Map<String,Object> metadata;
 

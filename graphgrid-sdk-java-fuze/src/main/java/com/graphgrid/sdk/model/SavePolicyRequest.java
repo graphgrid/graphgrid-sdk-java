@@ -1,4 +1,4 @@
-package com.graphgrid.sdk.model.neo4jWriter;
+package com.graphgrid.sdk.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -7,13 +7,31 @@ import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
 
 @JsonAutoDetect
 @JsonIgnoreProperties( ignoreUnknown = true )
-public class Neo4jWriterLoadPolicyRequest extends GraphGridServiceRequest
+public class SavePolicyRequest extends GraphGridServiceRequest
 {
+    private Policy policy;
     private String clusterName;
     private String policyName;
 
-    public Neo4jWriterLoadPolicyRequest()
+    public SavePolicyRequest()
     {
+    }
+
+    public SavePolicyRequest( Policy policy, String clusterName, String policyName )
+    {
+        this.policy = policy;
+        this.clusterName = clusterName;
+        this.policyName = policyName;
+    }
+
+    public Policy getPolicy()
+    {
+        return policy;
+    }
+
+    public void setPolicy( Policy policy )
+    {
+        this.policy = policy;
     }
 
     public String getClusterName()
