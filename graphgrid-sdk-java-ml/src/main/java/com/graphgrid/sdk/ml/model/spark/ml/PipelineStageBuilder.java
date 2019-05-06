@@ -25,6 +25,7 @@ public class PipelineStageBuilder
         case PipelineStageType.INDEX_TO_STRING:
         case PipelineStageType.VECTOR_ASSEMBLER:
         case PipelineStageType.TOKENIZER:
+        case PipelineStageType.STOP_WORDS_REMOVER:
             pipelineStage = new Transformer();
             pipelineStage.setName( name );
             pipelineStage.setType( type );

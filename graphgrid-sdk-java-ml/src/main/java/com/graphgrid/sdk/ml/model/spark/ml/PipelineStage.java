@@ -25,6 +25,7 @@ import com.graphgrid.sdk.ml.constant.PipelineStageType;
         @JsonSubTypes.Type( value = Transformer.class, name = PipelineStageType.VECTOR_ASSEMBLER ),
         @JsonSubTypes.Type( value = Estimator.class, name = PipelineStageType.WORD2VEC),
         @JsonSubTypes.Type( value = Transformer.class, name = PipelineStageType.TOKENIZER ),
+        @JsonSubTypes.Type( value = Transformer.class, name = PipelineStageType.STOP_WORDS_REMOVER ),
         // Classification
         @JsonSubTypes.Type( value = Estimator.class, name = PipelineStageType.LOGISTIC_REGRESSION ),
         @JsonSubTypes.Type( value = Estimator.class, name = PipelineStageType.DECISION_TREE_CLASSIFIER ),
