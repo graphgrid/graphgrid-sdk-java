@@ -18,6 +18,7 @@ public class PipelineStageBuilder
         case PipelineStageType.LOGISTIC_REGRESSION:
         case PipelineStageType.STRING_INDEXER:
         case PipelineStageType.WORD2VEC:
+        case PipelineStageType.ONE_HOT_ENCODER_ESTIMATOR:
             pipelineStage = new Estimator();
             pipelineStage.setName( name );
             pipelineStage.setType( type );
@@ -27,6 +28,7 @@ public class PipelineStageBuilder
         case PipelineStageType.TOKENIZER:
         case PipelineStageType.STOP_WORDS_REMOVER:
         case PipelineStageType.N_GRAM:
+        case PipelineStageType.FEATURE_HASHER:
             pipelineStage = new Transformer();
             pipelineStage.setName( name );
             pipelineStage.setType( type );
