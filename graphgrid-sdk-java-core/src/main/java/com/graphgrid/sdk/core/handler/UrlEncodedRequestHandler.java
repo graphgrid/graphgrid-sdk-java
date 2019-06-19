@@ -1,8 +1,6 @@
 package com.graphgrid.sdk.core.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
-import com.graphgrid.sdk.core.utils.HttpMethod;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -19,6 +17,9 @@ import org.apache.http.protocol.HTTP;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
+import com.graphgrid.sdk.core.utils.HttpMethod;
 
 public class UrlEncodedRequestHandler implements RequestHandler
 {
