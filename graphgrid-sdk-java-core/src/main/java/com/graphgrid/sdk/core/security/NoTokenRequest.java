@@ -1,11 +1,13 @@
 package com.graphgrid.sdk.core.security;
 
 /**
- * use when endpoint does not require token authentications
- * can also be useful for testing purpose
+ * Use when endpoint does not require token authentications can also be useful for testing purpose.
+ *
+ * @author bradnussbaum
  */
 public class NoTokenRequest implements RequestAuthMethod
 {
+
     public NoTokenRequest()
     {
     }

@@ -4,6 +4,8 @@ import com.graphgrid.sdk.core.model.GetTokenResponse;
 
 /**
  * Used to authenticate and acquire token
+ *
+ * @author bradnussbaum
  */
 public interface SecurityService
 {
@@ -13,5 +15,4 @@ public interface SecurityService
     GetTokenResponse getTokenForSecurityCredentials( String oauthClientId, String oauthClientSecret );
 
     GetTokenResponse getTokenForSecurityCredentials();
-
 }

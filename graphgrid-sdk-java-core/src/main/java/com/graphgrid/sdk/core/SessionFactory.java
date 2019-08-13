@@ -2,22 +2,19 @@ package com.graphgrid.sdk.core;
 
 import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
 
+/**
+ * @author bradnussbaum
+ */
 public interface SessionFactory
 {
 
     /**
-     * acquires token and additional request properties that can be used for monitoring purposes
-     *
-     * @param request
-     * @return
+     * Acquires token and additional request properties that can be used for monitoring purposes.
      */
     GraphGridServiceRequest addTokenToRequest( GraphGridServiceRequest request );
 
     /**
-     * only acquires token
-     *
-     * @return
+     * Only acquires token.
      */
     String getTokenFromRequest();
-
 }

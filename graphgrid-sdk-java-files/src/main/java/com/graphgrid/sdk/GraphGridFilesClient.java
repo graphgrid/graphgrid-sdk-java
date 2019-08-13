@@ -22,19 +22,15 @@ import com.graphgrid.sdk.model.PersistFileNodeOnlyResponse;
 import com.graphgrid.sdk.model.UploadFileRequest;
 import com.graphgrid.sdk.model.UploadFileResponse;
 import com.graphgrid.sdk.support.Endpoints;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.graphgrid.sdk.support.Endpoints.CREATE_ONLY;
 import static com.graphgrid.sdk.support.Endpoints.DOWNLOAD;
 
-
+/**
+ * @author bradnussbaum
+ */
 public class GraphGridFilesClient extends GraphGridSecurityClientBase implements GraphGridFiles
 {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger( GraphGridFilesClient.class );
-
-    public static final String NULL_REQUEST_ERROR = "request";
 
     public GraphGridFilesClient( String serviceBaseUrl )
     {
@@ -70,8 +66,9 @@ public class GraphGridFilesClient extends GraphGridSecurityClientBase implements
     @Override
     public void deleteFile( final DeleteFileRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getOrgGrn() ).addQueryParam( "fileGrn", request.getFileGrn() )
-                .addQueryParam( "region", request.getRegion(), false ).buildUrl() );
+        request.setEndpoint(
+                getEndpointBuilder().create( request ).addPathVariable( request.getOrgGrn() ).addQueryParam( "fileGrn", request.getFileGrn() ).addQueryParam(
+                        "region", request.getRegion(), false ).buildUrl() );
         makeRequest( request, DeleteFileResponse.class, HttpMethod.DELETE );
     }
 
@@ -93,8 +90,9 @@ public class GraphGridFilesClient extends GraphGridSecurityClientBase implements
     @Override
     public DownloadFilesResponse downloadFile( final DownloadFilesRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( DOWNLOAD ).addQueryParam( "grns", request.getGrns() )
-                .addQueryParam( "duration", request.getDuration().toString() ).buildUrl() );
+        request.setEndpoint(
+                getEndpointBuilder().create( request ).withServiceEndpoint( DOWNLOAD ).addQueryParam( "grns", request.getGrns() ).addQueryParam( "duration",
+                        request.getDuration().toString() ).buildUrl() );
         return getClient().invoke( request, DownloadFilesResponse.class, HttpMethod.POST );
     }
 
@@ -103,18 +101,16 @@ public class GraphGridFilesClient extends GraphGridSecurityClientBase implements
     {
         request.setEndpoint( getEndpointBuilder().create( request ) //
                 .withServiceEndpoint( Endpoints.CREATE_RELATIONSHIP ) //
-                .addQueryParam( "fileGrn", request.getFileGrn() ).addQueryParam( "resourceGrn", request.getResourceGrn() )
-                .addQueryParam( "relationshipType", request.getRelationshipType() )
-                .addQueryParam( "relationshipDirection", request.getRelationshipDirection(), false ).buildUrl() );
+                .addQueryParam( "fileGrn", request.getFileGrn() ).addQueryParam( "resourceGrn", request.getResourceGrn() ).addQueryParam( "relationshipType",
+                        request.getRelationshipType() ).addQueryParam( "relationshipDirection", request.getRelationshipDirection(), false ).buildUrl() );
         return makeRequest( request, CreateRelationshipResponse.class, HttpMethod.PUT );
     }
 
     @Override
     public FindFileResponse findByResource( final FindByResourceRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( Endpoints.FIND_BY_RESOURCE )
-                .addQueryParam( "resourceGrn", request.getResourceGrn() ).addQueryParam( "relationshipType", request.getRelationshipType(), false )
-                .buildUrl() );
+        request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( Endpoints.FIND_BY_RESOURCE ).addQueryParam( "resourceGrn",
+                request.getResourceGrn() ).addQueryParam( "relationshipType", request.getRelationshipType(), false ).buildUrl() );
         return makeRequest( request, FindFileResponse.class, HttpMethod.GET );
     }
 

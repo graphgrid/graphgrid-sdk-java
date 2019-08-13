@@ -1,14 +1,18 @@
 package com.graphgrid.sdk;
 
+import org.junit.Test;
+
 import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
 import com.graphgrid.sdk.core.security.GraphGridSecurityClient;
 import com.graphgrid.sdk.core.security.NoTokenRequest;
 import com.graphgrid.sdk.core.security.RequestTokenBuilder;
 import com.graphgrid.sdk.model.FindFileRequest;
-import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
+/**
+ * @author bradnussbaum
+ */
 public class RequestTokenBuilderTest extends TestBase
 {
     @Test
@@ -17,8 +21,7 @@ public class RequestTokenBuilderTest extends TestBase
         final FindFileRequest request = new FindFileRequest().withAuthMethod( new NoTokenRequest() );
         request.setGrn( "" );
 
-        final FindFileRequest authenticate =
-                (FindFileRequest) new RequestTokenBuilder( new GraphGridSecurityClient( securityConfig ) ).authenticate( request );
+        final FindFileRequest authenticate = new RequestTokenBuilder( new GraphGridSecurityClient( securityConfig ) ).authenticate( request );
         assertNotNull( authenticate.getGrn() );
     }
 
@@ -28,9 +31,7 @@ public class RequestTokenBuilderTest extends TestBase
         final FindFileRequest request = new FindFileRequest();
         request.setGrn( "" );
 
-        final GraphGridServiceRequest authenticate =
-                (FindFileRequest) new RequestTokenBuilder( new GraphGridSecurityClient( securityConfig ) ).authenticate( request );
+        final GraphGridServiceRequest authenticate = new RequestTokenBuilder( new GraphGridSecurityClient( securityConfig ) ).authenticate( request );
         assertNotNull( authenticate.getHeaders() );
     }
-
 }

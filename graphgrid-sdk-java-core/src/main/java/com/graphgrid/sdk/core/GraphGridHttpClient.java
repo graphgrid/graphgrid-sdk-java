@@ -1,14 +1,6 @@
 package com.graphgrid.sdk.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.graphgrid.sdk.core.exception.GraphGridSdkException;
-import com.graphgrid.sdk.core.handler.JsonRequestHandler;
-import com.graphgrid.sdk.core.handler.JsonResponseHandler;
-import com.graphgrid.sdk.core.handler.RequestHandler;
-import com.graphgrid.sdk.core.handler.ResponseHandler;
-import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
-import com.graphgrid.sdk.core.model.GraphGridServiceResponse;
-import com.graphgrid.sdk.core.utils.HttpMethod;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -17,10 +9,21 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
+import com.graphgrid.sdk.core.exception.GraphGridSdkException;
+import com.graphgrid.sdk.core.handler.JsonRequestHandler;
+import com.graphgrid.sdk.core.handler.JsonResponseHandler;
+import com.graphgrid.sdk.core.handler.RequestHandler;
+import com.graphgrid.sdk.core.handler.ResponseHandler;
+import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
+import com.graphgrid.sdk.core.model.GraphGridServiceResponse;
+import com.graphgrid.sdk.core.utils.HttpMethod;
+
 import static com.graphgrid.sdk.core.utils.Preconditions.checkNotNull;
 
 /**
- * handles making http request to graph grid rest endpoint
+ * Handles making http request to graph grid rest endpoint.
+ *
+ * @author bradnussbaum
  */
 public class GraphGridHttpClient
 {
@@ -28,7 +31,6 @@ public class GraphGridHttpClient
     private static final Logger LOGGER = LoggerFactory.getLogger( GraphGridHttpClient.class );
 
     private ObjectMapper objectMapper;
-
     private HttpClient apacheClient;
 
     public GraphGridHttpClient()
@@ -44,7 +46,7 @@ public class GraphGridHttpClient
 
     public <T extends GraphGridServiceResponse> T invoke( GraphGridServiceRequest ggRequest, Class<T> responseType, HttpMethod httpMethod )
     {
-        IOException ex = null;
+        IOException ex;
         try
         {
             return (T) processResponse( ggRequest.getResponseHandler(), executeRequest( ggRequest.getRequestHandler(), ggRequest, httpMethod ), objectMapper,
@@ -52,14 +54,14 @@ public class GraphGridHttpClient
         }
         catch ( IOException e )
         {
-            LOGGER.error( "error processing request " + ggRequest.toString(), e.getMessage() );
+            LOGGER.error( "Error processing request: " + ggRequest.toString(), e.getMessage() );
             ex = e;
         }
-        throw new GraphGridSdkException( "error processing request " + ggRequest.toString(), ex );
+        throw new GraphGridSdkException( "Error processing request: " + ggRequest.toString(), ex );
     }
 
-
-    public <T extends GraphGridServiceResponse> T processResponse( ResponseHandler handler, HttpResponse httpResponse, ObjectMapper mapper, Class<T> responseType ) throws IOException
+    public <T extends GraphGridServiceResponse> T processResponse( ResponseHandler handler, HttpResponse httpResponse, ObjectMapper mapper,
+            Class<T> responseType ) throws IOException
     {
         if ( handler == null && mapper == null )
         {

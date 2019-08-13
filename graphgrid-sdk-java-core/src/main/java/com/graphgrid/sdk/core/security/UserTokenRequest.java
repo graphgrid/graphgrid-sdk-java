@@ -1,13 +1,17 @@
 package com.graphgrid.sdk.core.security;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * will acquire token based on user name and password
- * should only be used for testing purpose
+ * Will acquire token based on user name and password should only be used for testing purpose
+ *
+ * @author bradnussbaum
  */
 public class UserTokenRequest implements RequestAuthMethod
 {
+
     private String userName;
     private String password;
 
@@ -25,6 +29,30 @@ public class UserTokenRequest implements RequestAuthMethod
     public String getPassword()
     {
         return password;
+    }
+
+    @Override
+    public boolean equals( Object o )
+    {
+        if ( this == o )
+        {
+            return true;
+        }
+
+        if ( !(o instanceof UserTokenRequest) )
+        {
+            return false;
+        }
+
+        UserTokenRequest that = (UserTokenRequest) o;
+
+        return new EqualsBuilder().append( userName, that.userName ).append( password, that.password ).isEquals();
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return new HashCodeBuilder( 17, 37 ).append( userName ).append( password ).toHashCode();
     }
 
     @Override

@@ -1,5 +1,14 @@
 package com.graphgrid.sdk.core.security;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import com.graphgrid.sdk.core.GraphGridClientBase;
 import com.graphgrid.sdk.core.GraphGridHttpClient;
 import com.graphgrid.sdk.core.SessionFactory;
@@ -8,22 +17,13 @@ import com.graphgrid.sdk.core.model.GetTokenResponse;
 import com.graphgrid.sdk.core.model.GetTokenResponseSystem;
 import com.graphgrid.sdk.core.model.GraphGridSecurityRequest;
 import com.graphgrid.sdk.core.utils.HttpMethod;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 import static com.graphgrid.sdk.core.utils.Preconditions.checkNotEmpty;
 import static com.graphgrid.sdk.core.utils.Preconditions.checkNotNull;
 
 public class GraphGridSecurityClient extends GraphGridClientBase implements SecurityService
 {
+
     private static final String AUTH_HEADER_KEY = "Authorization";
     private static final String BASIC_HEADER_KEY = "Basic ";
     private static final String GRANT_TYPE_KEY = "grant_type";
@@ -31,8 +31,6 @@ public class GraphGridSecurityClient extends GraphGridClientBase implements Secu
     private static final String USERNAME_KEY = "username";
 
     private Optional<GetTokenResponseSystem> reusableToken = Optional.empty();
-
-    private static final Logger LOGGER = LoggerFactory.getLogger( SecurityService.class );
 
     private SecurityConfig securityConfig;
 
@@ -52,7 +50,7 @@ public class GraphGridSecurityClient extends GraphGridClientBase implements Secu
         checkNotNull( username, "username" );
         checkNotNull( password, "password" );
 
-        final List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        final List<NameValuePair> nvps = new ArrayList<>();
         nvps.add( new BasicNameValuePair( PASSWORD_KEY, password ) );
         nvps.add( new BasicNameValuePair( USERNAME_KEY, username ) );
         nvps.add( new BasicNameValuePair( GRANT_TYPE_KEY, "password" ) );
@@ -71,7 +69,7 @@ public class GraphGridSecurityClient extends GraphGridClientBase implements Secu
         checkNotEmpty( oauthClientId, "oauthClientId" );
         checkNotEmpty( oauthClientSecret, "oauthClientSecret" );
 
-        final List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        final List<NameValuePair> nvps = new ArrayList<>();
         nvps.add( new BasicNameValuePair( GRANT_TYPE_KEY, "client_credentials" ) );
 
         final GraphGridSecurityRequest ggRequest = new GraphGridSecurityRequest();
@@ -104,5 +102,4 @@ public class GraphGridSecurityClient extends GraphGridClientBase implements Secu
         byte[] encodedAuth = Base64.encodeBase64( auth.getBytes( StandardCharsets.ISO_8859_1 ) );
         return BASIC_HEADER_KEY + new String( encodedAuth );
     }
-
 }

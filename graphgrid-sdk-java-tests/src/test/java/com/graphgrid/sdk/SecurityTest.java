@@ -1,23 +1,25 @@
 package com.graphgrid.sdk;
 
+import org.junit.Test;
+
 import com.graphgrid.sdk.core.GraphGridHttpClient;
 import com.graphgrid.sdk.core.model.GetTokenResponse;
 import com.graphgrid.sdk.core.model.GetTokenResponseSystem;
 import com.graphgrid.sdk.core.security.GraphGridSecurityClient;
 import com.graphgrid.sdk.core.security.SecurityService;
-import org.junit.Test;
-
-import java.io.IOException;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * @author bradnussbaum
+ */
 public class SecurityTest extends TestBase
 {
 
     @Test
-    public void test() throws IOException
+    public void test()
     {
         GraphGridHttpClient client = new GraphGridHttpClient();
         thrown.expect( NullPointerException.class );
@@ -25,7 +27,7 @@ public class SecurityTest extends TestBase
     }
 
     @Test
-    public void getToken() throws Exception
+    public void getToken()
     {
         final SecurityService securityService = new GraphGridSecurityClient( securityConfig );
         final GetTokenResponse tokenResponse = securityService.getToken( username, password );
@@ -35,7 +37,7 @@ public class SecurityTest extends TestBase
     }
 
     @Test
-    public void getTokenByCredentials() throws Exception
+    public void getTokenByCredentials()
     {
         final SecurityService securityService = new GraphGridSecurityClient( securityConfig );
         final GetTokenResponse tokenResponse = securityService.getTokenForSecurityCredentials();
@@ -45,7 +47,7 @@ public class SecurityTest extends TestBase
     }
 
     @Test
-    public void getTokenByCredentialsWrongCredentials() throws Exception
+    public void getTokenByCredentialsWrongCredentials()
     {
         com.graphgrid.sdk.core.exception.GraphGridSdkException exception = null;
         securityConfig.setClientId( "invalid-id" );
@@ -64,7 +66,7 @@ public class SecurityTest extends TestBase
     }
 
     @Test
-    public void tokenIsActive() throws Exception
+    public void tokenIsActive()
     {
         final GetTokenResponse getTokenResponse = new GetTokenResponse();
         getTokenResponse.setAccessToken( "1234-123-123-123" );
@@ -75,7 +77,7 @@ public class SecurityTest extends TestBase
     }
 
     @Test
-    public void tokenIsActive2()throws Exception
+    public void tokenIsActive2()
     {
         final GetTokenResponse getTokenResponse = new GetTokenResponse();
         getTokenResponse.setAccessToken( "1234-123-123-123" );
@@ -88,7 +90,7 @@ public class SecurityTest extends TestBase
     }
 
     @Test
-    public void tokenIsExpired() throws Exception
+    public void tokenIsExpired()
     {
         final GetTokenResponse getTokenResponse = new GetTokenResponse();
         getTokenResponse.setAccessToken( "1234-123-123-123" );
@@ -101,7 +103,7 @@ public class SecurityTest extends TestBase
     }
 
     @Test
-    public void tokenIsExpired2() throws Exception
+    public void tokenIsExpired2()
     {
         final GetTokenResponse getTokenResponse = new GetTokenResponse();
         getTokenResponse.setAccessToken( "1234-123-123-123" );

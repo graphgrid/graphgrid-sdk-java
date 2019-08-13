@@ -1,8 +1,6 @@
 package com.graphgrid.sdk.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
-import com.graphgrid.sdk.core.model.UserRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +8,13 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
+import com.graphgrid.sdk.core.model.UserRequest;
+
 /**
- * acts as an adapter to get a user token from spring security context
+ * Acts as an adapter to get a user token from spring security context
+ *
+ * @author bradnussbaum
  */
 public class SpringSecurityContextTokenFactory implements SessionFactory
 {

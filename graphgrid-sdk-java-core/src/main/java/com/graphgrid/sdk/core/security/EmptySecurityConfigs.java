@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
  */
 public class EmptySecurityConfigs extends SecurityConfig
 {
+
     private static final Logger LOGGER = LoggerFactory.getLogger( EmptySecurityConfigs.class );
 
     public EmptySecurityConfigs()

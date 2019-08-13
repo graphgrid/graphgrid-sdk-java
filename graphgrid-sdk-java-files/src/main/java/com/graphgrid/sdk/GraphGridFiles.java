@@ -15,6 +15,9 @@ import com.graphgrid.sdk.model.PersistFileNodeOnlyResponse;
 import com.graphgrid.sdk.model.UploadFileRequest;
 import com.graphgrid.sdk.model.UploadFileResponse;
 
+/**
+ * @author bradnussbaum
+ */
 public interface GraphGridFiles
 {
 
@@ -24,14 +27,13 @@ public interface GraphGridFiles
 
     void deleteFile( DeleteFileRequest request );
 
-    FindFileResponse findFileByGrn( FindFileRequest request);
+    FindFileResponse findFileByGrn( FindFileRequest request );
 
     UploadFileResponse uploadFile( UploadFileRequest request );
 
-    DownloadFilesResponse downloadFile( DownloadFilesRequest request);
+    DownloadFilesResponse downloadFile( DownloadFilesRequest request );
 
-    CreateRelationshipResponse createRelationship( CreateRelationshipRequest request);
+    CreateRelationshipResponse createRelationship( CreateRelationshipRequest request );
 
-    FindFileResponse findByResource( FindByResourceRequest request);
-
+    FindFileResponse findByResource( FindByResourceRequest request );
 }

@@ -1,9 +1,5 @@
 package com.graphgrid.sdk;
 
-import com.graphgrid.sdk.core.SessionFactory;
-import com.graphgrid.sdk.core.SpringSecurityContextTokenFactory;
-import com.graphgrid.sdk.core.model.GraphGridSecurityRequest;
-import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,16 +7,23 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.function.Supplier;
 
+import com.graphgrid.sdk.core.SessionFactory;
+import com.graphgrid.sdk.core.SpringSecurityContextTokenFactory;
+import com.graphgrid.sdk.core.model.GraphGridSecurityRequest;
+import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
+
 import static org.junit.Assert.assertTrue;
 
-
+/**
+ * @author bradnussbaum
+ */
 public class SessionFactoryTest
 {
 
     private Supplier<Object> contextSupplier = MockSecurityContext::new;
 
     @Before
-    public void setUp() throws Exception
+    public void setUp()
     {
     }
 
@@ -67,7 +70,7 @@ public class SessionFactoryTest
         assertTrue( request.getHeaders().get( SpringSecurityContextTokenFactory.GRAPHGRID_USER_TOKEN ).contains( "null" ) );
     }
 
-    class MockSecurityContext
+    static class MockSecurityContext
     {
         private String tokenValue;
         private String remoteAddress;

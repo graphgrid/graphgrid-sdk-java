@@ -7,8 +7,12 @@ import com.graphgrid.sdk.core.security.ClientCredentialsTokenRequest;
 import com.graphgrid.sdk.model.FuzeServiceStatusRequest;
 import com.graphgrid.sdk.model.FuzeServiceStatusResponse;
 
+/**
+ * @author bradnussbaum
+ */
 public class FuzeServiceTest extends TestBase
 {
+
     @Test
     public void testStatus()
     {

@@ -10,31 +10,30 @@ import com.graphgrid.sdk.core.utils.RequestUrlBuilderFactory;
 import static com.graphgrid.sdk.core.utils.Preconditions.checkNotNull;
 
 /**
- * base service for other graph grid client services
+ * Base service for other graph grid client services
+ *
+ * @author bradnussbaum
  */
 public abstract class GraphGridClientBase
 {
+
     private static final String NULL_REQUEST_ERROR = "request";
     private static final String HTTP_METHOD = "http_method";
 
     private GraphGridHttpClient client;
-
     private String serviceBaseUrl;
-
     private SecurityConfig securityConfig;
-
     private RequestUrlBuilderFactory endpointBuilder;
-
     protected SessionFactory sessionFactory;
 
     public GraphGridClientBase( String serviceBaseUrl )
     {
-        this( new GraphGridHttpClient(), serviceBaseUrl, new EmptySecurityConfigs(), new SpringSecurityContextTokenFactory(  ) );
+        this( new GraphGridHttpClient(), serviceBaseUrl, new EmptySecurityConfigs(), new SpringSecurityContextTokenFactory() );
     }
 
     public GraphGridClientBase( String serviceBaseUrl, SecurityConfig securityConfig )
     {
-        this( new GraphGridHttpClient(), serviceBaseUrl, securityConfig, new SpringSecurityContextTokenFactory(  )  );
+        this( new GraphGridHttpClient(), serviceBaseUrl, securityConfig, new SpringSecurityContextTokenFactory() );
     }
 
     public GraphGridClientBase( String serviceBaseUrl, SecurityConfig securityConfig, SessionFactory sessionFactory )
@@ -50,7 +49,6 @@ public abstract class GraphGridClientBase
         this.endpointBuilder = new RequestUrlBuilderFactory( getServiceBaseUrl() );
         this.sessionFactory = sessionFactory;
     }
-
 
     public GraphGridHttpClient getClient()
     {
@@ -73,13 +71,7 @@ public abstract class GraphGridClientBase
     }
 
     /**
-     * core method that executes request, sub classes should overwrite method if added behavior is needed
-     *
-     * @param request
-     * @param responseType
-     * @param httpMethod
-     * @param <T>
-     * @return
+     * Core method that executes request, sub classes should overwrite method if added behavior is needed.
      */
     protected <T extends GraphGridServiceResponse> T makeRequest( GraphGridServiceRequest request, Class responseType, HttpMethod httpMethod )
     {

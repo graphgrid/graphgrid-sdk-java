@@ -1,5 +1,8 @@
 package com.graphgrid.sdk.support;
 
+/**
+ * @author bradnussbaum
+ */
 public final class Endpoints
 {
 
@@ -11,7 +14,6 @@ public final class Endpoints
     public static final String FIND_BY_RESOURCE = "findByResource";
     private static final String FORWARD_SLASH = "/";
     public static final String CREATE_ONLY = UPLOAD + FORWARD_SLASH + "createOnly";
-
 
     private Endpoints()
     {

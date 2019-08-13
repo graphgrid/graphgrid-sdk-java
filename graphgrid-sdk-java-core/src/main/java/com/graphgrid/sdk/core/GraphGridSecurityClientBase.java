@@ -12,15 +12,15 @@ import com.graphgrid.sdk.core.utils.HttpMethod;
 import static com.graphgrid.sdk.core.utils.Preconditions.checkNotNull;
 
 /**
- * Adds security services/ context {@link GraphGridClientBase}
- * Handles authentication and token management for request
- * Should be extended by Client class that calls actual gg service endpoints
+ * Adds security services/ context {@link GraphGridClientBase} Handles authentication and token management for request Should be extended by Client class that
+ * calls actual gg service endpoints.
+ *
+ * @author bradnussbaum
  */
 public class GraphGridSecurityClientBase extends GraphGridClientBase
 {
 
     private SecurityService securityService;
-
     private RequestTokenBuilder tokenRequestBuilder;
 
     public GraphGridSecurityClientBase( String serviceBaseUrl )
@@ -35,8 +35,7 @@ public class GraphGridSecurityClientBase extends GraphGridClientBase
         configureSecurityService( securityConfig );
     }
 
-
-    public GraphGridSecurityClientBase( String serviceBaseUrl, SecurityConfig securityConfig, SessionFactory sessionFactory)
+    public GraphGridSecurityClientBase( String serviceBaseUrl, SecurityConfig securityConfig, SessionFactory sessionFactory )
     {
         super( serviceBaseUrl, securityConfig, sessionFactory );
         configureSecurityService( securityConfig );
@@ -70,12 +69,7 @@ public class GraphGridSecurityClientBase extends GraphGridClientBase
     }
 
     /**
-     * core method that executes request, added security => handles authentication and applies additional monitoring headers
-     *
-     * @param request
-     * @param responseType
-     * @param httpMethod
-     * @return
+     * Core method that executes request, added security => handles authentication and applies additional monitoring headers.
      */
     @Override
     protected <T extends GraphGridServiceResponse> T makeRequest( GraphGridServiceRequest request, Class responseType, HttpMethod httpMethod )

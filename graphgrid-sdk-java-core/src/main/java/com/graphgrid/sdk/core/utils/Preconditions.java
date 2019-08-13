@@ -1,13 +1,17 @@
 package com.graphgrid.sdk.core.utils;
 
-import com.graphgrid.sdk.core.exception.GraphGridSdkInvalidArgumentException;
 import org.apache.commons.lang3.StringUtils;
 
+import com.graphgrid.sdk.core.exception.GraphGridSdkInvalidArgumentException;
+
 /**
- * Helper methods for Input validation
+ * Helper methods for input validation.
+ *
+ * @author bradnussbaum
  */
 public class Preconditions
 {
+
     public final static String NULL_ERROR = "cannot be null";
     public final static String EMPTY_ERROR = NULL_ERROR + " or empty";
     public final static String UNKNOWN_ARG = "na.";
@@ -44,7 +48,6 @@ public class Preconditions
     {
         return checkNotEmpty( s, UNKNOWN_ARG );
     }
-
 
     private static String buildErrorMessage( String variableName )
     {
