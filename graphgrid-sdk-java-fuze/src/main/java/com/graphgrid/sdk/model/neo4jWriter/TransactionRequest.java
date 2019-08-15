@@ -32,7 +32,7 @@ public class TransactionRequest
     private long startTime;
     private long endTime;
 
-    private boolean splitAllowed;
+    private boolean splitAllowed = true;
 
     private List<TransactionRequest> children;
     private Integer errorIndex;
