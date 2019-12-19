@@ -7,27 +7,44 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
+import com.graphgrid.sdk.model.Metadata;
 import com.graphgrid.sdk.model.Policy;
 
 @JsonAutoDetect
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class OrchestratorPolicy implements Policy
 {
-    private Map<String,Object> metadata;
+    private Metadata metadata;
+    private Status status;
+
     private List<Task> tasks;
 
     public OrchestratorPolicy()
     {
     }
 
-    public Map<String,Object> getMetadata()
+    @Override
+    public Metadata getMetadata()
     {
         return metadata;
     }
 
-    public void setMetadata( Map<String,Object> metadata )
+    @Override
+    public void setMetadata( Metadata metadata )
     {
         this.metadata = metadata;
+    }
+
+    @Override
+    public Status getStatus()
+    {
+        return status;
+    }
+
+    @Override
+    public void setStatus( Status status )
+    {
+        this.status = status;
     }
 
     public List<Task> getTasks()

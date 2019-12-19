@@ -8,14 +8,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class BrokerEndpoint
 {
     private BrokerType broker;
+
     private String topic;
+
     private String exchange;
     private String exchangeType = ExchangeTypes.TOPIC;
     private String routingKey;
     private boolean durable = true;
     private boolean exclusive = false;
     private boolean autoDelete = false;
+
     private String queue;
+
     private String region;
     private String bucket;
 

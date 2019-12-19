@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.graphgrid.sdk.model.BrokerEndpoint;
+import com.graphgrid.sdk.model.Metadata;
 import com.graphgrid.sdk.model.Neo4jCredentials;
 import com.graphgrid.sdk.model.Policy;
 
@@ -14,7 +15,8 @@ import com.graphgrid.sdk.model.Policy;
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class DistributionPolicy implements Policy
 {
-    private Map<String,Object> metadata;
+    private Metadata metadata;
+    private Status status;
 
     private BrokerEndpoint listeningBrokerEndpoint;
     private List<ForwardingRule> forwardingRules;
@@ -25,14 +27,28 @@ public class DistributionPolicy implements Policy
     {
     }
 
-    public Map<String,Object> getMetadata()
+    @Override
+    public Metadata getMetadata()
     {
         return metadata;
     }
 
-    public void setMetadata( Map<String,Object> metadata )
+    @Override
+    public void setMetadata( Metadata metadata )
     {
         this.metadata = metadata;
+    }
+
+    @Override
+    public Status getStatus()
+    {
+        return status;
+    }
+
+    @Override
+    public void setStatus( Status status )
+    {
+        this.status = status;
     }
 
     public BrokerEndpoint getListeningBrokerEndpoint()
@@ -71,6 +87,7 @@ public class DistributionPolicy implements Policy
     {
         private String cypher;
         private Multicast multicast;
+        private String resultKey;
 
         public ForwardingRule()
         {
@@ -96,13 +113,23 @@ public class DistributionPolicy implements Policy
             this.multicast = multicast;
         }
 
+        public String getResultKey()
+        {
+            return resultKey;
+        }
+
+        public void setResultKey( String resultKey )
+        {
+            this.resultKey = resultKey;
+        }
+
         @JsonAutoDetect
         @JsonIgnoreProperties( ignoreUnknown = true )
         public static class Multicast
         {
             private int retry;
             private boolean stopOnFailure;
-            private List<Map<String,String>> brokers;
+            private List<BrokerEndpoint> brokers;
 
             public Multicast()
             {
@@ -128,12 +155,12 @@ public class DistributionPolicy implements Policy
                 this.stopOnFailure = stopOnFailure;
             }
 
-            public List<Map<String,String>> getBrokers()
+            public List<BrokerEndpoint> getBrokers()
             {
                 return brokers;
             }
 
-            public void setBrokers( List<Map<String,String>> brokers )
+            public void setBrokers( List<BrokerEndpoint> brokers )
             {
                 this.brokers = brokers;
             }
