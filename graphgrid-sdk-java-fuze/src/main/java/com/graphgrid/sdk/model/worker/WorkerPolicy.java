@@ -2,6 +2,8 @@ package com.graphgrid.sdk.model.worker;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +14,9 @@ import com.graphgrid.sdk.model.Neo4jCredentials;
 import com.graphgrid.sdk.model.Policy;
 
 @JsonAutoDetect
+@JsonTypeName( "workerPolicy" )
 @JsonIgnoreProperties( ignoreUnknown = true )
+@JsonDeserialize( as = WorkerPolicy.class )
 public class WorkerPolicy implements Policy
 {
     private Metadata metadata;

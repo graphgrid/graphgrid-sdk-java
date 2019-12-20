@@ -2,6 +2,8 @@ package com.graphgrid.sdk.model.distributor;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +14,9 @@ import com.graphgrid.sdk.model.Neo4jCredentials;
 import com.graphgrid.sdk.model.Policy;
 
 @JsonAutoDetect
+@JsonTypeName( "distributionPolicy" )
 @JsonIgnoreProperties( ignoreUnknown = true )
+@JsonDeserialize( as = DistributionPolicy.class )
 public class DistributionPolicy implements Policy
 {
     private Metadata metadata;
@@ -93,6 +97,13 @@ public class DistributionPolicy implements Policy
         {
         }
 
+        public ForwardingRule( String cypher, Multicast multicast, String resultKey )
+        {
+            this.cypher = cypher;
+            this.multicast = multicast;
+            this.resultKey = resultKey;
+        }
+
         public String getCypher()
         {
             return cypher;
@@ -133,6 +144,11 @@ public class DistributionPolicy implements Policy
 
             public Multicast()
             {
+            }
+
+            public Multicast( List<BrokerEndpoint> brokers )
+            {
+                this.brokers = brokers;
             }
 
             public int getRetry()

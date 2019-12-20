@@ -3,6 +3,8 @@ package com.graphgrid.sdk.model.orchestrator;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +13,9 @@ import com.graphgrid.sdk.model.Metadata;
 import com.graphgrid.sdk.model.Policy;
 
 @JsonAutoDetect
+@JsonTypeName( "orchestratorPolicy" )
 @JsonIgnoreProperties( ignoreUnknown = true )
+@JsonDeserialize( as = OrchestratorPolicy.class )
 public class OrchestratorPolicy implements Policy
 {
     private Metadata metadata;

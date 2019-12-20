@@ -1,5 +1,8 @@
 package com.graphgrid.sdk.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize( using = PolicyDeserializer.class )
 public interface Policy
 {
     Metadata getMetadata();
