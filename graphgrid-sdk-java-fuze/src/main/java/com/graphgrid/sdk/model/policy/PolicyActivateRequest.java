@@ -16,6 +16,12 @@ public class PolicyActivateRequest extends GraphGridServiceRequest
     {
     }
 
+    public PolicyActivateRequest( String clusterName, String policyName )
+    {
+        this.clusterName = clusterName;
+        this.policyName = policyName;
+    }
+
     public String getClusterName()
     {
         return clusterName;

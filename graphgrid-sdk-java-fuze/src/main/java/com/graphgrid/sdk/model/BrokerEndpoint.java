@@ -27,6 +27,55 @@ public class BrokerEndpoint
     {
     }
 
+    public static BrokerEndpoint kafkaEndpoint( String topic )
+    {
+        BrokerEndpoint brokerEndpoint = new BrokerEndpoint();
+
+        brokerEndpoint.broker = BrokerType.KAFKA;
+        brokerEndpoint.topic = topic;
+
+        return brokerEndpoint;
+    }
+
+    public static BrokerEndpoint rabbitmqEndpoint( String exchange, String routingKey, String queue )
+    {
+        BrokerEndpoint brokerEndpoint = new BrokerEndpoint();
+
+        brokerEndpoint.broker = BrokerType.RABBITMQ;
+        brokerEndpoint.exchange = exchange;
+        brokerEndpoint.routingKey = routingKey;
+        brokerEndpoint.queue = queue;
+
+        return brokerEndpoint;
+    }
+
+    public static BrokerEndpoint rabbitmqEndpoint( String exchange, String routingKey, String queue, boolean durable, boolean exclusive, boolean autoDelete )
+    {
+        BrokerEndpoint brokerEndpoint = new BrokerEndpoint();
+
+        brokerEndpoint.broker = BrokerType.RABBITMQ;
+        brokerEndpoint.exchange = exchange;
+        brokerEndpoint.routingKey = routingKey;
+        brokerEndpoint.queue = queue;
+        brokerEndpoint.durable = durable;
+        brokerEndpoint.exclusive = exclusive;
+        brokerEndpoint.autoDelete = autoDelete;
+
+        return brokerEndpoint;
+    }
+
+    public static BrokerEndpoint sqsEndpoint( String queue, String region, String bucket )
+    {
+        BrokerEndpoint brokerEndpoint = new BrokerEndpoint();
+
+        brokerEndpoint.broker = BrokerType.SQS;
+        brokerEndpoint.queue = queue;
+        brokerEndpoint.region = region;
+        brokerEndpoint.bucket = bucket;
+
+        return brokerEndpoint;
+    }
+
     public BrokerType getBroker()
     {
         return broker;

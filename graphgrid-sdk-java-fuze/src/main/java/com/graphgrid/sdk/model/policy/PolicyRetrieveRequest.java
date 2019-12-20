@@ -16,6 +16,12 @@ public class PolicyRetrieveRequest extends GraphGridServiceRequest
     {
     }
 
+    public PolicyRetrieveRequest( String clusterName, String policyName )
+    {
+        this.clusterName = clusterName;
+        this.policyName = policyName;
+    }
+
     public String getClusterName()
     {
         return clusterName;

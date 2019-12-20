@@ -18,6 +18,13 @@ public class PolicySaveRequest extends GraphGridServiceRequest
     {
     }
 
+    public PolicySaveRequest( String clusterName, String policyName, Policy policy )
+    {
+        this.clusterName = clusterName;
+        this.policyName = policyName;
+        this.policy = policy;
+    }
+
     public String getClusterName()
     {
         return clusterName;

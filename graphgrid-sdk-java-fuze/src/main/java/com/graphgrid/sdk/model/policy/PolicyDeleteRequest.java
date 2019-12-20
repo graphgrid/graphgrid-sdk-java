@@ -16,6 +16,12 @@ public class PolicyDeleteRequest extends GraphGridServiceRequest
     {
     }
 
+    public PolicyDeleteRequest( String clusterName, String policyName )
+    {
+        this.clusterName = clusterName;
+        this.policyName = policyName;
+    }
+
     public String getClusterName()
     {
         return clusterName;
