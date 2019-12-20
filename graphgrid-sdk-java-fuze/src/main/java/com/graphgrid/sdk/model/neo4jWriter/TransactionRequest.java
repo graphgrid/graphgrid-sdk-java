@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import com.graphgrid.sdk.model.BrokerEndpoint;
 import com.graphgrid.sdk.model.Neo4jCredentials;
 
 @JsonAutoDetect
@@ -20,7 +21,7 @@ public class TransactionRequest
     private String parentId;
     private Map<String,Object> metadata;
     private AccessMode requestType = AccessMode.WRITE;
-    private Map<String,String> sendResultsTo;
+    private BrokerEndpoint sendResultsTo;
 
     private RequestStatus status = RequestStatus.NOT_RUN;
 
@@ -110,12 +111,12 @@ public class TransactionRequest
         this.requestType = requestType;
     }
 
-    public Map<String,String> getSendResultsTo()
+    public BrokerEndpoint getSendResultsTo()
     {
         return sendResultsTo;
     }
 
-    public void setSendResultsTo( Map<String,String> sendResultsTo )
+    public void setSendResultsTo( BrokerEndpoint sendResultsTo )
     {
         this.sendResultsTo = sendResultsTo;
     }
@@ -404,20 +405,20 @@ public class TransactionRequest
                 this.onFailure = onFailure;
             }
         }
+
+        public enum StatementStatus
+        {
+            NOT_RUN,
+            IN_PROGRESS,
+            SUCCEEDED,
+            FAILED
+        }
     }
 
     public enum AccessMode
     {
         READ,
         WRITE
-    }
-
-    public enum StatementStatus
-    {
-        NOT_RUN,
-        IN_PROGRESS,
-        SUCCEEDED,
-        FAILED
     }
 
     public enum RequestStatus
