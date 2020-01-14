@@ -3,6 +3,7 @@ package com.graphgrid.sdk.model.neo4jWriter;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -30,6 +31,7 @@ public class TransactionRequest
     private int queryAttemptNumber;
 
     private long creationTime = System.currentTimeMillis();
+    private Long timeToCreate;
     private long startTime;
     private long endTime;
 
@@ -161,34 +163,44 @@ public class TransactionRequest
         this.queryAttemptNumber = queryAttemptNumber;
     }
 
-    public long getCreationTime()
+    public String getCreationTime()
     {
-        return creationTime;
+        return Instant.ofEpochMilli( creationTime ).toString();
     }
 
-    public void setCreationTime( long creationTime )
+    public void setCreationTime( String creationTime )
     {
-        this.creationTime = creationTime;
+        this.creationTime = Instant.parse( creationTime ).toEpochMilli();
     }
 
-    public long getStartTime()
+    public Long getTimeToCreate()
     {
-        return startTime;
+        return timeToCreate;
     }
 
-    public void setStartTime( long startTime )
+    public void setTimeToCreate( Long timeToCreate )
     {
-        this.startTime = startTime;
+        this.timeToCreate = timeToCreate;
     }
 
-    public long getEndTime()
+    public String getStartTime()
     {
-        return endTime;
+        return Instant.ofEpochMilli( startTime ).toString();
     }
 
-    public void setEndTime( long endTime )
+    public void setStartTime( String startTime )
     {
-        this.endTime = endTime;
+        this.startTime = Instant.parse( startTime ).toEpochMilli();
+    }
+
+    public String getEndTime()
+    {
+        return Instant.ofEpochMilli( endTime ).toString();
+    }
+
+    public void setEndTime( String endTime )
+    {
+        this.endTime = Instant.parse( endTime ).toEpochMilli();
     }
 
     public boolean isSplitAllowed()
@@ -325,24 +337,24 @@ public class TransactionRequest
             this.executed = executed;
         }
 
-        public long getStartTime()
+        public String getStartTime()
         {
-            return startTime;
+            return Instant.ofEpochMilli( startTime ).toString();
         }
 
-        public void setStartTime( long startTime )
+        public void setStartTime( String startTime )
         {
-            this.startTime = startTime;
+            this.startTime = Instant.parse( startTime ).toEpochMilli();
         }
 
-        public long getEndTime()
+        public String getEndTime()
         {
-            return endTime;
+            return Instant.ofEpochMilli( endTime ).toString();
         }
 
-        public void setEndTime( long endTime )
+        public void setEndTime( String endTime )
         {
-            this.endTime = endTime;
+            this.endTime = Instant.parse( endTime ).toEpochMilli();
         }
 
         public long getExecutionDuration()
