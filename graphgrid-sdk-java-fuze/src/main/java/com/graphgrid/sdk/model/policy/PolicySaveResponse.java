@@ -1,26 +1,27 @@
-package com.graphgrid.sdk.model.neo4jWriter;
+package com.graphgrid.sdk.model.policy;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import com.graphgrid.sdk.core.model.GraphGridServiceResponse;
+import com.graphgrid.sdk.model.Policy;
 
 @JsonAutoDetect
 @JsonIgnoreProperties( ignoreUnknown = true )
-public class Neo4jWriterLoadPolicyResponse extends GraphGridServiceResponse
+public class PolicySaveResponse extends GraphGridServiceResponse
 {
-    private Neo4jWriterPolicy policy;
+    private Policy policy;
 
-    public Neo4jWriterLoadPolicyResponse()
+    public PolicySaveResponse()
     {
     }
 
-    public Neo4jWriterPolicy getPolicy()
+    public Policy getPolicy()
     {
         return policy;
     }
 
-    public void setPolicy( Neo4jWriterPolicy policy )
+    public void setPolicy( Policy policy )
     {
         this.policy = policy;
     }

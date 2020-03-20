@@ -15,6 +15,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 import static org.apache.http.protocol.HTTP.USER_AGENT;
@@ -60,12 +61,12 @@ public class JsonRequestHandler implements RequestHandler
         else if ( httpMethod == HttpMethod.POST )
         {
             request = new HttpPost( url );
-            ((HttpPost) request).setEntity( new StringEntity( parseRequestToJsonString( ggRequest.getBody(), objectMapper ) ) );
+            ((HttpPost) request).setEntity( new StringEntity( parseRequestToJsonString( ggRequest.getBody(), objectMapper ), StandardCharsets.UTF_8 ) );
         }
         else if ( httpMethod == HttpMethod.PUT )
         {
             request = new HttpPut( url );
-            ((HttpPut) request).setEntity( new StringEntity( parseRequestToJsonString( ggRequest, objectMapper ) ) );
+            ((HttpPut) request).setEntity( new StringEntity( parseRequestToJsonString( ggRequest, objectMapper ), StandardCharsets.UTF_8 ) );
         }
         else if ( httpMethod == HttpMethod.DELETE )
         {

@@ -2,19 +2,25 @@ package com.graphgrid.sdk.model.distributor;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.List;
 import java.util.Map;
 
 import com.graphgrid.sdk.model.BrokerEndpoint;
+import com.graphgrid.sdk.model.Metadata;
 import com.graphgrid.sdk.model.Neo4jCredentials;
 import com.graphgrid.sdk.model.Policy;
 
 @JsonAutoDetect
+@JsonTypeName( "distributionPolicy" )
 @JsonIgnoreProperties( ignoreUnknown = true )
+@JsonDeserialize( as = DistributionPolicy.class )
 public class DistributionPolicy implements Policy
 {
-    private Map<String,Object> metadata;
+    private Metadata metadata;
+    private Status status;
 
     private BrokerEndpoint listeningBrokerEndpoint;
     private List<ForwardingRule> forwardingRules;
@@ -25,14 +31,28 @@ public class DistributionPolicy implements Policy
     {
     }
 
-    public Map<String,Object> getMetadata()
+    @Override
+    public Metadata getMetadata()
     {
         return metadata;
     }
 
-    public void setMetadata( Map<String,Object> metadata )
+    @Override
+    public void setMetadata( Metadata metadata )
     {
         this.metadata = metadata;
+    }
+
+    @Override
+    public Status getStatus()
+    {
+        return status;
+    }
+
+    @Override
+    public void setStatus( Status status )
+    {
+        this.status = status;
     }
 
     public BrokerEndpoint getListeningBrokerEndpoint()
@@ -71,9 +91,17 @@ public class DistributionPolicy implements Policy
     {
         private String cypher;
         private Multicast multicast;
+        private String resultKey;
 
         public ForwardingRule()
         {
+        }
+
+        public ForwardingRule( String cypher, Multicast multicast, String resultKey )
+        {
+            this.cypher = cypher;
+            this.multicast = multicast;
+            this.resultKey = resultKey;
         }
 
         public String getCypher()
@@ -96,16 +124,31 @@ public class DistributionPolicy implements Policy
             this.multicast = multicast;
         }
 
+        public String getResultKey()
+        {
+            return resultKey;
+        }
+
+        public void setResultKey( String resultKey )
+        {
+            this.resultKey = resultKey;
+        }
+
         @JsonAutoDetect
         @JsonIgnoreProperties( ignoreUnknown = true )
         public static class Multicast
         {
             private int retry;
             private boolean stopOnFailure;
-            private List<Map<String,String>> brokers;
+            private List<BrokerEndpoint> brokers;
 
             public Multicast()
             {
+            }
+
+            public Multicast( List<BrokerEndpoint> brokers )
+            {
+                this.brokers = brokers;
             }
 
             public int getRetry()
@@ -128,12 +171,12 @@ public class DistributionPolicy implements Policy
                 this.stopOnFailure = stopOnFailure;
             }
 
-            public List<Map<String,String>> getBrokers()
+            public List<BrokerEndpoint> getBrokers()
             {
                 return brokers;
             }
 
-            public void setBrokers( List<Map<String,String>> brokers )
+            public void setBrokers( List<BrokerEndpoint> brokers )
             {
                 this.brokers = brokers;
             }

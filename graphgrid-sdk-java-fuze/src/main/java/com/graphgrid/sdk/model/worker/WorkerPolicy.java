@@ -2,19 +2,26 @@ package com.graphgrid.sdk.model.worker;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.List;
 import java.util.Map;
 
 import com.graphgrid.sdk.model.BrokerEndpoint;
+import com.graphgrid.sdk.model.Metadata;
 import com.graphgrid.sdk.model.Neo4jCredentials;
 import com.graphgrid.sdk.model.Policy;
 
 @JsonAutoDetect
+@JsonTypeName( "workerPolicy" )
 @JsonIgnoreProperties( ignoreUnknown = true )
+@JsonDeserialize( as = WorkerPolicy.class )
 public class WorkerPolicy implements Policy
 {
-    private Map<String,Object> metadata;
+    private Metadata metadata;
+    private  Status status;
+
     private Map<String,Worker> workers;
     private Neo4jCredentials defaultNeo4jCredentials;
 
@@ -22,14 +29,28 @@ public class WorkerPolicy implements Policy
     {
     }
 
-    public Map<String,Object> getMetadata()
+    @Override
+    public Metadata getMetadata()
     {
         return metadata;
     }
 
-    public void setMetadata( Map<String,Object> metadata )
+    @Override
+    public void setMetadata( Metadata metadata )
     {
         this.metadata = metadata;
+    }
+
+    @Override
+    public Status getStatus()
+    {
+        return status;
+    }
+
+    @Override
+    public void setStatus( Status status )
+    {
+        this.status = status;
     }
 
     public Map<String,Worker> getWorkers()
@@ -54,24 +75,25 @@ public class WorkerPolicy implements Policy
 
     @JsonAutoDetect
     @JsonIgnoreProperties( ignoreUnknown = true )
-    public class Worker
+    public static class Worker
     {
-        private Map<String,Object> metadata;
+        private Metadata metadata;
 
         private String cypher;
         private List<BrokerEndpoint> listeningEndpoints;
+        private List<BrokerEndpoint> route;
         private Neo4jCredentials neo4jCredentials;
 
         public Worker()
         {
         }
 
-        public Map<String,Object> getMetadata()
+        public Metadata getMetadata()
         {
             return metadata;
         }
 
-        public void setMetadata( Map<String,Object> metadata )
+        public void setMetadata( Metadata metadata )
         {
             this.metadata = metadata;
         }
@@ -94,6 +116,16 @@ public class WorkerPolicy implements Policy
         public void setListeningEndpoints( List<BrokerEndpoint> listeningEndpoints )
         {
             this.listeningEndpoints = listeningEndpoints;
+        }
+
+        public List<BrokerEndpoint> getRoute()
+        {
+            return route;
+        }
+
+        public void setRoute( List<BrokerEndpoint> route )
+        {
+            this.route = route;
         }
 
         public Neo4jCredentials getNeo4jCredentials()

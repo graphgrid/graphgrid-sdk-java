@@ -1,4 +1,4 @@
-package com.graphgrid.sdk.model;
+package com.graphgrid.sdk.model.policy;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -7,16 +7,16 @@ import com.graphgrid.sdk.core.model.GraphGridServiceRequest;
 
 @JsonAutoDetect
 @JsonIgnoreProperties( ignoreUnknown = true )
-public class DeletePolicyRequest extends GraphGridServiceRequest
+public class PolicyActivateRequest extends GraphGridServiceRequest
 {
     private String clusterName;
     private String policyName;
 
-    public DeletePolicyRequest()
+    public PolicyActivateRequest()
     {
     }
 
-    public DeletePolicyRequest( String clusterName, String policyName )
+    public PolicyActivateRequest( String clusterName, String policyName )
     {
         this.clusterName = clusterName;
         this.policyName = policyName;

@@ -3,10 +3,12 @@ package com.graphgrid.sdk.model.neo4jWriter;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import com.graphgrid.sdk.model.BrokerEndpoint;
 import com.graphgrid.sdk.model.Neo4jCredentials;
 
 @JsonAutoDetect
@@ -20,7 +22,7 @@ public class TransactionRequest
     private String parentId;
     private Map<String,Object> metadata;
     private AccessMode requestType = AccessMode.WRITE;
-    private Map<String,String> sendResultsTo;
+    private BrokerEndpoint sendResultsTo;
 
     private RequestStatus status = RequestStatus.NOT_RUN;
 
@@ -29,10 +31,11 @@ public class TransactionRequest
     private int queryAttemptNumber;
 
     private long creationTime = System.currentTimeMillis();
+    private Long timeToCreate;
     private long startTime;
     private long endTime;
 
-    private boolean splitAllowed;
+    private boolean splitAllowed = true;
 
     private List<TransactionRequest> children;
     private Integer errorIndex;
@@ -110,12 +113,12 @@ public class TransactionRequest
         this.requestType = requestType;
     }
 
-    public Map<String,String> getSendResultsTo()
+    public BrokerEndpoint getSendResultsTo()
     {
         return sendResultsTo;
     }
 
-    public void setSendResultsTo( Map<String,String> sendResultsTo )
+    public void setSendResultsTo( BrokerEndpoint sendResultsTo )
     {
         this.sendResultsTo = sendResultsTo;
     }
@@ -160,34 +163,44 @@ public class TransactionRequest
         this.queryAttemptNumber = queryAttemptNumber;
     }
 
-    public long getCreationTime()
+    public String getCreationTime()
     {
-        return creationTime;
+        return Instant.ofEpochMilli( creationTime ).toString();
     }
 
-    public void setCreationTime( long creationTime )
+    public void setCreationTime( String creationTime )
     {
-        this.creationTime = creationTime;
+        this.creationTime = Instant.parse( creationTime ).toEpochMilli();
     }
 
-    public long getStartTime()
+    public Long getTimeToCreate()
     {
-        return startTime;
+        return timeToCreate;
     }
 
-    public void setStartTime( long startTime )
+    public void setTimeToCreate( Long timeToCreate )
     {
-        this.startTime = startTime;
+        this.timeToCreate = timeToCreate;
     }
 
-    public long getEndTime()
+    public String getStartTime()
     {
-        return endTime;
+        return Instant.ofEpochMilli( startTime ).toString();
     }
 
-    public void setEndTime( long endTime )
+    public void setStartTime( String startTime )
     {
-        this.endTime = endTime;
+        this.startTime = Instant.parse( startTime ).toEpochMilli();
+    }
+
+    public String getEndTime()
+    {
+        return Instant.ofEpochMilli( endTime ).toString();
+    }
+
+    public void setEndTime( String endTime )
+    {
+        this.endTime = Instant.parse( endTime ).toEpochMilli();
     }
 
     public boolean isSplitAllowed()
@@ -324,24 +337,24 @@ public class TransactionRequest
             this.executed = executed;
         }
 
-        public long getStartTime()
+        public String getStartTime()
         {
-            return startTime;
+            return Instant.ofEpochMilli( startTime ).toString();
         }
 
-        public void setStartTime( long startTime )
+        public void setStartTime( String startTime )
         {
-            this.startTime = startTime;
+            this.startTime = Instant.parse( startTime ).toEpochMilli();
         }
 
-        public long getEndTime()
+        public String getEndTime()
         {
-            return endTime;
+            return Instant.ofEpochMilli( endTime ).toString();
         }
 
-        public void setEndTime( long endTime )
+        public void setEndTime( String endTime )
         {
-            this.endTime = endTime;
+            this.endTime = Instant.parse( endTime ).toEpochMilli();
         }
 
         public long getExecutionDuration()
@@ -404,20 +417,20 @@ public class TransactionRequest
                 this.onFailure = onFailure;
             }
         }
+
+        public enum StatementStatus
+        {
+            NOT_RUN,
+            IN_PROGRESS,
+            SUCCEEDED,
+            FAILED
+        }
     }
 
     public enum AccessMode
     {
         READ,
         WRITE
-    }
-
-    public enum StatementStatus
-    {
-        NOT_RUN,
-        IN_PROGRESS,
-        SUCCEEDED,
-        FAILED
     }
 
     public enum RequestStatus
