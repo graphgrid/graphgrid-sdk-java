@@ -13,6 +13,7 @@ public class PipelineStageBuilder
         {
         case PipelineStageType.ALS:
         case PipelineStageType.DECISION_TREE_CLASSIFIER:
+        case PipelineStageType.RANDOM_FOREST_CLASSIFIER:
         case PipelineStageType.KMEANS:
         case PipelineStageType.LINEAR_REGRESSION:
         case PipelineStageType.LOGISTIC_REGRESSION:
