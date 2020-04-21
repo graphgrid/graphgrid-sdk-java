@@ -32,6 +32,7 @@ import com.graphgrid.sdk.ml.constant.PipelineStageType;
         // Classification
         @JsonSubTypes.Type( value = Estimator.class, name = PipelineStageType.LOGISTIC_REGRESSION ),
         @JsonSubTypes.Type( value = Estimator.class, name = PipelineStageType.DECISION_TREE_CLASSIFIER ),
+        @JsonSubTypes.Type( value = Estimator.class, name = PipelineStageType.RANDOM_FOREST_CLASSIFIER ),
         // Regression
         @JsonSubTypes.Type( value = Estimator.class, name = PipelineStageType.LINEAR_REGRESSION ),
         // Clustering
