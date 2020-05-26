@@ -20,6 +20,7 @@ public final class PipelineStageType
     // Classification
     public static final String LOGISTIC_REGRESSION = "LogisticRegression";
     public static final String DECISION_TREE_CLASSIFIER = "DecisionTreeClassifier";
+    public static final String RANDOM_FOREST_CLASSIFIER = "RandomForestClassifier";
 
     // Regression
     public static final String LINEAR_REGRESSION = "LinearRegression";
