@@ -4,15 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.graphgrid.boot</groupId>
-        <artifactId>graphgrid-boot-parent</artifactId>
-        <version>1.3.0-SNAPSHOT</version>
-        <relativePath>../graphgrid-boot-build</relativePath>
-    </parent>
-
     <groupId>com.graphgrid</groupId>
     <artifactId>graphgrid-sdk-java-pom</artifactId>
+    <version>1.3.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>GraphGrid :: SDK :: Java :: Parent</name>
