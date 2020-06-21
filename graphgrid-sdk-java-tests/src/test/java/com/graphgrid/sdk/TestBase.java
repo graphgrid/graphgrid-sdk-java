@@ -41,7 +41,7 @@ public abstract class TestBase
 
     private void loadSecurityCredentialsFromPom()
     {
-        java.io.InputStream is = this.getClass().getClassLoader().getResourceAsStream( "test-properties" );
+        java.io.InputStream is = this.getClass().getClassLoader().getResourceAsStream( "test.properties" );
         java.util.Properties p = new Properties();
         try
         {
