@@ -1,6 +1,5 @@
 package com.graphgrid.sdk;
 
-import com.graphgrid.sdk.core.security.SecurityConfig;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
@@ -13,33 +12,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.graphgrid.sdk.core.security.SecurityConfig;
+
 @ActiveProfiles( "test" )
 @RunWith( SpringRunner.class )
 @SpringBootTest( classes = App.class, properties = "server.port:0" )
 @Rollback( false )
 public abstract class TestBase
 {
-
-    // only used to test getting a tokenMapper for a user
-//    @Value( "${spring.oauth.username}" )
-//    protected String username;
-//    @Value( "${spring.oauth.password}" )
-//    protected String password;
-
-    // needed to configure security context
-    //@Value( "${spring.client.id}" )
-//    private String clientId;
-//    @Value( "${spring.client.secret}" )
-//    private String clientSecret;
-//    @Value( "${spring.baseSecurityUrl}" )
-//    private String baseSecurityUrl;
-//    @Value( "${spring.oauth.tokenMapper.url}" )
-//    private String springOAuthTokenUrl;
-//    @Value( "${spring.oauth.tokenMapper.client.id}" )
-//    private String oAuthClientId;
-//    @Value( "${spring.oauth.tokenMapper.client.secret}" )
-//    private String oAuthClientSecret;
-
 
     @Rule
     public final ExpectedException thrown = ExpectedException.none();
@@ -50,7 +30,7 @@ public abstract class TestBase
     protected String password;
 
     @Before
-    public void setUp() throws Exception
+    public void setUp()
     {
         securityConfig = new SecurityConfig();
         loadSecurityCredentialsFromPom();
@@ -58,7 +38,7 @@ public abstract class TestBase
 
     private void loadSecurityCredentialsFromPom()
     {
-        java.io.InputStream is = this.getClass().getClassLoader().getResourceAsStream( "test-properties" );
+        java.io.InputStream is = this.getClass().getClassLoader().getResourceAsStream( "test.properties" );
         java.util.Properties p = new Properties();
         try
         {
@@ -69,7 +49,7 @@ public abstract class TestBase
             e.printStackTrace();
         }
 
-        if ( !Boolean.valueOf( p.getProperty( "config.useAsOverwrite" ) ) )
+        if ( !Boolean.parseBoolean( p.getProperty( "config.useAsOverwrite" ) ) )
         {
             return;
         }
