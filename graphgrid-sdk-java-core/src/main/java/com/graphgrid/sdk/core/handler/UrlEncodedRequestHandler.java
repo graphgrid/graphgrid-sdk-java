@@ -12,9 +12,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.protocol.HTTP;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
@@ -42,12 +42,12 @@ public class UrlEncodedRequestHandler implements RequestHandler
         else if ( httpMethod == HttpMethod.POST )
         {
             request = new HttpPost( url );
-            ((HttpPost) request).setEntity( new UrlEncodedFormEntity( (List<NameValuePair>) ggRequest.getBody(), HTTP.UTF_8 ) );
+            ((HttpPost) request).setEntity( new UrlEncodedFormEntity( (List<NameValuePair>) ggRequest.getBody(), StandardCharsets.UTF_8 ) );
         }
         else if ( httpMethod == HttpMethod.PUT )
         {
             request = new HttpPut( url );
-            ((HttpPut) request).setEntity( new UrlEncodedFormEntity( (List<NameValuePair>) ggRequest.getBody(), HTTP.UTF_8 ) );
+            ((HttpPut) request).setEntity( new UrlEncodedFormEntity( (List<NameValuePair>) ggRequest.getBody(), StandardCharsets.UTF_8 ) );
         }
         else if ( httpMethod == HttpMethod.DELETE )
         {
