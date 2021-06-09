@@ -43,7 +43,7 @@
         <junit.version>4.12</junit.version>
         <commons.io.version>2.4</commons.io.version>
         <commons.lang.version>3.7</commons.lang.version>
-        <httpcomponents.httpclient.version>4.5.5</httpcomponents.httpclient.version>
+        <httpcomponents.httpclient.version>4.5.13</httpcomponents.httpclient.version>
         <slf4j.version>1.7.25</slf4j.version>
         <org.kuali.maven.wagons.version>1.2.1</org.kuali.maven.wagons.version>
         <version.java>1.8</version.java>
