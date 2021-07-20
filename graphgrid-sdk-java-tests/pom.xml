@@ -12,6 +12,7 @@
     </parent>
 
     <artifactId>graphgrid-sdk-java-tests</artifactId>
+    <version>${revision}</version>
     <packaging>jar</packaging>
 
     <name>GraphGrid :: SDK :: Java :: Tests</name>

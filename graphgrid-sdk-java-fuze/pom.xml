@@ -12,6 +12,7 @@
     </parent>
 
     <artifactId>graphgrid-sdk-java-fuze</artifactId>
+    <version>${revision}</version>
     <packaging>jar</packaging>
 
     <name>GraphGrid :: SDK :: Java :: Fuze</name>

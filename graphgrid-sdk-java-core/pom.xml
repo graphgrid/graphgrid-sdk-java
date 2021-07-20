@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>graphgrid-sdk-java-core</artifactId>
+    <version>${revision}</version>
     <packaging>jar</packaging>
 
     <name>GraphGrid :: SDK :: Java :: Core</name>

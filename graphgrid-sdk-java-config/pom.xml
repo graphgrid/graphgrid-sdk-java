@@ -10,6 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>graphgrid-sdk-java-config</artifactId>
+    <version>${revision}</version>
+    <packaging>jar</packaging>
 
     <name>GraphGrid :: SDK :: Java :: Config</name>
     <description>GraphGrid SDK Config Service Integration.</description>
