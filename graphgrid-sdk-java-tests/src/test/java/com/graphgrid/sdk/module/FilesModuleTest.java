@@ -1,4 +1,4 @@
-package com.graphgrid.sdk;
+package com.graphgrid.sdk.module;
 
 import org.assertj.core.util.Lists;
 import org.junit.Ignore;
@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.util.HashMap;
 
+import com.graphgrid.sdk.GraphGridFilesClient;
+import com.graphgrid.sdk.SdkTestBase;
 import com.graphgrid.sdk.core.exception.GraphGridSdkException;
 import com.graphgrid.sdk.core.security.ClientCredentialsTokenRequest;
 import com.graphgrid.sdk.core.security.GraphGridSecurityClient;
@@ -27,7 +29,7 @@ import static junit.framework.TestCase.assertNotNull;
 /**
  * @author bradnussbaum
  */
-public class FileServiceTest extends TestBase
+public class FilesModuleTest extends SdkTestBase
 {
 
     @Test

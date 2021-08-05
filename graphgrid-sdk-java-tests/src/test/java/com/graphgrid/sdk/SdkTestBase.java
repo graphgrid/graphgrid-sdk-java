@@ -19,9 +19,9 @@ import com.graphgrid.sdk.core.security.SecurityConfig;
  */
 @ActiveProfiles( "test" )
 @RunWith( SpringRunner.class )
-@SpringBootTest( classes = App.class, properties = "server.port:0" )
+@SpringBootTest( classes = SdkTestModule.class, properties = "server.port:0" )
 @Rollback( false )
-public abstract class TestBase
+public abstract class SdkTestBase
 {
 
     @Rule

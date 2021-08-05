@@ -1,7 +1,8 @@
-package com.graphgrid.sdk;
+package com.graphgrid.sdk.module;
 
 import org.junit.Test;
 
+import com.graphgrid.sdk.SdkTestBase;
 import com.graphgrid.sdk.core.GraphGridHttpClient;
 import com.graphgrid.sdk.core.model.GetTokenResponse;
 import com.graphgrid.sdk.core.model.GetTokenResponseSystem;
@@ -15,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author bradnussbaum
  */
-public class SecurityTest extends TestBase
+public class SecurityModuleTest extends SdkTestBase
 {
 
     @Test
@@ -23,6 +24,7 @@ public class SecurityTest extends TestBase
     {
         GraphGridHttpClient client = new GraphGridHttpClient();
         thrown.expect( NullPointerException.class );
+        //noinspection ConstantConditions
         client.invoke( null, null, null );
     }
 

@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author bradnussbaum
  */
-public class RequestTokenBuilderTest extends TestBase
+public class RequestTokenBuilderTest extends SdkTestBase
 {
     @Test
     public void builderWithToken()

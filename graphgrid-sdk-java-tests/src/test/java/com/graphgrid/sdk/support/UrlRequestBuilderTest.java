@@ -1,4 +1,4 @@
-package com.graphgrid.sdk;
+package com.graphgrid.sdk.support;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -50,7 +50,6 @@ public class UrlRequestBuilderTest
     public void buildUrl3b()
     {
         final FindFileRequest request = new FindFileRequest( "grn:file:123" ).withAuthMethod( new NoTokenRequest() );
-        ;
         final URL url = new UrlBuilder( "http://localhost/gg.file.com" ).withBaseUrl( "http://localhost/gg.file.com" ).withPathVariable(
                 request.getGrn() ).withPathVariable( "grn:gg:org:213" ).withQueryParam( "k1", "", false ).buildUrl();
         assertEquals( url.toString(), "http://localhost/gg.file.com/grn:file:123/grn:gg:org:213" );

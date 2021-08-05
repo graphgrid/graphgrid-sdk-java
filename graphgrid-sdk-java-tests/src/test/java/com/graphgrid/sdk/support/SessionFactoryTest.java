@@ -1,4 +1,4 @@
-package com.graphgrid.sdk;
+package com.graphgrid.sdk.support;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;

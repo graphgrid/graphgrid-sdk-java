@@ -8,11 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @SuppressWarnings( "NonFinalUtilityClass" )
-public class App
+public class SdkTestModule
 {
 
     public static void main( final String[] args )
     {
-        SpringApplication.run( App.class, args );
+        SpringApplication.run( SdkTestModule.class, args );
     }
 }
