@@ -3,7 +3,6 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>com.graphgrid</groupId>
         <artifactId>graphgrid-sdk-java-pom</artifactId>
@@ -12,6 +11,7 @@
     </parent>
 
     <artifactId>graphgrid-sdk-java-ml</artifactId>
+    <version>${revision}</version>
     <packaging>jar</packaging>
 
     <name>GraphGrid :: SDK :: Java :: ML</name>

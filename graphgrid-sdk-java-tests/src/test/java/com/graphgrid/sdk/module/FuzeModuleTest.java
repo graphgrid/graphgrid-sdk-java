@@ -1,4 +1,4 @@
-package com.graphgrid.sdk;
+package com.graphgrid.sdk.module;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
@@ -7,11 +7,13 @@ import org.junit.Test;
 
 import java.util.Collections;
 
+import com.graphgrid.sdk.GraphGridFuze;
+import com.graphgrid.sdk.GraphGridFuzeClient;
+import com.graphgrid.sdk.SdkTestBase;
 import com.graphgrid.sdk.core.security.ClientCredentialsTokenRequest;
 import com.graphgrid.sdk.model.BrokerEndpoint;
 import com.graphgrid.sdk.model.FuzeServiceStatusRequest;
 import com.graphgrid.sdk.model.FuzeServiceStatusResponse;
-import com.graphgrid.sdk.model.Metadata;
 import com.graphgrid.sdk.model.Neo4jCredentials;
 import com.graphgrid.sdk.model.distributor.DistributionPolicy;
 import com.graphgrid.sdk.model.policy.PolicyActivateRequest;
@@ -28,7 +30,7 @@ import com.graphgrid.sdk.model.policy.PolicySaveResponse;
 /**
  * @author bradnussbaum
  */
-public class FuzeServiceTest extends TestBase
+public class FuzeModuleTest extends SdkTestBase
 {
 
     @Test

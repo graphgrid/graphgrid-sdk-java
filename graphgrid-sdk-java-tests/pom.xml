@@ -3,15 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>com.graphgrid</groupId>
         <artifactId>graphgrid-sdk-java-pom</artifactId>
         <version>1.5.0-SNAPSHOT</version>
-        <relativePath>..</relativePath>
     </parent>
 
     <artifactId>graphgrid-sdk-java-tests</artifactId>
+    <version>${revision}</version>
     <packaging>jar</packaging>
 
     <name>GraphGrid :: SDK :: Java :: Tests</name>
@@ -31,33 +30,36 @@
     </properties>
 
     <dependencies>
-        <!-- Compile -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
             <version>${spring-boot.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>6.1.5.Final</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.graphgrid</groupId>
             <artifactId>graphgrid-sdk-java-core</artifactId>
             <version>${project.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.graphgrid</groupId>
             <artifactId>graphgrid-sdk-java-files</artifactId>
             <version>${project.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.graphgrid</groupId>
             <artifactId>graphgrid-sdk-java-fuze</artifactId>
             <version>${project.version}</version>
+            <scope>test</scope>
         </dependency>
-        <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -90,11 +92,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
