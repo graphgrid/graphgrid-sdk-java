@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.graphgrid.boot</groupId>
         <artifactId>graphgrid-boot-parent</artifactId>
-        <version>1.4.0-SNAPSHOT</version>
+        <version>1.5.0-SNAPSHOT</version>
         <relativePath>../graphgrid-boot-build/graphgrid-boot-parent</relativePath>
     </parent>
 
