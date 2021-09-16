@@ -6,13 +6,13 @@
     <parent>
         <groupId>com.graphgrid.boot</groupId>
         <artifactId>graphgrid-boot-parent</artifactId>
-        <version>1.4.0-SNAPSHOT</version>
+        <version>1.4.1-SNAPSHOT</version>
         <relativePath>../graphgrid-boot-build/graphgrid-boot-parent</relativePath>
     </parent>
 
     <groupId>com.graphgrid</groupId>
     <artifactId>graphgrid-sdk-java-pom</artifactId>
-    <version>1.4.0-SNAPSHOT</version>
+    <version>1.4.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>GraphGrid :: SDK :: Java :: Parent</name>
