@@ -95,16 +95,16 @@ public class UrlRequestBuilderTest
     public void buildWithFactory()
     {
         final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost/gg.file.com" );
-        final URL url = urlBuilder.create().withServiceEndpoint( "billing" ).buildUrl();
-        assertEquals( url.toString(), "http://localhost/gg.file.com/billing" );
+        final URL url = urlBuilder.create().withServiceEndpoint( "payment" ).buildUrl();
+        assertEquals( url.toString(), "http://localhost/gg.file.com/payment" );
     }
 
     @Test
     public void buildWithFactory2()
     {
         final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost/gg.file.com" );
-        final URL url = urlBuilder.create().withServiceEndpoint( "billing" ).buildUrl();
-        assertEquals( url.toString(), "http://localhost/gg.file.com/billing" );
+        final URL url = urlBuilder.create().withServiceEndpoint( "payment" ).buildUrl();
+        assertEquals( url.toString(), "http://localhost/gg.file.com/payment" );
     }
 
     @Test
@@ -114,8 +114,8 @@ public class UrlRequestBuilderTest
         request.setGrn( "" );
 
         final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost/gg.file.com" );
-        final GraphGridServiceRequest requestWithUrl = urlBuilder.create( request ).withServiceEndpoint( "billing" ).buildRequestWithUrl();
-        assertEquals( requestWithUrl.getEndpoint().toString(), "http://localhost/gg.file.com/billing" );
+        final GraphGridServiceRequest requestWithUrl = urlBuilder.create( request ).withServiceEndpoint( "payment" ).buildRequestWithUrl();
+        assertEquals( requestWithUrl.getEndpoint().toString(), "http://localhost/gg.file.com/payment" );
     }
 
     @Test
@@ -126,15 +126,15 @@ public class UrlRequestBuilderTest
 
         final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( "http://localhost/gg.file.com" );
         final GraphGridServiceRequest requestWithUrl =
-                urlBuilder.create( request ).withServiceEndpoint( "billing" ).addPathVariable( "delete" ).buildRequestWithUrl();
-        assertEquals( requestWithUrl.getEndpoint().toString(), "http://localhost/gg.file.com/billing/delete" );
+                urlBuilder.create( request ).withServiceEndpoint( "payment" ).addPathVariable( "delete" ).buildRequestWithUrl();
+        assertEquals( requestWithUrl.getEndpoint().toString(), "http://localhost/gg.file.com/payment/delete" );
     }
 
     @Test( expected = com.graphgrid.sdk.core.exception.GraphGridSdkInvalidArgumentException.class )
     public void buildWithFactory5()
     {
         final RequestUrlBuilderFactory urlBuilder = new RequestUrlBuilderFactory( null );
-        final URL url = urlBuilder.create().withServiceEndpoint( "billing" ).buildUrl();
+        final URL url = urlBuilder.create().withServiceEndpoint( "payment" ).buildUrl();
     }
 
     @Test( expected = com.graphgrid.sdk.core.exception.GraphGridSdkInvalidArgumentException.class )
