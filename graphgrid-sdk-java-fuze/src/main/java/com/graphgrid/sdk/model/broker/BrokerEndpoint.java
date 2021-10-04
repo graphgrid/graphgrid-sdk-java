@@ -1,4 +1,4 @@
-package com.graphgrid.sdk.model;
+package com.graphgrid.sdk.model.broker;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

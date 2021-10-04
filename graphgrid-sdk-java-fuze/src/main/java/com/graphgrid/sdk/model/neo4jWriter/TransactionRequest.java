@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.graphgrid.sdk.model.BrokerEndpoint;
 import com.graphgrid.sdk.model.Neo4jCredentials;
+import com.graphgrid.sdk.model.broker.BrokerEndpoint;
 
 @JsonAutoDetect
 @JsonIgnoreProperties( ignoreUnknown = true )

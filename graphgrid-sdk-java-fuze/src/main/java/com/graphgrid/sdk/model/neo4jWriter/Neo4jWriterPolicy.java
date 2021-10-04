@@ -7,10 +7,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.List;
 
-import com.graphgrid.sdk.model.BrokerEndpoint;
 import com.graphgrid.sdk.model.Metadata;
 import com.graphgrid.sdk.model.Neo4jCredentials;
 import com.graphgrid.sdk.model.Policy;
+import com.graphgrid.sdk.model.broker.BrokerEndpoint;
 
 @JsonAutoDetect
 @JsonTypeName( "neo4jWriterPolicy" )
