@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Collections;
@@ -26,6 +27,7 @@ import com.graphgrid.sdk.ml.model.transformation.TransformationPolicy;
 @Getter
 @Setter
 @EqualsAndHashCode
+@NoArgsConstructor
 public class InnerTransformation
 {
     @NotBlank
