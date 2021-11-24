@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import java.util.Map;
 import javax.validation.constraints.NotBlank;
 
 import com.graphgrid.sdk.ml.constant.PipelineStageType;
+import com.graphgrid.sdk.ml.utils.PipelineStageDeserializer;
 
 @JsonAutoDetect
 @JsonInclude( JsonInclude.Include.NON_NULL )
@@ -39,6 +41,7 @@ import com.graphgrid.sdk.ml.constant.PipelineStageType;
         @JsonSubTypes.Type( value = Estimator.class, name = PipelineStageType.KMEANS ),
         // Recommendation
         @JsonSubTypes.Type( value = Estimator.class, name = PipelineStageType.ALS )} )
+@JsonDeserialize(using = PipelineStageDeserializer.class )
 @Getter
 @Setter
 @EqualsAndHashCode
