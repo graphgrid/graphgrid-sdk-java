@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashMap;
 import java.util.Map;
 import javax.validation.constraints.NotBlank;
 
@@ -18,4 +19,9 @@ public class CypherDataOutput
     @NotBlank
     private String cypher;
     private Map<String,Object> parameters;
+
+    public CypherDataOutput()
+    {
+        parameters = new HashMap<>();
+    }
 }

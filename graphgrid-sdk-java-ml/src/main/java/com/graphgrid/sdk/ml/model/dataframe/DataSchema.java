@@ -2,6 +2,7 @@ package com.graphgrid.sdk.ml.model.dataframe;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
 @JsonAutoDetect
+@NoArgsConstructor
 @Getter
 @Setter
 public class DataSchema

@@ -3,9 +3,11 @@ package com.graphgrid.sdk.ml.model.transformation;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @JsonAutoDetect
+@NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
