@@ -17,7 +17,7 @@ import com.graphgrid.sdk.ml.constant.PipelineStageType;
 
 @JsonAutoDetect
 @JsonInclude( JsonInclude.Include.NON_NULL )
-@JsonTypeInfo( use = JsonTypeInfo.Id.NAME, property = "type", include = JsonTypeInfo.As.EXTERNAL_PROPERTY, visible = true )
+@JsonTypeInfo( use = JsonTypeInfo.Id.NAME, property = "type", include = JsonTypeInfo.As.EXISTING_PROPERTY, visible = true)
 @JsonSubTypes( {
         // Features
         @JsonSubTypes.Type( value = Transformer.class, name = PipelineStageType.INDEX_TO_STRING ),
