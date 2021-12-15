@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.graphgrid.boot</groupId>
-        <artifactId>graphgrid-boot-aws-parent</artifactId>
+        <artifactId>graphgrid-boot-parent</artifactId>
         <version>1.3.0-SNAPSHOT</version>
-        <relativePath>../graphgrid-boot-aws-build/graphgrid-boot-aws-parent</relativePath>
+        <relativePath>../graphgrid-boot-build/graphgrid-boot-parent</relativePath>
     </parent>
 
     <groupId>com.graphgrid</groupId>
