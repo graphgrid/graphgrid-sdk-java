@@ -53,7 +53,12 @@ public class JsonResponseHandler<T extends GraphGridServiceResponse> implements 
         {
             handleErrorMessage( httpResponse );
         }
-        return (T) mapper.readValue( convertToString( httpResponse ), responseType );
+        T responseTypeObj =  (T) mapper.readValue( convertToString( httpResponse ), responseType );
+
+        responseTypeObj.setStatusText( httpResponse.getStatusLine().getReasonPhrase() );
+        responseTypeObj.setStatusCode( httpResponse.getStatusLine().getStatusCode() );
+
+        return responseTypeObj;
     }
 
     // todo error handler need to be configurable
