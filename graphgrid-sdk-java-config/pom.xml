@@ -6,7 +6,7 @@
     <parent>
         <artifactId>graphgrid-sdk-java-pom</artifactId>
         <groupId>com.graphgrid</groupId>
-        <version>1.4.6-SNAPSHOT</version>
+        <version>1.4.7-SNAPSHOT</version>
     </parent>
 
     <artifactId>graphgrid-sdk-java-config</artifactId>
