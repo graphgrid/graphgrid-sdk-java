@@ -35,7 +35,7 @@ public class FilesModuleTest extends SdkTestBase
     @Test
     public void testStatus()
     {
-        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file", securityConfig );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/2.0/file", securityConfig );
         final FileServiceStatusResponse response = client.status( new FileServiceStatusRequest().withAuthMethod( new ClientCredentialsTokenRequest() ) );
 
         assertNotNull( response );
@@ -72,7 +72,7 @@ public class FilesModuleTest extends SdkTestBase
         map.put( "Authorization", "Bearer a2ce4bdf-7559-4d3c-8249-bed353041b8b" );
         request.withHeaders( map );
 
-        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file" );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/2.0/file" );
         client.createFileNodeWithoutUploading( request );
     }
 
@@ -80,7 +80,7 @@ public class FilesModuleTest extends SdkTestBase
     public void urlNotFound()
     {
         GraphGridSdkException exception = null;
-        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/fileNotThere" );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/2.0/fileNotThere" );
         try
         {
             client.status( new FileServiceStatusRequest().withAuthMethod( new NoTokenRequest() ) );
@@ -108,7 +108,7 @@ public class FilesModuleTest extends SdkTestBase
         final HashMap<String,String> map = new HashMap<>();
         request.withHeaders( map );
 
-        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file" );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/2.0/file" );
 
         GraphGridSdkException exception = null;
         try
@@ -128,7 +128,7 @@ public class FilesModuleTest extends SdkTestBase
     {
         String fileGrn = "grn:gg:file:Mm5FzYHWZd92Tx3rqKpGHaDc0pdjMmZclyKgK4fe8sUL";
 
-        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file" );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/2.0/file" );
 
         final FindFileRequest request = new FindFileRequest( fileGrn ).withAuthMethod( new TokenRequest( "ddf08ff3-ee0c-4b02-86e7-1fa551a2faa7" ) );
         request.setGrn( fileGrn );
@@ -146,7 +146,7 @@ public class FilesModuleTest extends SdkTestBase
         SecurityService securityService = new GraphGridSecurityClient( securityConfig );
         String token = securityService.getTokenForSecurityCredentials().getAccessToken();
 
-        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file" );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/2.0/file" );
 
         final FindFileRequest request = new FindFileRequest( fileGrn ).withAuthMethod( new TokenRequest( token ) );
         request.setGrn( fileGrn );
@@ -162,7 +162,7 @@ public class FilesModuleTest extends SdkTestBase
     {
         String fileGrn = "grn:gg:file:Mm5FzYHWZd92Tx3rqKpGHaDc0pdjMmZclyKgK4fe8sUL";
 
-        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file", securityConfig );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/2.0/file", securityConfig );
 
         final FindFileRequest request = new FindFileRequest( fileGrn ).withAuthMethod( new UserTokenRequest( username, password ) );
         request.setGrn( fileGrn );
@@ -177,7 +177,7 @@ public class FilesModuleTest extends SdkTestBase
     {
         String fileGrn = "grn:gg:file:Mm5FzYHWZd92Tx3rqKpGHaDc0pdjMmZclyKgK4fe8sUL";
 
-        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/file", securityConfig );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/2.0/file", securityConfig );
 
         // somewhere else
         final FindFileRequest request = new FindFileRequest( fileGrn );
