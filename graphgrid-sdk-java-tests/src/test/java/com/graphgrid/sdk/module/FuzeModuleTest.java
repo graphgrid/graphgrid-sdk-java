@@ -36,7 +36,7 @@ public class FuzeModuleTest extends SdkTestBase
     @Test
     public void testStatus()
     {
-        final GraphGridFuzeClient client = new GraphGridFuzeClient( "https://dev-api.graphgrid.com/2.0/fuze", securityConfig );
+        final GraphGridFuzeClient client = new GraphGridFuzeClient( "https://dev-api.graphgrid.com/1.0/fuze", securityConfig );
         final FuzeServiceStatusResponse status = client.status( new FuzeServiceStatusRequest().withAuthMethod( new ClientCredentialsTokenRequest() ) );
 
         Assert.assertNotNull( status );
@@ -46,7 +46,7 @@ public class FuzeModuleTest extends SdkTestBase
     @Test
     public void policyManagementEndpoints()
     {
-        final GraphGridFuze graphGridFuze = new GraphGridFuzeClient( "https://dev-api.graphgrid.com/2.0/fuze", securityConfig );
+        final GraphGridFuze graphGridFuze = new GraphGridFuzeClient( "https://dev-api.graphgrid.com/1.0/fuze", securityConfig );
 
         DistributionPolicy distributionPolicy = new DistributionPolicy();
         distributionPolicy.setListeningBrokerEndpoint( BrokerEndpoint.kafkaEndpoint( "com.graphgrid.topic.sdk-test" ) );
