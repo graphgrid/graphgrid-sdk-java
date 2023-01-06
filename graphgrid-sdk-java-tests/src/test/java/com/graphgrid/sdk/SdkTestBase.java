@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.graphgrid.sdk.core.exception.GraphGridSdkInvalidArgumentException;
 import com.graphgrid.sdk.core.security.SecurityConfig;
 
 /**
@@ -32,6 +33,8 @@ public abstract class SdkTestBase
     protected String username;
     protected String password;
 
+    private Properties p = new Properties();
+
     @Before
     public void setUp()
     {
@@ -42,7 +45,6 @@ public abstract class SdkTestBase
     private void loadSecurityCredentialsFromPom()
     {
         java.io.InputStream is = this.getClass().getClassLoader().getResourceAsStream( "test.properties" );
-        java.util.Properties p = new Properties();
         try
         {
             p.load( is );
@@ -57,11 +59,28 @@ public abstract class SdkTestBase
             return;
         }
 
-        securityConfig.setClientId( p.getProperty( "client.id" ) );
-        securityConfig.setClientSecret( p.getProperty( "client.secret" ) );
-        securityConfig.setBaseSecurityUrl( p.getProperty( "baseSecurityUrl" ) );
+        final String clientId = getPropertyValueAndThrowErrorIfMissing( "client.id" );
+        final String clientSecret = getPropertyValueAndThrowErrorIfMissing( "client.secret" );
+        final String baseSecurityUrl = getPropertyValueAndThrowErrorIfMissing( "baseSecurityUrl" );
+        final String oauthUsername = getPropertyValueAndThrowErrorIfMissing( "oauth.username" );
+        final String oauthPassword = getPropertyValueAndThrowErrorIfMissing( "oauth.password" );
 
-        username = p.getProperty( "oauth.username" );
-        password = p.getProperty( "oauth.password" );
+        securityConfig.setClientId( clientId );
+        securityConfig.setClientSecret( clientSecret );
+        securityConfig.setBaseSecurityUrl( baseSecurityUrl );
+
+        username = oauthUsername;
+        password = oauthPassword;
+    }
+
+    private String getPropertyValueAndThrowErrorIfMissing( String propName ) throws GraphGridSdkInvalidArgumentException
+    {
+        String propValue = p.getProperty( propName );
+        if ( propValue == null || propValue.isEmpty() )
+        {
+            throw new GraphGridSdkInvalidArgumentException( "Property '" + propName + "' is missing or empty. " +
+                    "Graphgrid-java-sdk tests require this property to be non-empty (set directly in the test pom or through the properties in your maven settings.xml)" );
+        }
+        return propValue;
     }
 }
