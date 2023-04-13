@@ -50,10 +50,12 @@ public class FuzeModuleTest extends SdkTestBase
 
         DistributionPolicy distributionPolicy = new DistributionPolicy();
         distributionPolicy.setListeningBrokerEndpoint( BrokerEndpoint.kafkaEndpoint( "com.graphgrid.topic.sdk-test" ) );
-        distributionPolicy.setNeo4jCredentials( new Neo4jCredentials( "bolt://neo4j-db:7687", "neo4j", "admin" ) );
-        distributionPolicy.setForwardingRules( Collections.singletonList( new DistributionPolicy.ForwardingRule( "WITH {txData} as txData RETURN txData AS result", new DistributionPolicy.ForwardingRule.Multicast( Collections.singletonList( BrokerEndpoint.kafkaEndpoint( "com.graphgrid.topic.skd-next" ) ) ), "result" ) ) );
+        distributionPolicy.setNeo4jCredentials( new Neo4jCredentials( "bolt://ongdb:7687", "ongdb", "admin" ) );
+        distributionPolicy.setForwardingRules( Collections.singletonList(
+                new DistributionPolicy.ForwardingRule( "WITH {txData} as txData RETURN txData AS result", new DistributionPolicy.ForwardingRule.Multicast(
+                        Collections.singletonList( BrokerEndpoint.kafkaEndpoint( "com.graphgrid.topic.skd-next" ) ) ), "result" ) ) );
 
-        final String clusterName = "gg-test-neo";
+        final String clusterName = "gg-test-ongdb";
         final String policyName = "gg-test-policy-distributor" + RandomStringUtils.randomAlphabetic( 5 );
 
         PolicySaveResponse policySaveResponse = graphGridFuze.savePolicy( new PolicySaveRequest( clusterName, policyName, distributionPolicy ) );
