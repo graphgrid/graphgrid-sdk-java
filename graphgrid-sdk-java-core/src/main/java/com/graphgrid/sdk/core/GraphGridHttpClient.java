@@ -30,8 +30,8 @@ public class GraphGridHttpClient
 
     private static final Logger LOGGER = LoggerFactory.getLogger( GraphGridHttpClient.class );
 
-    private ObjectMapper objectMapper;
-    private HttpClient apacheClient;
+    private final ObjectMapper objectMapper;
+    private final HttpClient apacheClient;
 
     public GraphGridHttpClient()
     {
@@ -54,10 +54,10 @@ public class GraphGridHttpClient
         }
         catch ( IOException e )
         {
-            LOGGER.error( "Error processing request: " + ggRequest.toString(), e.getMessage() );
+            LOGGER.error( "Error processing request: " + ggRequest, e.getMessage() );
             ex = e;
         }
-        throw new GraphGridSdkException( "Error processing request: " + ggRequest.toString(), ex );
+        throw new GraphGridSdkException( "Error processing request: " + ggRequest, ex );
     }
 
     public <T extends GraphGridServiceResponse> T processResponse( ResponseHandler handler, HttpResponse httpResponse, ObjectMapper mapper,

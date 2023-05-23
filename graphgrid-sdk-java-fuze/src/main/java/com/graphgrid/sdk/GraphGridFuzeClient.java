@@ -1,8 +1,6 @@
 package com.graphgrid.sdk;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.graphgrid.sdk.core.GraphGridSecurityClientBase;
 import com.graphgrid.sdk.core.SessionFactory;
@@ -49,7 +47,6 @@ import com.graphgrid.sdk.support.Endpoints;
 
 public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements GraphGridFuze
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger( GraphGridFuzeClient.class );
 
     public GraphGridFuzeClient( String serviceBaseUrl )
     {
@@ -80,8 +77,9 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     @Override
     public PolicySaveResponse savePolicy( PolicySaveRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.SAVE_POLICY )
-                .addPathVariable( request.getPolicyName() ).buildUrl() );
+        request.setEndpoint(
+                getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.SAVE_POLICY ).addPathVariable(
+                        request.getPolicyName() ).buildUrl() );
         request.setBody( request.getPolicy() );
         return makeRequest( request, PolicySaveResponse.class, HttpMethod.POST );
     }
@@ -89,32 +87,35 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     @Override
     public PolicyRetrieveResponse retrievePolicy( PolicyRetrieveRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.RETRIEVE_POLICY )
-                .addPathVariable( request.getPolicyName() ).buildUrl() );
+        request.setEndpoint(
+                getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.RETRIEVE_POLICY ).addPathVariable(
+                        request.getPolicyName() ).buildUrl() );
         return makeRequest( request, PolicyRetrieveResponse.class, HttpMethod.GET );
     }
 
     @Override
     public PolicyDeleteResponse deletePolicy( PolicyDeleteRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.DELETE_POLICY )
-                .addPathVariable( request.getPolicyName() ).buildUrl() );
+        request.setEndpoint(
+                getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.DELETE_POLICY ).addPathVariable(
+                        request.getPolicyName() ).buildUrl() );
         return makeRequest( request, PolicyDeleteResponse.class, HttpMethod.DELETE );
     }
 
     @Override
     public PolicyActivateResponse activatePolicy( PolicyActivateRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.ACTIVATE_POLICY )
-                .addPathVariable( request.getPolicyName() ).buildUrl() );
+        request.setEndpoint(
+                getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.ACTIVATE_POLICY ).addPathVariable(
+                        request.getPolicyName() ).buildUrl() );
         return makeRequest( request, PolicyActivateResponse.class, HttpMethod.POST );
     }
 
     @Override
     public PolicyDeactivateResponse deactivatePolicy( PolicyDeactivateRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.DEACTIVATE_POLICY )
-                .addPathVariable( request.getPolicyName() ).buildUrl() );
+        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                Endpoints.DEACTIVATE_POLICY ).addPathVariable( request.getPolicyName() ).buildUrl() );
         return makeRequest( request, PolicyDeactivateResponse.class, HttpMethod.POST );
     }
 
@@ -141,10 +142,11 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     @Override
     public Neo4jWriterResponse write( final Neo4jWriterRequest request )
     {
-        if ( !StringUtils.isEmpty( request.getClusterName() ) && !StringUtils.isEmpty( request.getPolicyName() ) )
+        if ( StringUtils.isNotEmpty( request.getClusterName() ) && StringUtils.isNotEmpty( request.getPolicyName() ) )
         {
-            request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.WRITE )
-                    .addPathVariable( request.getPolicyName() ).buildUrl() );
+            request.setEndpoint(
+                    getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.WRITE ).addPathVariable(
+                            request.getPolicyName() ).buildUrl() );
         }
         else
         {
@@ -157,10 +159,11 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     @Override
     public Neo4jWriterAsyncResponse writeAsync( final Neo4jWriterRequest request )
     {
-        if ( !StringUtils.isEmpty( request.getClusterName() ) && !StringUtils.isEmpty( request.getPolicyName() ) )
+        if ( StringUtils.isNotEmpty( request.getClusterName() ) && StringUtils.isNotEmpty( request.getPolicyName() ) )
         {
-            request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.WRITE_ASYNC )
-                    .addPathVariable( request.getPolicyName() ).buildUrl() );
+            request.setEndpoint(
+                    getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.WRITE_ASYNC ).addPathVariable(
+                            request.getPolicyName() ).buildUrl() );
         }
         else
         {
@@ -173,10 +176,11 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     @Override
     public Neo4jWriterResponse read( final Neo4jWriterRequest request )
     {
-        if ( !StringUtils.isEmpty( request.getClusterName() ) && !StringUtils.isEmpty( request.getPolicyName() ) )
+        if ( StringUtils.isNotEmpty( request.getClusterName() ) && StringUtils.isNotEmpty( request.getPolicyName() ) )
         {
-            request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.READ )
-                    .addPathVariable( request.getPolicyName() ).buildUrl() );
+            request.setEndpoint(
+                    getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.READ ).addPathVariable(
+                            request.getPolicyName() ).buildUrl() );
         }
         else
         {
@@ -189,10 +193,11 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     @Override
     public Neo4jWriterAsyncResponse readAsync( final Neo4jWriterRequest request )
     {
-        if ( !StringUtils.isEmpty( request.getClusterName() ) && !StringUtils.isEmpty( request.getPolicyName() ) )
+        if ( StringUtils.isNotEmpty( request.getClusterName() ) && StringUtils.isNotEmpty( request.getPolicyName() ) )
         {
-            request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.READ_ASYNC )
-                    .addPathVariable( request.getPolicyName() ).buildUrl() );
+            request.setEndpoint(
+                    getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.READ_ASYNC ).addPathVariable(
+                            request.getPolicyName() ).buildUrl() );
         }
         else
         {
@@ -205,10 +210,10 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     @Override
     public Neo4jWriterAsyncResponse queueRequestForBatching( final Neo4jWriterRequest request )
     {
-        if ( !StringUtils.isEmpty( request.getClusterName() ) && !StringUtils.isEmpty( request.getPolicyName() ) )
+        if ( StringUtils.isNotEmpty( request.getClusterName() ) && StringUtils.isNotEmpty( request.getPolicyName() ) )
         {
-            request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() )
-                    .addPathVariable( Endpoints.QUEUE_REQUEST_FOR_BATCHING ).addPathVariable( request.getPolicyName() ).buildUrl() );
+            request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                    Endpoints.QUEUE_REQUEST_FOR_BATCHING ).addPathVariable( request.getPolicyName() ).buildUrl() );
         }
         else
         {
@@ -221,10 +226,10 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     @Override
     public Neo4jWriterBatchExecutionResponse batchAndExecuteQueuedRequests( final Neo4jWriterBatchExecutionRequest request )
     {
-        if ( !StringUtils.isEmpty( request.getClusterName() ) && !StringUtils.isEmpty( request.getPolicyName() ) )
+        if ( StringUtils.isNotEmpty( request.getClusterName() ) && StringUtils.isNotEmpty( request.getPolicyName() ) )
         {
-            request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() )
-                    .addPathVariable( Endpoints.BATCH_AND_EXECUTE_QUEUED_REQUESTS ).addPathVariable( request.getPolicyName() ).buildUrl() );
+            request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable(
+                    Endpoints.BATCH_AND_EXECUTE_QUEUED_REQUESTS ).addPathVariable( request.getPolicyName() ).buildUrl() );
         }
         else
         {
@@ -236,24 +241,24 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     @Override
     public Neo4jWriterResponse getTransactionResult( final Neo4jWriterResultRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( Endpoints.GET_TRANSACTION_RESULT )
-                .addQueryParam( "fuzeId", request.getFuzeId() ).buildUrl() );
+        request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( Endpoints.GET_TRANSACTION_RESULT ).addQueryParam( "fuzeId",
+                request.getFuzeId() ).buildUrl() );
         return makeRequest( request, Neo4jWriterResponse.class, HttpMethod.GET );
     }
 
     @Override
     public Neo4jWriterTxRequestResponse getTransactionRequest( final Neo4jWriterResultRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( Endpoints.GET_TRANSACTION_REQUEST )
-                .addQueryParam( "fuzeId", request.getFuzeId() ).buildUrl() );
+        request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( Endpoints.GET_TRANSACTION_REQUEST ).addQueryParam( "fuzeId",
+                request.getFuzeId() ).buildUrl() );
         return makeRequest( request, Neo4jWriterTxRequestResponse.class, HttpMethod.GET );
     }
 
     @Override
     public Neo4jWriterTxRequestStatusResponse getTransactionRequestStatus( final Neo4jWriterResultRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( Endpoints.CHECK_TRANSACTION_REQUEST_STATUS )
-                .addQueryParam( "fuzeId", request.getFuzeId() ).buildUrl() );
+        request.setEndpoint( getEndpointBuilder().create( request ).withServiceEndpoint( Endpoints.CHECK_TRANSACTION_REQUEST_STATUS ).addQueryParam( "fuzeId",
+                request.getFuzeId() ).buildUrl() );
         return makeRequest( request, Neo4jWriterTxRequestStatusResponse.class, HttpMethod.GET );
     }
 
@@ -278,8 +283,9 @@ public class GraphGridFuzeClient extends GraphGridSecurityClientBase implements 
     @Override
     public DistributorPolicyStatusResponse policyStatus( final DistributorPolicyStatusRequest request )
     {
-        request.setEndpoint( getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() )
-                .addPathVariable( Endpoints.POLICY_STATUS ).addPathVariable( request.getPolicyName() ).buildUrl() );
+        request.setEndpoint(
+                getEndpointBuilder().create( request ).addPathVariable( request.getClusterName() ).addPathVariable( Endpoints.POLICY_STATUS ).addPathVariable(
+                        request.getPolicyName() ).buildUrl() );
         return makeRequest( request, DistributorPolicyStatusResponse.class, HttpMethod.GET );
     }
 

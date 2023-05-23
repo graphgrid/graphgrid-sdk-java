@@ -76,6 +76,6 @@ public class GraphGridSecurityClientBase extends GraphGridClientBase
     {
         request = sessionFactory.addTokenToRequest( request );
         request = getTokenRequestBuilder().authenticate( request );
-        return (T) super.makeRequest( request, responseType, httpMethod );
+        return super.makeRequest( request, responseType, httpMethod );
     }
 }

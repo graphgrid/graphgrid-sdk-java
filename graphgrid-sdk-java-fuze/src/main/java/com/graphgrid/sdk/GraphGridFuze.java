@@ -37,6 +37,7 @@ import com.graphgrid.sdk.model.worker.WorkerActivePoliciesResponse;
 
 public interface GraphGridFuze
 {
+
     FuzeServiceStatusResponse status( FuzeServiceStatusRequest request );
 
     ///////////////////////
