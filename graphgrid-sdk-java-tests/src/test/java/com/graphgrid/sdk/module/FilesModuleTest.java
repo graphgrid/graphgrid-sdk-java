@@ -32,7 +32,9 @@ import static junit.framework.TestCase.assertNotNull;
 public class FilesModuleTest extends SdkTestBase
 {
 
-    private final String fileGrn = "grn:gg:file:Mm5FzYHWZd92Tx3rqKpGHaDc0pdjMmZclyKgK4fe8sUL";
+    private final String FILE_GRN = "grn:gg:file:Mm5FzYHWZd92Tx3rqKpGHaDc0pdjMmZclyKgK4fe8sUL";
+    private final String REGION_GRN = "grn:gg:region:yP20RrZjWXahpjp4mBSWlK0Wwem7vBOGyM9pqIxns3Ml";
+    private final String ORG_GRN = "grn:gg:org:T4NQL5jsr2MUzbJFVabOSWaqbXu7fbYvMWGo2egE37n2";
 
     @Test
     public void testStatus()
@@ -48,7 +50,7 @@ public class FilesModuleTest extends SdkTestBase
     public void uploadGetDeleteFileInternalServerError()
     {
         final UploadFileMetadata.CreateRelationship createRelationship = new UploadFileMetadata.CreateRelationship();
-        createRelationship.setGrn( "grn:gg:region:FvpGduQ4RuYHmy2xq76EpRDgkTOalcXBCNSyANOeBK2v" );
+        createRelationship.setGrn( REGION_GRN );
         createRelationship.setDirection( "OUTGOING" );
         createRelationship.setType( "IN_REGION" );
 
@@ -58,7 +60,7 @@ public class FilesModuleTest extends SdkTestBase
         fileNode.setFilename( "sample-file" );
         fileNode.setKey( "sample-key" );
         fileNode.setDescription( "sample" );
-        fileNode.setGrn( fileGrn );
+        fileNode.setGrn( FILE_GRN );
 
         final UploadFileMetadata uploadFileMetadata = new UploadFileMetadata();
         uploadFileMetadata.withCreateProperties(
@@ -67,7 +69,7 @@ public class FilesModuleTest extends SdkTestBase
         uploadFileMetadata.setFileNode( fileNode );
 
         final PersistFileNodeOnlyRequest request = new PersistFileNodeOnlyRequest();
-        request.setOrgGrn( "grn:gg:org:GwQysTrbKM7I8UIK9SO3Hvg7hiZnBzSUOlcclCYfDVsb" );
+        request.setOrgGrn( ORG_GRN );
         request.setUploadFileMetadata( uploadFileMetadata );
 
         final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/files", securityConfig );
@@ -126,8 +128,8 @@ public class FilesModuleTest extends SdkTestBase
     {
         final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/files" );
 
-        final FindFileRequest request = new FindFileRequest( fileGrn ).withAuthMethod( new TokenRequest( "ddf08ff3-ee0c-4b02-86e7-1fa551a2faa7" ) );
-        request.setGrn( fileGrn );
+        final FindFileRequest request = new FindFileRequest( FILE_GRN ).withAuthMethod( new TokenRequest( "ddf08ff3-ee0c-4b02-86e7-1fa551a2faa7" ) );
+        request.setGrn( FILE_GRN );
 
         final FindFileResponse file = client.findFileByGrn( request );
         assertNotNull( file );
@@ -142,8 +144,8 @@ public class FilesModuleTest extends SdkTestBase
 
         final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/files" );
 
-        final FindFileRequest request = new FindFileRequest( fileGrn ).withAuthMethod( new TokenRequest( token ) );
-        request.setGrn( fileGrn );
+        final FindFileRequest request = new FindFileRequest( FILE_GRN ).withAuthMethod( new TokenRequest( token ) );
+        request.setGrn( FILE_GRN );
 
         final FindFileResponse file = client.findFileByGrn( request );
         assertNotNull( file );
@@ -156,8 +158,8 @@ public class FilesModuleTest extends SdkTestBase
     {
         final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/files", securityConfig );
 
-        final FindFileRequest request = new FindFileRequest( fileGrn ).withAuthMethod( new UserTokenRequest( username, password ) );
-        request.setGrn( fileGrn );
+        final FindFileRequest request = new FindFileRequest( FILE_GRN ).withAuthMethod( new UserTokenRequest( username, password ) );
+        request.setGrn( FILE_GRN );
 
         final FindFileResponse file = client.findFileByGrn( request );
         assertNotNull( file );
@@ -170,7 +172,7 @@ public class FilesModuleTest extends SdkTestBase
         final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/files", securityConfig );
 
         // somewhere else
-        final FindFileRequest request = new FindFileRequest( fileGrn );
+        final FindFileRequest request = new FindFileRequest( FILE_GRN );
 
         final FindFileResponse file = client.findFileByGrn( request );
         assertNotNull( file );
