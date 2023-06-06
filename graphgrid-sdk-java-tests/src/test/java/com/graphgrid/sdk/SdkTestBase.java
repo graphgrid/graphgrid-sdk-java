@@ -4,12 +4,15 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 import com.graphgrid.sdk.core.security.SecurityConfig;
@@ -23,6 +26,8 @@ import com.graphgrid.sdk.core.security.SecurityConfig;
 @Rollback( false )
 public abstract class SdkTestBase
 {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger( SdkTestBase.class );
 
     @Rule
     public final ExpectedException thrown = ExpectedException.none();
@@ -41,15 +46,15 @@ public abstract class SdkTestBase
 
     private void loadSecurityCredentialsFromPom()
     {
-        java.io.InputStream is = this.getClass().getClassLoader().getResourceAsStream( "test.properties" );
-        java.util.Properties p = new Properties();
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream( "test.properties" );
+        Properties p = new Properties();
         try
         {
             p.load( is );
         }
         catch ( final IOException e )
         {
-            e.printStackTrace();
+            LOGGER.error( e.getMessage(), e );
         }
 
         if ( !Boolean.parseBoolean( p.getProperty( "config.useAsOverwrite" ) ) )
