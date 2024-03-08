@@ -77,10 +77,10 @@ public class FilesModuleTest extends SdkTestBase
     }
 
     @Test
-    public void urlNotFound()
+    public void incorrectFilesServiceShouldProduceBadGateway()
     {
         GraphGridSdkException exception = null;
-        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/fileNotThere" );
+        final GraphGridFilesClient client = new GraphGridFilesClient( "https://dev-api.graphgrid.com/1.0/filesServiceNotHere" );
         try
         {
             client.status( new FileServiceStatusRequest().withAuthMethod( new NoTokenRequest() ) );
@@ -90,7 +90,7 @@ public class FilesModuleTest extends SdkTestBase
             exception = ex;
         }
         assertNotNull( exception );
-        assertEquals( 404, exception.getHttpStatusCode() );
+        assertEquals( 502, exception.getHttpStatusCode() );
     }
 
     @Test
